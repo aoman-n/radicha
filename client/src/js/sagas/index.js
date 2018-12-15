@@ -3,4 +3,4 @@ import messageRoot from './message';
 
 export default function* rootSaga() {
   yield fork(messageRoot);
-};
+}

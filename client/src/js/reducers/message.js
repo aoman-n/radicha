@@ -18,7 +18,6 @@ export default (state = initialState, action) => {
         messages: state.messages.concat(action.payload),
       };
     case 'SEND_MESSAGE':
-      console.log('ok');
     default:
       return state;
   }
