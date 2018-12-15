@@ -13,4 +13,4 @@ export default function createStore(initialState) {
   );
   sagaMiddleware.run(rootSaga);
   return store;
-};
+}

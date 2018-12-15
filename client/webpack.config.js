@@ -19,6 +19,15 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
+        use: [ 'eslint-loader' ],
+        exclude: /node_modules/,
+        optinos: {
+          fix: false,
+          failOnError: true,
+        }
+      },
+      {
+        test: /\.js$/,
         use: [ 'babel-loader' ],
         exclude: /node_modules/
       },
