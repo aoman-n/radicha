@@ -1,41 +1,25 @@
-// const app = require('express')();
-// const http = require('http').Server(app);
-// const io = require('socket.io')(http);
-// const configHttp = require('./config').http;
+const app = require('express')();
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
+const config = require('./config');
 
-// let data = [];
+let data = [];
 
-// app.get('/', (req, res) => {
-//   res.sendFile(__dirname + '/index.html');
-// });
-
-// io.on('connection', socket => {
-//   console.log('a user connected');
-//   socket.on('chat message', function(msg){
-//     io.emit('chat message', msg);
-//   });
-// });
-
-// http.listen(configHttp.port, () => {
-//   console.log('listening on: ' + configHttp.port);
-// });
-
-var app = require('express')();
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
-var port = process.env.PORT || 3000;
-
-app.get('/', function(req, res){
+app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');
 });
 
-io.on('connection', function(socket){
-  console.log('test')
-  // socket.on('chat message', function(msg){
-  //   io.emit('chat message', msg);
-  // });
+io.on('connection', socket => {
+  console.log('client connected');
+  socket.on('message', msg => {
+    console.log(msg);
+    io.emit('message', msg);
+  });
+  socket.on('disconnect', () => {
+    console.log('client disconnected');
+  });
 });
 
-http.listen(port, function(){
-  console.log('listening on *:' + port);
+http.listen(config.http.port, () => {
+  console.log('listening on: ' + config.http.port);
 });
