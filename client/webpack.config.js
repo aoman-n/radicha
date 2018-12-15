@@ -5,31 +5,22 @@ module.exports = {
   context: path.join(__dirname, '/src'),
   entry: [
     '@babel/polyfill',
-    path.join(__dirname, '/src/js')
+    path.join(__dirname, '/src/js'),
   ],
   output: {
     path: path.join(__dirname, '/public'),
-    filename: 'bundle.js'
+    filename: 'bundle.js',
   },
   devServer: {
-    contentBase: path.join(__dirname, '/public')
+    contentBase: path.join(__dirname, '/public'),
   },
   devtool: 'eval-source-map',
   module: {
     rules: [
       {
         test: /\.js$/,
-        use: [ 'eslint-loader' ],
+        use: ['babel-loader'],
         exclude: /node_modules/,
-        optinos: {
-          fix: false,
-          failOnError: true,
-        }
-      },
-      {
-        test: /\.js$/,
-        use: [ 'babel-loader' ],
-        exclude: /node_modules/
       },
       {
         test: /\.css$/,
@@ -47,14 +38,14 @@ module.exports = {
             loader: 'url-loader',
             options: {
               limit: 51200,
-              name: './images/[name].[ext]'
-            }
-          }
-        ]
-      }
-    ]
+              name: './images/[name].[ext]',
+            },
+          },
+        ],
+      },
+    ],
   },
   plugins: [
-    new ExtractTextPlugin('style.css')
-  ]
-}
+    new ExtractTextPlugin({ filename: 'style.css', allChunks: true }),
+  ],
+};
