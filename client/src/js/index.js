@@ -8,11 +8,11 @@ import Routes from './routes';
 
 const store = createStore();
 
-ReactDOM.render(
-  <BrowserRouter>
-    <Provider store={store}>
+ReactDOM.render(  
+  <Provider store={store}>
+    <BrowserRouter>
       <Routes />
-    </Provider>
-  </BrowserRouter>,
+    </BrowserRouter>
+  </Provider>,
   document.getElementById('root')
 );

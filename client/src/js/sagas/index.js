@@ -1,5 +1,6 @@
-import { put, fork } from 'redux-saga/effects';
+import { fork } from 'redux-saga/effects';
+import messageRoot from './message';
 
 export default function* rootSaga() {
-  console.log('ok');
-}
+  yield fork(messageRoot);
+};
