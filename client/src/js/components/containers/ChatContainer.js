@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { compose, pure } from 'recompose';
-import Home from '../presentators/Home';
+import Chat from '../presentators/Chat';
 import {
   sendMessage,
   receiveMessage,
@@ -21,4 +21,4 @@ const enhancer = compose(
   pure,
 );
 
-export default enhancer(Home);
+export default enhancer(Chat);

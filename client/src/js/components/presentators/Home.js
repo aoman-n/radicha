@@ -1,41 +1,50 @@
 /** @jsx jsx */
+import React from 'react';
 import { jsx, css } from "@emotion/core";
-import { withState, withHandlers, pure, compose } from 'recompose';
+import Header from './Header';
+import RoomBar from './RoomBar';
+import ChatContainer from '../containers/ChatContainer';
 
-const style = css`
-  color: hotpink;
+const container = css`
+  display: grid;
+  min-height: 100vh;
+  grid-template-rows: 47px 1fr;
+  grid-template-columns: 200px 1fr;
+  grid-template-areas:
+    'header header'
+    'roombar chat'
+  ;
 `
 
-const enhancer = compose(
-  withState('inputText', 'updateText', ''),
-  withHandlers({
-    onChangeText: ({ updateText }) => e => {
-      updateText(e.target.value);
-    },
-    clearText: ({ updateText }) => () => {
-      updateText('');
-    },
-  }),
-  pure,
-);
+const header = css`
+  grid-area: header;
+  background: #f5f5f5;
+  border-bottom: 1px solid #e5e5e5;
+  /* box-shadow: inset 0 -1px 0 rgba(100,121,143,0.122); */
+`
 
-export default enhancer(({ sendMessage, createConnection, onChangeText, inputText, clearText, messages }) => {
+const roombar = css`
+  grid-area: roombar;
+  border-right: 1px solid #e5e5e5;
+`
+
+const chat = css`
+  grid-area: chat;
+  background: pink;
+`
+
+export default () => {
   return (
-    <div css={style}>
-      <button onClick={createConnection}>connect!!!</button>
-      <ul className="messages">
-        {messages.map((msg, i) => (
-          <li key={i}>{msg}</li>
-        ))}
-      </ul>
-      <form onSubmit={e => {
-        e.preventDefault();
-        sendMessage(inputText);
-        clearText();
-      }}>
-        <input type="text" value={inputText} onChange={onChangeText} />
-        <button type="submit">send</button>
-      </form>
+    <div css={container}>
+      <div css={header}>
+        <Header />
+      </div>
+      <div css={roombar}>
+        <RoomBar />
+      </div>
+      <div css={chat}>
+        <ChatContainer />
+      </div>
     </div>
   )
-});
+};
