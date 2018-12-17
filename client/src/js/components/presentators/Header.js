@@ -1,5 +1,6 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
+import { Link } from 'react-router-dom';
 import './Header.css';
 
 const root = css`
@@ -16,8 +17,12 @@ const title = css`
   text-shadow: 1px 1px 0 #296629;
   font-weight: bold;
   margin-right: auto;
-  margin-left: 20px;
+  margin-left: 40px;
   font-style: italic;
+  text-decoration: none;
+  &:hover {
+    opacity: 0.7;
+  }
 `
 
 const nav = css`
@@ -36,7 +41,7 @@ const li = css`
 export default () => {
   return (
     <div css={root}>
-      <h1 css={title}>らじちゃ！</h1>
+      <Link css={title} to="/"><h1>らじちゃ！</h1></Link>
       <nav css={nav}>
         <ul css={ul}>
           <li css={li}>mypage</li>

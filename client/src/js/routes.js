@@ -1,9 +1,10 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import Home from './components/presentators/Home';
 
 export default () => (
-  <Switch>
-    <Route exact path="/" component={Home} />
-  </Switch>
+  <BrowserRouter>
+    <Route path="/" component={Home} />
+  </BrowserRouter>
 );

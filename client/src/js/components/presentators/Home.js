@@ -1,9 +1,11 @@
 /** @jsx jsx */
 import React from 'react';
 import { jsx, css } from "@emotion/core";
+import { Route, Switch } from 'react-router-dom';
 import Header from './Header';
 import RoomBar from './RoomBar';
 import ChatContainer from '../containers/ChatContainer';
+import Sample from './Sample';
 
 const container = css`
   display: grid;
@@ -20,7 +22,6 @@ const header = css`
   grid-area: header;
   background: #f5f5f5;
   border-bottom: 1px solid #e5e5e5;
-  /* box-shadow: inset 0 -1px 0 rgba(100,121,143,0.122); */
 `
 
 const roombar = css`
@@ -30,10 +31,11 @@ const roombar = css`
 
 const chat = css`
   grid-area: chat;
-  background: pink;
+  background: #dcdcdc;
+  box-shadow: inset 5px 5px 5px #ccc;
 `
 
-export default () => {
+export default ({ match }) => {
   return (
     <div css={container}>
       <div css={header}>
@@ -43,7 +45,8 @@ export default () => {
         <RoomBar />
       </div>
       <div css={chat}>
-        <ChatContainer />
+        <Route exact path={`${match.url}general`} component={ChatContainer} />
+        <Route path={`${match.url}sample`} component={Sample} />
       </div>
     </div>
   )
