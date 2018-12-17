@@ -36,6 +36,7 @@ footer, header, hgroup, menu, nav, section {
 body {
 	font-family: Custom;
 	line-height: 1;
+	font-family: Arial, Helvetica, Tahoma, Verdana, sans-serif;
 }
 ol, ul {
 	list-style: none;

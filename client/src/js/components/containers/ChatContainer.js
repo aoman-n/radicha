@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { compose, pure } from 'recompose';
-import Chat from '../presentators/Chat';
+import Chat from '../presentators/MainContents/Chat';
 import {
   sendMessage,
   receiveMessage,

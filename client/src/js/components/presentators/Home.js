@@ -5,12 +5,29 @@ import { Route, Switch } from 'react-router-dom';
 import Header from './Header';
 import RoomBar from './RoomBar';
 import ChatContainer from '../containers/ChatContainer';
-import Sample from './Sample';
+import Sample from './MainContents/Sample';
+
+export default ({ match }) => {
+  return (
+    <div css={container}>
+      <div css={header}>
+        <Header />
+      </div>
+      <div css={roombar}>
+        <RoomBar />
+      </div>
+      <div css={chat}>
+        <Route exact path={`${match.url}general`} component={ChatContainer} />
+        <Route path={`${match.url}sample`} component={Sample} />
+      </div>
+    </div>
+  )
+};
 
 const container = css`
   display: grid;
   min-height: 100vh;
-  grid-template-rows: 47px 1fr;
+  grid-template-rows: 60px 1fr;
   grid-template-columns: 200px 1fr;
   grid-template-areas:
     'header header'
@@ -34,20 +51,3 @@ const chat = css`
   background: #dcdcdc;
   box-shadow: inset 5px 5px 5px #ccc;
 `
-
-export default ({ match }) => {
-  return (
-    <div css={container}>
-      <div css={header}>
-        <Header />
-      </div>
-      <div css={roombar}>
-        <RoomBar />
-      </div>
-      <div css={chat}>
-        <Route exact path={`${match.url}general`} component={ChatContainer} />
-        <Route path={`${match.url}sample`} component={Sample} />
-      </div>
-    </div>
-  )
-};
