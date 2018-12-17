@@ -1,16 +1,22 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
+import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Color from '../constants/Color';
 
 export default () => {
   return (
     <div>
       <ul css={list}>
         <li css={item}>
-          <NavLink activeStyle={{ borderBottom: '2px solid #a3ccbe' }} css={roomLink} to="/general">General</NavLink>
+          <NavLink activeStyle={{ borderBottom: `2px solid ${Color.green20}` }} css={roomLink} to="/general">
+            General
+            <Icon><FontAwesomeIcon icon="volume-up" /></Icon>
+          </NavLink>
         </li>
         <li css={item}>
-          <NavLink activeStyle={{ borderBottom: '2px solid #a3ccbe' }} css={roomLink} to="/sample">Sample Room</NavLink>
+          <NavLink activeStyle={{ borderBottom: `2px solid ${Color.green20}` }} css={roomLink} to="/sample">Sample Room</NavLink>
         </li>
       </ul>
     </div>
@@ -28,11 +34,16 @@ const item = css`
   line-height: 40px;
   padding: 0 10px;
   &:hover {
-    border-left: 6px solid #a3ccbe;
+    border-left: 6px solid ${Color.green30};
     cursor: pointer;
-    background: #e6fff6;
+    background: ${Color.green10};
     transition: 0.2s;
   }
+`
+
+const Icon = styled.div`
+  float: right;
+  margin-right: 5px;
 `
 
 const roomLink = css`

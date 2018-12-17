@@ -1,8 +1,9 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
-import styled from '@emotion/styled'
+import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Color from '../constants/Color';
 
 export default () => {
   return (
@@ -28,13 +29,13 @@ const root = css`
 
 const Icon = styled.div`
   margin: 20px;
-  color: gray;
+  color: ${Color.gray20};
   cursor: pointer;
 `
 
 const title = css`
   font-size: 20px;
-  color: gray;
+  color: ${Color.gray30};
   vertical-align: bottom;
   font-weight: 700;
   font-style: italic;
@@ -47,7 +48,7 @@ const title = css`
 `
 
 const nav = css`
-  color: #808080;
+  color: gray;
 `
 
 const ul = css`
@@ -68,7 +69,7 @@ const li = css`
     display: inline-block;
     width: 0;
     height: 2px;
-    background: #34BBF3;
+    background: ${Color.skyblue};
     transition: 0.4s;
   }
   &:hover:before {
