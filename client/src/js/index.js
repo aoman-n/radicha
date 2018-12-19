@@ -6,9 +6,9 @@ import Routes from './routes';
 import '../css/reset.css';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
-import { faCheckSquare, faCoffee, faBars, faVolumeUp } from '@fortawesome/free-solid-svg-icons'
+import { faCheckSquare, faCoffee, faBars, faVolumeUp, faUser } from '@fortawesome/free-solid-svg-icons'
 
-library.add(fab, faCheckSquare, faCoffee, faBars, faVolumeUp)
+library.add(fab, faCheckSquare, faCoffee, faBars, faVolumeUp, faUser)
 
 const store = createStore();
 

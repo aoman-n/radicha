@@ -12,7 +12,7 @@ export default () => {
         <li css={item}>
           <NavLink activeStyle={{ borderBottom: `2px solid ${Color.green20}` }} css={roomLink} to="/general">
             General
-            <Icon><FontAwesomeIcon icon="volume-up" /></Icon>
+            {/* <Icon><FontAwesomeIcon icon="volume-up" /></Icon> */}
           </NavLink>
         </li>
         <li css={item}>

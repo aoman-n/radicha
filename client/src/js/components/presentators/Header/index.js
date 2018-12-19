@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Color from '../constants/Color';
 
-export default () => {
+export default ({ toggle }) => {
   return (
     <div css={root}>
-      <Icon><FontAwesomeIcon icon="bars" size="lg" /></Icon>
+      <Icon onClick={toggle} ><FontAwesomeIcon icon="bars" size="lg" /></Icon>
       <Link css={title} to="/"><h1>らじちゃ！</h1></Link>
       <nav css={nav}>
         <ul css={ul}>
@@ -31,6 +31,10 @@ const Icon = styled.div`
   margin: 20px;
   color: ${Color.gray20};
   cursor: pointer;
+  &:hover {
+    opacity: 0.6;
+    transition: 0.3s;
+  }
 `
 
 const title = css`
@@ -44,6 +48,7 @@ const title = css`
   text-decoration: none;
   &:hover {
     opacity: 0.7;
+    transition: 0.3s;
   }
 `
 

@@ -1,0 +1,25 @@
+export const messages = [
+  { name: 'takanori', text: 'おはよう。元気？' },
+  { name: 'noriyuki', text: 'ぼちぼち元気やでな' },
+  { name: 'tsukuyuki', text: 'そういえば、例の件どうなった？' },
+  { name: 'takanori', text: '今のところ順調にすすんでるよ。' },
+  { name: 'noriyuki', text: 'そうかそうか。まぁやばくなったら言ってよ。手伝うからさ！' },
+  { name: 'tsukuyuki', text: 'せやな' },
+  { name: 'takanori', text: 'ありがとう。まじで助かるわ〜' },
+  { name: 'takanori', text: 'おはよう。元気？' },
+  { name: 'noriyuki', text: 'ぼちぼち元気やでな' },
+  { name: 'tsukuyuki', text: 'そういえば、例の件どうなった？' },
+  { name: 'takanori', text: '今のところ順調にすすんでるよ。' },
+  { name: 'noriyuki', text: 'そうかそうか。まぁやばくなったら言ってよ。手伝うからさ！' },
+  { name: 'tsukuyuki', text: 'せやな' },
+  { name: 'takanori', text: 'ありがとう。まじで助かるわ〜' },
+  { name: 'takanori', text: 'おはよう。元気？' },
+  { name: 'noriyuki', text: 'ぼちぼち元気やでな' },
+  { name: 'tsukuyuki', text: 'そういえば、例の件どうなった？' },
+  { name: 'takanori', text: '今のところ順調にすすんでるよ。' },
+  { name: 'noriyuki', text: 'そうかそうか。まぁやばくなったら言ってよ。手伝うからさ！' },
+  { name: 'tsukuyuki', text: 'せやな' },
+  { name: 'takanori', text: 'ありがとう。まじで助かるわ〜' },
+];
+
+export const users = ['aoba', 'tanaka', 'takeuchi', 'おにぐー', 'のりゆき', 'つくゆき', '下痢便'];
