@@ -26,7 +26,6 @@ const root = css`
   justify-content: flex-end;
   align-items: center;
 `
-
 const Icon = styled.div`
   margin: 20px;
   color: ${Color.gray20};
@@ -36,7 +35,6 @@ const Icon = styled.div`
     transition: 0.3s;
   }
 `
-
 const title = css`
   font-size: 20px;
   color: ${Color.gray30};
@@ -51,16 +49,13 @@ const title = css`
     transition: 0.3s;
   }
 `
-
 const nav = css`
   color: gray;
 `
-
 const ul = css`
   display: flex;
   justify-content: space-between;
 `
-
 const li = css`
   position: relative;
   display: inline-block;

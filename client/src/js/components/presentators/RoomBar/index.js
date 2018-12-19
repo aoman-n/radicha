@@ -28,7 +28,6 @@ const list = css`
   flex-direction: column;
   font-size: 15px;
 `
-
 const item = css`
   flex-basis: 40px;
   line-height: 40px;
@@ -40,12 +39,10 @@ const item = css`
     transition: 0.2s;
   }
 `
-
 const Icon = styled.div`
   float: right;
   margin-right: 5px;
 `
-
 const roomLink = css`
   text-decoration: none;
   color: gray;
