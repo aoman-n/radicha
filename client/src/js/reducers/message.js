@@ -1,12 +1,30 @@
+import { mockMessages, mockUsers } from '../components/presentators/mock';
+
 const initialState = {
+  userName: null,
+  room: '',
   socket: null,
-  messages: [],
+  users: mockUsers,
+  messages: mockMessages,
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case 'LOGIN_USER':
+      return {
+        ...state,
+        userName: action.payload,
+      };
+    case 'JOIN_ROOM':
+      return {
+        ...state,
+        joined: true,
+      };
     case 'CREATE_CONNECTION':
-      return state;
+      return {
+        ...state,
+        room: action.payload,
+      };
     case 'SET_SOCKET':
       return {
         ...state,

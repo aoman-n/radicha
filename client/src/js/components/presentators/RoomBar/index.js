@@ -7,23 +7,23 @@ import Color from '../constants/Color';
 
 export default () => {
   return (
-    <div>
-      <ul css={list}>
-        <li css={item}>
-          <NavLink activeStyle={{ borderBottom: `2px solid ${Color.green20}` }} css={roomLink} to="/general">
-            General
-            {/* <Icon><FontAwesomeIcon icon="volume-up" /></Icon> */}
-          </NavLink>
-        </li>
-        <li css={item}>
-          <NavLink activeStyle={{ borderBottom: `2px solid ${Color.green20}` }} css={roomLink} to="/sample">Sample Room</NavLink>
-        </li>
-      </ul>
-    </div>
+    <Ul>
+      <li css={item}>
+        <NavLink activeStyle={{ borderBottom: `2px solid ${Color.green20}` }} css={roomLink} to="/room/general">
+          General
+          {/* <Icon><FontAwesomeIcon icon="volume-up" /></Icon> */}
+        </NavLink>
+      </li>
+      <li css={item}>
+        <NavLink activeStyle={{ borderBottom: `2px solid ${Color.green20}` }} css={roomLink} to="/room/next">
+          Next
+        </NavLink>
+      </li>
+    </Ul>
   )
 }
 
-const list = css`
+const Ul = styled.ul`
   display: flex;
   flex-direction: column;
   font-size: 15px;
@@ -32,6 +32,7 @@ const item = css`
   flex-basis: 40px;
   line-height: 40px;
   padding: 0 10px;
+  transition: 0.3s;
   &:hover {
     border-left: 6px solid ${Color.green30};
     cursor: pointer;

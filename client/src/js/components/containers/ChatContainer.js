@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { compose, pure } from 'recompose';
-import Chat from '../presentators/MainContents/Chat';
+import Index from '../presentators/MainContents';
 import {
   sendMessage,
   receiveMessage,
@@ -10,7 +10,7 @@ import {
 const enhancer = compose(
   connect(
     state => ({
-      messages: state.message.messages,
+      message: state.message,
     }),
     {
       sendMessage,
@@ -21,4 +21,4 @@ const enhancer = compose(
   pure,
 );
 
-export default enhancer(Chat);
+export default enhancer(Index);

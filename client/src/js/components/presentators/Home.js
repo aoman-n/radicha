@@ -6,28 +6,23 @@ import { Route, Switch } from 'react-router-dom';
 import Header from './Header';
 import RoomBar from './RoomBar';
 import ChatContainer from '../containers/ChatContainer';
-import Index from './MainContents/';
+import ModalContainer from '../containers/ModalContainer';
 
-export default ({ match, isRoomBar, toggleRoombar }) => {
+export default ({ match, viewContents, toggleRoombar, toggleLoginModal, message }) => {
+  const { isRoomBar } = viewContents;
+  const { userName } = message;
   return (
     <Container>
+      <ModalContainer />
       <HeaderArea>
-        <Header toggle={toggleRoombar} />
+        <Header toggle={toggleRoombar} userName={userName} />
       </HeaderArea>
       <MainWrapper>
         <SideBar isRoomBar={isRoomBar}><RoomBar /></SideBar>
         <ChatRoom>
-          <Index />
+          <Route exact path={`${match.url}room/:roomId`} component={ChatContainer} />
         </ChatRoom>
       </MainWrapper>
-      {/* <div css={roombar}>
-        <RoomBar />
-      </div> */}
-      {/* <div css={chat}>
-        <Index />
-        <Route exact path={`${match.url}general`} component={ChatContainer} />
-        <Route exact path={`${match.url}sample`} component={Index} />
-      </div> */}
     </Container>
   )
 };
@@ -47,23 +42,25 @@ const MainWrapper = styled.div`
   height: calc(100% - 60px);
 `
 const SideBar = styled.div`
-  position: relative;
   ${({ isRoomBar }) => isRoomBar ? css`
     width: 200px;
     opacity: 1;
-    left: 0px;
     transition: 0.5s;
+    transition-timing-function: ease-in-out;
+    transform: none;
   ` : css`
     width: 0px;
     opacity: 0;
-    left: -200px;
     transition: 0.5s;
+    transition-timing-function: ease-in-out;
+    transform: translateX(-200px);
   `}
   border-right: 1px solid #e5e5e5;
+  background-color: #dcdcdc;
 `
 const ChatRoom = styled.div`
   flex: 1;
-  background: #dcdcdc;
+  background: white;
   box-shadow: inset 5px 5px 5px #ccc;
   padding: 20px 30px;
 `

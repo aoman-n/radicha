@@ -8,15 +8,24 @@ import config from '../config';
 
 function subscribe(socket) {
   return eventChannel((emit) => {
-    socket.on('message', (msg) => {
+    socket.on('chat message', (msg) => {
       emit(actions.receiveMessage(msg));
     });
     return () => {};
   });
 }
 
-function* receiveMessage() {
-  const socket = yield select(state => state.message.socket);
+function connect() {
+  const socket = io(config.url);
+  return new Promise((resolve) => {
+    socket.on('connect', () => {
+      console.log('コネクト成功');
+      resolve(socket);
+    });
+  });
+}
+
+function* read(socket) {
   if (socket) {
     const channel = yield call(subscribe, socket);
     while (true) {
@@ -27,25 +36,45 @@ function* receiveMessage() {
   }
 }
 
-function* runCreateConnection() {
-  const socket = io(config.url);
-  yield put(actions.setSocket(socket));
-  yield fork(receiveMessage);
+function* write(socket) {
+  while (true) {
+    const { payload } = yield take(actions.SENT_MESSAGE);
+    socket.emit('chat message', payload);
+  }
+}
+
+function* handleIO(socket) {
+  yield fork(read, socket);
+  yield fork(write, socket);
 }
 
 function* connection() {
-  yield takeEvery(actions.CREATE_CONNECTION, runCreateConnection);
+  while (true) {
+    const { payload } = yield take(actions.CREATE_CONNECTION);
+    const socket = yield call(connect);
+    yield put(actions.setSocket(socket));
+    const { userName, room } = yield select(state => state.message);
+    socket.emit('join', { userName, room });
+    const task = yield fork(handleIO, socket);
+
+    // @TODO
+    // ログアウト時の処理を待ち受けるようにする
+
+    // let action = yield take(`${logout}`);
+    // yield cancel(task);
+    // socket.emit('logout');
+  }
 }
 
-function* sendMessage() {
+function* loginUser() {
   while (true) {
-    const { payload } = yield take(actions.SENT_MESSAGE);
-    const { socket } = yield select(state => state.message);
-    socket.emit('message', payload);
+    const { payload } = yield take(actions.LOGIN_USER);
+    window.localStorage.setItem('username', payload);
   }
 }
 
 export default function* () {
   yield fork(connection);
-  yield fork(sendMessage);
+  yield fork(loginUser);
+  // yield fork(sendMessage);
 }

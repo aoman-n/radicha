@@ -1,10 +1,10 @@
 import React from 'react';
 import { jsx, css } from "@emotion/core";
 import styled from '@emotion/styled';
-import Color from '../constants/Color';
-import { messages } from '../mock';
+import Color from '../../constants/Color';
 
-export default () => {
+export default ({ message }) => {
+  const { messages } = message;
   return (
     <Container>
       {messages.map((msg, i) => (

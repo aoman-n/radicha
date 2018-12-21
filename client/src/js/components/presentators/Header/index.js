@@ -5,14 +5,14 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Color from '../constants/Color';
 
-export default ({ toggle }) => {
+export default ({ toggle, userName }) => {
   return (
     <div css={root}>
       <Icon onClick={toggle} ><FontAwesomeIcon icon="bars" size="lg" /></Icon>
-      <Link css={title} to="/"><h1>らじちゃ！</h1></Link>
+      <Link css={title} to="/"><h1></h1></Link>
       <nav css={nav}>
         <ul css={ul}>
-          <li css={li}>mypage</li>
+          { userName && <li css={li}>ログイン中 {userName}</li> }
           <li css={li}>logout</li>
         </ul>
       </nav>
