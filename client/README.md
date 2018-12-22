@@ -35,3 +35,25 @@
   - roomに対して、受け取ったmessageとusernameを送信する
 3. client: メッセージを表示
   - serverから送られてきたmessage, usernameをstateに保存し表示
+
+### socket.ioでやり取りするメッセージの名前
+
+#### `join`
+- client -> server
+- ユーザーがルームに入室した時に送られる。
+
+#### `chat message`
+- client <-> server
+- ユーザー同士がやり取りするメッセージの情報
+
+#### `user list`
+- client <- server
+- ルームにjoinした時にサーバーから送られる、**ルーム内にいる**ユーザーの情報。
+
+#### `message list`
+- client <- server
+- ルームにjoinした時、そのルーム内の新着10件のメッセージが送られる。
+
+#### `user join`
+- client <- server
+- ルーム内すべてのユーザーに対して送られる、入室したユーザーの情報
