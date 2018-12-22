@@ -3,6 +3,7 @@ const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const config = require('./config');
 
+app.disable("x-powered-by");
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Authorization');
