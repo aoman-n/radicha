@@ -3,12 +3,13 @@ import { jsx, css } from '@emotion/core';
 import styled from '@emotion/styled';
 import Color from '../../constants/Color';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import PermIdentity from '@material-ui/icons/PermIdentity';
 
 export default ({ users }) => {
   return (
     <Container>
       {users.map((user, i) => (
-        <User key={i}><FontAwesomeIcon style={{ paddingRight: 10 }} icon="user" />{user}</User>
+        <User key={i}><PermIdentity style={{ paddingRight: 10, verticalAlign: '-20%' }} />{user}</User>
       ))}
     </Container>
   )
@@ -23,4 +24,5 @@ const Container = styled.ul`
 `
 const User = styled.li`
   height: 25px;
+  vertical-align: middle;
 `
