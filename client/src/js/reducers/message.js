@@ -1,10 +1,8 @@
-import { mockUsers } from '../components/presentators/mock';
-
 const initialState = {
   userName: null,
   room: '',
   socket: null,
-  users: mockUsers,
+  users: [],
   messages: [],
 };
 
@@ -35,12 +33,22 @@ export default (state = initialState, action) => {
         ...state,
         socket: action.payload,
       };
-    case 'RECEIVE_MESSAGE':
+    case 'ADD_MESSAGE':
       return {
         ...state,
         messages: state.messages.concat(action.payload),
       };
-    case 'SEND_MESSAGE':
+    case 'INITIALIZE_ROOM_DATA':
+      return {
+        ...state,
+        users: action.payload.users,
+        messages: action.payload.messages,
+      };
+    case 'ADD_ROOM_USER':
+      return {
+        ...state,
+        users: state.users.concat(action.payload),
+      };
     default:
       return state;
   }

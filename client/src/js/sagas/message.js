@@ -9,7 +9,17 @@ import config from '../config';
 function subscribe(socket) {
   return eventChannel((emit) => {
     socket.on('chat message', (msg) => {
-      emit(actions.receiveMessage(msg));
+      console.log(msg);
+      emit(actions.addMessage(msg));
+    });
+    socket.on('user join', (username) => {
+      console.log(`joinしたuser: ${username}`);
+      emit(actions.addMessage({ name: '', text: `${username}さん が入室しました` }));
+      emit(actions.addRoomUser(username));
+    });
+    socket.on('initialize room data', (data) => {
+      console.dir(data);
+      emit(actions.initializeRoomData(data));
     });
     return () => {};
   });
@@ -39,7 +49,10 @@ function* read(socket) {
 function* write(socket) {
   while (true) {
     const { payload } = yield take(actions.SENT_MESSAGE);
-    socket.emit('chat message', payload);
+    const { userName } = yield select(state => state.message);
+    const message = { name: userName, text: payload };
+    yield put(actions.addMessage(message));
+    socket.emit('chat message', message);
   }
 }
 

@@ -10,56 +10,52 @@ app.use((req, res, next) => {
   next();
 });
 
-
-
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');
 });
 
-let users = [];
-let messages = [];
+// @MEMO
+// username、userのsocket.idを保存するobj
+let users = {};
 let store = {};
 // @MEMO
 // generalチャンネル
-let general = {
-  users: [],
-  messages: [
-    { name: 'aoba', text: 'こんにちは' }
-  ],
+let rooms = {
+  general: {
+    users: [],
+    messages: [],
+  }
 };
 
 io.on('connection', socket => {
   console.log('client connected');
+
   // roomへの入室
   socket.on('join', data => {
     console.log(data);
     const { userName, room } = data;
-    usrobj = {
-      'room': room,
-      'name': userName,
-    };
-    store[socket.id] = usrobj;
+    users[userName] = socket.id;
+    rooms[room].users.push(userName);
+    console.dir(rooms[room]);
     socket.join(room);
     socket.username = userName;
     socket.room = room;
-    general.users.push = userName;
-    io.to(room).emit('chat message', { name: '', text: `${userName}さんが入室しました` });
-    // io.to(socket.id).emit('chat message', { name: 'system', text: 'プライベートメッセージ' });
+    socket.to(room).emit('user join', userName);
+    socket.emit('initialize room data', rooms['general']);
   });
+
   // room内userへmessageをsend
   socket.on('chat message', msg => {
     console.log(msg);
-    // io.to(store[socket.id].room).emit('chat message', msg);
-    // socket.broadcast.emit('chat message', msg);
-    const { room, username } = socket;
-    const obj = { name: username, text: msg };
-    general.messages.push(obj);
-    io.in(room).emit('chat message', obj);
-    // socket.broadcast.to(room).emit('chat message', obj);
+    const { room } = socket;
+    rooms.general.messages.push(msg);
+    socket.to(room).emit('chat message', msg);
   });
+
   socket.on('disconnect', () => {
     console.log('client disconnected');
   });
+
 });
 
 http.listen(config.http.port, () => {

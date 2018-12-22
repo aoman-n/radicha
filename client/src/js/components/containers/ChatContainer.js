@@ -3,7 +3,6 @@ import { compose, pure } from 'recompose';
 import Index from '../presentators/MainContents';
 import {
   sendMessage,
-  receiveMessage,
   createConnection,
 } from '../../actions';
 
@@ -14,7 +13,6 @@ const enhancer = compose(
     }),
     {
       sendMessage,
-      receiveMessage,
       createConnection,
     },
   ),
