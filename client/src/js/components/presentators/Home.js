@@ -8,14 +8,14 @@ import RoomBar from './RoomBar';
 import ChatContainer from '../containers/ChatContainer';
 import ModalContainer from '../containers/ModalContainer';
 
-export default ({ match, viewContents, toggleRoombar, toggleLoginModal, message }) => {
+export default ({ match, viewContents, toggleRoombar, showLoginModal, logoutUser, message }) => {
   const { isRoomBar } = viewContents;
   const { userName } = message;
   return (
     <Container>
       <ModalContainer />
       <HeaderArea>
-        <Header toggle={toggleRoombar} userName={userName} />
+        <Header {...{showLoginModal, toggleRoombar, userName, logoutUser}} />
       </HeaderArea>
       <MainWrapper>
         <SideBar isRoomBar={isRoomBar}><RoomBar /></SideBar>

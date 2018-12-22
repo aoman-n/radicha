@@ -4,12 +4,11 @@ import { jsx, css } from '@emotion/core';
 import styled from '@emotion/styled';
 import LoginModal from './LoginModal';
 
-export default ({ modals, toggleLoginModal, loginUser, userName }) => {
+export default ({ modals, closeLoginModal, loginUser, userName }) => {
   const { isLoginModal, isCreateRoomModal } = modals;
   return (
     <div>
     {isLoginModal && <Modal><LoginModal {...{closeLoginModal, loginUser}} /></Modal>}
-    {!userName && <Modal><LoginModal {...{toggleLoginModal, loginUser}} /></Modal>}
     </div>
   )
 }

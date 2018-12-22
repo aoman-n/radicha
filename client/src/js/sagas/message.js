@@ -19,7 +19,7 @@ function connect() {
   const socket = io(config.url);
   return new Promise((resolve) => {
     socket.on('connect', () => {
-      console.log('コネクト成功');
+      console.log('success connect');
       resolve(socket);
     });
   });
@@ -56,25 +56,14 @@ function* connection() {
     const { userName, room } = yield select(state => state.message);
     socket.emit('join', { userName, room });
     const task = yield fork(handleIO, socket);
-
     // @TODO
     // ログアウト時の処理を待ち受けるようにする
-
     // let action = yield take(`${logout}`);
     // yield cancel(task);
     // socket.emit('logout');
   }
 }
 
-function* loginUser() {
-  while (true) {
-    const { payload } = yield take(actions.LOGIN_USER);
-    window.localStorage.setItem('username', payload);
-  }
-}
-
 export default function* () {
   yield fork(connection);
-  yield fork(loginUser);
-  // yield fork(sendMessage);
 }

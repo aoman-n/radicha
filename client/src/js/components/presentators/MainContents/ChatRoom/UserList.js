@@ -17,8 +17,9 @@ export default ({ users }) => {
 
 const Container = styled.ul`
   color: ${Color.gray30};
-  width: 180px;
-  padding: 10px 20px;
+  width: 200px;
+  padding: 10px 15px;
+  font-size: 0.9em;
   box-sizing: border-box;
   border: 1px solid ${Color.gray10};
 `

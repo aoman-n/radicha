@@ -15,6 +15,11 @@ export default (state = initialState, action) => {
         ...state,
         userName: action.payload,
       };
+    case 'LOGOUT_USER':
+      return {
+        ...state,
+        userName: null,
+      };
     case 'JOIN_ROOM':
       return {
         ...state,

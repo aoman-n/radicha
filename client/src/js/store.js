@@ -3,6 +3,7 @@ import createSagaMiddleware from 'redux-saga';
 import { createLogger } from 'redux-logger';
 import reducers from './reducers';
 import rootSaga from './sagas';
+import { initialize } from './actions';
 
 export default function createStore() {
   const sagaMiddleware = createSagaMiddleware();
@@ -15,5 +16,6 @@ export default function createStore() {
   const enhancer = composeEnhancers(applyMiddleware(...middlewares));
   const store = reduxCreateStore(reducers, enhancer);
   sagaMiddleware.run(rootSaga);
+  store.dispatch(initialize());
   return store;
 }

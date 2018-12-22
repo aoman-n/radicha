@@ -9,7 +9,7 @@ export default ({ message }) => {
     <Container>
       {messages.map((msg, i) => (
         <List key={i}>
-          <Name>{msg.name}: </Name>
+          { msg.name && <Name>{msg.name}: </Name> }
           <Text>{msg.text}</Text>
         </List>
       ))}

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { pure, compose } from 'recompose';
-import { toggleRoombar, toggleLoginModal } from '../../actions';
+import { toggleRoombar, showLoginModal, logoutUser } from '../../actions';
 import Home from '../presentators/Home';
 
 const enhancer = compose(
@@ -11,7 +11,8 @@ const enhancer = compose(
     }),
     {
       toggleRoombar,
-      toggleLoginModal,
+      showLoginModal,
+      logoutUser,
     },
   ),
   pure,

@@ -5,7 +5,12 @@ import * as actions from '../actions';
 
 function* getUserName() {
   const username = yield localStorage.getItem('username');
-  yield put(actions.loginUser(username));
+  if (username) {
+    yield put(actions.loginUser(username));
+  } else {
+    console.log('not found username in localstorage');
+    yield put(actions.showLoginModal());
+  }
 }
 
 function* flow() {
@@ -13,5 +18,5 @@ function* flow() {
 }
 
 export default function* () {
-  yield fork(getUserName);
+  yield fork(flow);
 }

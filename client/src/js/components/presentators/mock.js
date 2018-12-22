@@ -22,4 +22,4 @@ export const mockMessages = [
   // { name: 'takanori', text: 'ありがとう。まじで助かるわ〜' },
 ];
 
-export const mockUsers = ['aoba', 'tanaka', 'takeuchi', 'おにぐー', 'のりゆき', 'つくゆき', '下痢便'];
+export const mockUsers = ['aoba', 'tanaka', 'takeuchi', 'おにぐー', 'のりゆきのりゆき', 'つくゆき', '下痢便'];

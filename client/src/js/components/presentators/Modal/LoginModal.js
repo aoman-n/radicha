@@ -18,7 +18,7 @@ const enhancer = compose(
   pure,
 );
 
-export default enhancer(({ toggleLoginModal, loginUser, inputText, onChangeText }) => {
+export default enhancer(({ loginUser, inputText, onChangeText, closeLoginModal }) => {
   return (
     <React.Fragment>
       <Modal>
@@ -28,7 +28,7 @@ export default enhancer(({ toggleLoginModal, loginUser, inputText, onChangeText 
           closeLoginModal();
         }}>Login</Button>
       </Modal>
-      <Overlay onClick={toggleLoginModal}></Overlay>
+      <Overlay onClick={closeLoginModal}></Overlay>
     </React.Fragment>
   )
 });

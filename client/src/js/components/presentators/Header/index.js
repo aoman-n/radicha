@@ -5,22 +5,28 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Color from '../constants/Color';
 
-export default ({ toggle, userName }) => {
+export default ({ showLoginModal, toggleRoombar, logoutUser, userName }) => {
   return (
-    <div css={root}>
-      <Icon onClick={toggle} ><FontAwesomeIcon icon="bars" size="lg" /></Icon>
+    <Container>
+      <Icon onClick={toggleRoombar} ><FontAwesomeIcon icon="bars" size="lg" /></Icon>
       <Link css={title} to="/"><h1></h1></Link>
       <nav css={nav}>
-        <ul css={ul}>
-          { userName && <li css={li}>ログイン中 {userName}</li> }
-          <li css={li}>logout</li>
-        </ul>
+        {
+          (userName || userName !== null) ?
+            <ul css={ul}>
+              <Li onClick={showLoginModal}><Name>{userName}</Name>でログイン中</Li>
+              <Li onClick={logoutUser}>ログアウト</Li>
+            </ul> :
+            <ul css={ul}>
+              <Li onClick={showLoginModal}>ログイン</Li>
+            </ul>
+        }
       </nav>
-    </div>
+    </Container>
   )
 }
 
-const root = css`
+const Container = styled.div`
   height: 100%;
   display: flex;
   justify-content: flex-end;
@@ -56,11 +62,14 @@ const ul = css`
   display: flex;
   justify-content: space-between;
 `
-const li = css`
+const Li = styled.li`
   position: relative;
   display: inline-block;
-  margin-right: 40px;
+  margin-right: 30px;
   cursor: pointer;
+  &:hover {
+    opacity: 0.8;
+  }
   &:before {
     position: absolute;
     top: 1.3em;
@@ -75,4 +84,9 @@ const li = css`
   &:hover:before {
     width: 100%;
   }
+`
+const Name = styled.span`
+  color: #ff69b4;
+  font-weight: 700;
+  padding-right: 5px;
 `
