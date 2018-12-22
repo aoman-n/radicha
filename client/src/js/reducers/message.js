@@ -1,11 +1,11 @@
-import { mockMessages, mockUsers } from '../components/presentators/mock';
+import { mockUsers } from '../components/presentators/mock';
 
 const initialState = {
   userName: null,
   room: '',
   socket: null,
   users: mockUsers,
-  messages: mockMessages,
+  messages: [],
 };
 
 export default (state = initialState, action) => {

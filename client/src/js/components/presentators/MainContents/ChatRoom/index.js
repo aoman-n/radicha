@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Color from '../../constants/Color';
 import MessageList from './MessageList';
 import InputField from './InputField';
+import UserList from './UserList';
 
 export default ({ sendMessage, onChangeText, inputText, clearText, message }) => {
   return (
@@ -13,11 +13,7 @@ export default ({ sendMessage, onChangeText, inputText, clearText, message }) =>
           <Radio>radio</Radio>
           <MessageList {...{message}}　/>
         </CommunicateArea>
-        <UserList>
-          { message.users.map((user, i) => (
-            <User key={i}><FontAwesomeIcon style={{ paddingRight: 10 }} icon="user" />{user}</User>
-          ))}
-        </UserList>
+        <UserList users={message.users} />
       </TopContainer>
       <InputField {...{sendMessage, onChangeText, inputText, clearText}} />
     </React.Fragment>
@@ -54,14 +50,4 @@ const Radio = styled.div`
   margin: 10px 20px;
   border-bottom: 1px solid ${Color.gray10};
   box-sizing: border-box;
-`
-const UserList = styled.ul`
-  color: ${Color.gray30};
-  width: 180px;
-  padding: 10px 20px;
-  box-sizing: border-box;
-  border: 1px solid ${Color.gray10};
-`
-const User = styled.li`
-  height: 25px;
 `
