@@ -1,4 +1,4 @@
-import { fork, take } from 'redux-saga/effects';
+import { fork, take, select } from 'redux-saga/effects';
 import * as actions from '../actions';
 
 function* logoutUser() {

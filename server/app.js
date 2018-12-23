@@ -53,11 +53,34 @@ io.on('connection', socket => {
     socket.to(room).emit('chat message', msg);
   });
 
+  socket.on('logout', () => {
+    console.log('clientからlogoutを受信');
+    logout(socket);
+  });
+
   socket.on('disconnect', () => {
     console.log('client disconnected');
+    const { room, username } = socket;
+    const message = { name: '', text: `${username} さんが退出しました。` };
+    socket.to(room).emit('chat message', message);
+    // socket.to(room).emit('leave user', username);
+    rooms[room].users = rooms[room].users.filter(user => username !== user);
+    console.log(rooms[room].users);
+    socket.emit('clear socket', 'clear');
   });
 
 });
+
+const logout = socket => {
+  const { room, username } = socket;
+  const message = { name: '', text: `${username} さんが退出しました。` };
+  socket.to(room).emit('chat message', message);
+  socket.to(room).emit('leave user', username);
+  rooms[room].users = rooms[room].users.filter(user => username !== user);
+  socket.emit('clear socket', 'clear');
+  delete socket.username;
+  delete socket.room;
+}
 
 http.listen(config.http.port, () => {
   console.log('listening on: ' + config.http.port);

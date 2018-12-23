@@ -49,6 +49,11 @@ export default (state = initialState, action) => {
         ...state,
         users: state.users.concat(action.payload),
       };
+    case 'REMOVE_ROOM_USER':
+      return {
+        ...state,
+        users: state.users.filter(u => u !== action.payload),
+      };
     default:
       return state;
   }

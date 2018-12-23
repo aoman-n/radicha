@@ -20,7 +20,9 @@ export default ({ match, viewContents, toggleRoombar, showLoginModal, logoutUser
       <MainWrapper>
         <SideBar isRoomBar={isRoomBar}><RoomBar /></SideBar>
         <ChatRoom>
-          <Route exact path={`${match.url}room/:roomId`} component={ChatContainer} />
+          <Switch>
+            <Route exact path={`${match.url}room/:roomId`} component={ChatContainer} />
+          </Switch>        
         </ChatRoom>
       </MainWrapper>
     </Container>

@@ -14,6 +14,7 @@ export const CLOSE_LOGIN_MODAL = 'CLOSE_LOGIN_MODAL';
 export const JOIN_ROOM = 'JOIN_ROOM';
 export const INITIALIZE_ROOM_DATA = 'INITIALIZE_ROOM_DATA';
 export const ADD_ROOM_USER = 'ADD_ROOM_USER';
+export const REMOVE_ROOM_USER = 'REMOVE_ROOM_USER';
 
 // actionCreators
 export const initialize = createAction(INITIALIZE);
@@ -29,3 +30,4 @@ export const closeLoginModal = createAction(CLOSE_LOGIN_MODAL);
 export const joinRoom = createAction(JOIN_ROOM);
 export const initializeRoomData = createAction(INITIALIZE_ROOM_DATA);
 export const addRoomUser = createAction(ADD_ROOM_USER);
+export const removeRoomUser = createAction(REMOVE_ROOM_USER);

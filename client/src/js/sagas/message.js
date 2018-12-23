@@ -1,5 +1,5 @@
 import {
-  take, put, fork, takeEvery, select, call,
+  take, put, fork, takeEvery, select, call, cancel,
 } from 'redux-saga/effects';
 import io from 'socket.io-client';
 import { eventChannel } from 'redux-saga';
@@ -20,6 +20,13 @@ function subscribe(socket) {
     socket.on('initialize room data', (data) => {
       console.dir(data);
       emit(actions.initializeRoomData(data));
+    });
+    socket.on('leave user', (username) => {
+      console.log(`leave userを受け取りました。username: ${username}`);
+      emit(actions.removeRoomUser(username));
+    });
+    socket.on('clear socket', () => {
+      console.log('clear socket を受け取りました。')
     });
     return () => {};
   });
@@ -71,9 +78,10 @@ function* connection() {
     const task = yield fork(handleIO, socket);
     // @TODO
     // ログアウト時の処理を待ち受けるようにする
-    // let action = yield take(`${logout}`);
-    // yield cancel(task);
-    // socket.emit('logout');
+    let action = yield take(actions.LOGOUT_USER);
+    console.log('ルーム内でログアウトを確認');
+    yield cancel(task);
+    socket.emit('logout');
   }
 }
 

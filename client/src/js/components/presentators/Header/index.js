@@ -15,7 +15,7 @@ export default ({ showLoginModal, toggleRoombar, logoutUser, userName }) => {
           (userName || userName !== null) ?
             <ul css={ul}>
               <Li onClick={showLoginModal}><Name>{userName}</Name>でログイン中</Li>
-              <Li onClick={logoutUser}>ログアウト</Li>
+              <Link to="/"><Li onClick={logoutUser}>ログアウト</Li></Link>
             </ul> :
             <ul css={ul}>
               <Li onClick={showLoginModal}>ログイン</Li>
@@ -49,7 +49,6 @@ const title = css`
   font-style: italic;
   margin-right: auto;
   text-align: center;
-  text-decoration: none;
   &:hover {
     opacity: 0.7;
     transition: 0.3s;
@@ -67,6 +66,7 @@ const Li = styled.li`
   display: inline-block;
   margin-right: 30px;
   cursor: pointer;
+  color: ${Color.gray30};
   &:hover {
     opacity: 0.8;
   }

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import createStore from './store';
 import Routes from './routes';
+import { BrowserRouter } from 'react-router-dom';
 import '../css/reset.css';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
@@ -14,7 +15,9 @@ const store = createStore();
 
 ReactDOM.render(  
   <Provider store={store}>
-    <Routes />
+    <BrowserRouter>
+      <Routes />
+    </BrowserRouter>
   </Provider>,
   document.getElementById('root')
 );
