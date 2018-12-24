@@ -2,8 +2,8 @@
 import React from 'react';
 import { jsx, css } from "@emotion/core";
 import { withState, withHandlers, pure, compose } from 'recompose';
-import Entrance from './Entrance';
 import ChatRoom from './ChatRoom';
+import Pending from '../shared/Pending';
 
 const enhancer = compose(
   withState('inputText', 'updateText', ''),
@@ -18,15 +18,15 @@ const enhancer = compose(
   pure,
 );
 
-export default enhancer(({ sendMessage, createConnection, onChangeText, inputText, clearText, message, match }) => {
-  const { socket, userName } = message;
-  const { params: { roomId } } = match;
+export default enhancer(({ sendMessage, onChangeText, inputText, clearText, app, chatRoom }) => {
+  const { pending } = chatRoom;
+  console.log('ok');
   return (
     <React.Fragment>
       {
-        socket ?
-          <ChatRoom {...{sendMessage, onChangeText, inputText, clearText, message}} /> :
-          <Entrance {...{createConnection, userName, roomId}} />
+        pending ?
+          <Pending /> :
+          <ChatRoom {...{sendMessage, onChangeText, inputText, clearText, app, chatRoom}} />
       }
     </React.Fragment>
   )

@@ -1,10 +1,9 @@
 /** @jsx jsx */
-import React from 'react';
 import { jsx, css } from '@emotion/core';
 import styled from '@emotion/styled';
 import LoginModal from './LoginModal';
 
-export default ({ modals, closeLoginModal, loginUser, userName }) => {
+export default ({ modals, closeLoginModal, loginUser, username }) => {
   const { isLoginModal, isCreateRoomModal } = modals;
   return (
     <div>

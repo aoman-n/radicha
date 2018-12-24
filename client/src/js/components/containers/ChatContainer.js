@@ -1,22 +1,34 @@
+import React from 'react';
 import { connect } from 'react-redux';
-import { compose, pure } from 'recompose';
+import { compose, pure, lifecycle } from 'recompose';
 import Index from '../presentators/MainContents';
 import {
   sendMessage,
-  createConnection,
+  joinRoom,
 } from '../../actions';
 
 const enhancer = compose(
   connect(
     state => ({
-      message: state.message,
+      app: state.app,
+      chatRoom: state.chatRoom,
     }),
     {
       sendMessage,
-      createConnection,
+      joinRoom,
     },
   ),
+  lifecycle({
+    componentDidMount() {
+      const { joinRoom, match } = this.props;
+      joinRoom(match.params.roomId);
+    },
+  }),
   pure,
 );
 
-export default enhancer(Index);
+export default enhancer(({ app, chatRoom, sendMessage }) => (
+  <Index
+    {...{ app, chatRoom, sendMessage }}
+  />
+));

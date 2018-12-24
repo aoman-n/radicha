@@ -16,11 +16,7 @@ app.get('/', (req, res) => {
 });
 
 // @MEMO
-// username、userのsocket.idを保存するobj
-let users = {};
-let store = {};
-// @MEMO
-// generalチャンネル
+// ルーム内チャットデータを保持するobj
 let rooms = {
   general: {
     users: [],
@@ -34,22 +30,33 @@ io.on('connection', socket => {
   // roomへの入室
   socket.on('join', data => {
     console.log(data);
-    const { userName, room } = data;
-    users[userName] = socket.id;
-    rooms[room].users.push(userName);
-    console.dir(rooms[room]);
-    socket.join(room);
-    socket.username = userName;
-    socket.room = room;
-    socket.to(room).emit('user join', userName);
-    socket.emit('initialize room data', rooms['general']);
+    const { username, roomname } = data;
+    const userData = { id: socket.id, name: username };
+    // 既にroomに入っていれば、socketから情報を削除し、退出メッセージを送信
+    const { room } = socket;
+    if (room) {
+      console.log('ルームにジョイン中です');
+      socket.to(room).emit('chat message', { name: '', text: `${username} さんが退出しました。` });
+      socket.leave(room);
+      delete socket.room;
+      delete socket.username;
+    }
+    // roomにjoinする処理
+    socket.join(roomname);
+    socket.username = username;
+    socket.room = roomname;
+    // users[username] = socket.id;
+    rooms[roomname].users.push(userData);
+    socket.to(roomname).emit('user join', userData);
+    socket.emit('initialize room data', rooms[roomname]);
+    socket.emit('chat message', { name: '', text: `${username} として入室しました。` });
   });
 
   // room内userへmessageをsend
   socket.on('chat message', msg => {
     console.log(msg);
     const { room } = socket;
-    rooms.general.messages.push(msg);
+    rooms[room].messages.push(msg);
     socket.to(room).emit('chat message', msg);
   });
 
@@ -60,26 +67,23 @@ io.on('connection', socket => {
 
   socket.on('disconnect', () => {
     console.log('client disconnected');
-    const { room, username } = socket;
-    const message = { name: '', text: `${username} さんが退出しました。` };
-    socket.to(room).emit('chat message', message);
-    // socket.to(room).emit('leave user', username);
-    rooms[room].users = rooms[room].users.filter(user => username !== user);
-    console.log(rooms[room].users);
-    socket.emit('clear socket', 'clear');
+    logout(socket);
   });
 
 });
 
 const logout = socket => {
-  const { room, username } = socket;
-  const message = { name: '', text: `${username} さんが退出しました。` };
-  socket.to(room).emit('chat message', message);
-  socket.to(room).emit('leave user', username);
-  rooms[room].users = rooms[room].users.filter(user => username !== user);
-  socket.emit('clear socket', 'clear');
-  delete socket.username;
-  delete socket.room;
+  const { room, username, id } = socket;
+  if (room) {
+    delete socket.username;
+    delete socket.room;
+    socket.leave(room);
+    const message = { name: '', text: `${username} さんが退出しました。` };
+    socket.to(room).emit('chat message', message);
+    socket.to(room).emit('leave user', id);
+    rooms[room].users = rooms[room].users.filter(u => u.id !== id);
+    socket.emit('clear socket', 'clear');
+  }
 }
 
 http.listen(config.http.port, () => {

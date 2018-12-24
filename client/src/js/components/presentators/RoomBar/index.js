@@ -2,22 +2,24 @@
 import { jsx, css } from "@emotion/core";
 import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Color from '../constants/Color';
 
 export default () => {
   return (
     <Ul>
       <li css={item}>
-        <NavLink activeStyle={{ borderBottom: `2px solid ${Color.green20}` }} css={roomLink} to="/room/general">
-          General
-          {/* <Icon><FontAwesomeIcon icon="volume-up" /></Icon> */}
-        </NavLink>
+        <NavLink
+          activeStyle={{ borderBottom: `2px solid ${Color.green20}` }}
+          css={roomLink}
+          to="/room/general"
+        >General</NavLink>
       </li>
       <li css={item}>
-        <NavLink activeStyle={{ borderBottom: `2px solid ${Color.green20}` }} css={roomLink} to="/room/next">
-          Next
-        </NavLink>
+        <NavLink 
+          activeStyle={{ borderBottom: `2px solid ${Color.green20}` }}
+          css={roomLink}
+          to="/room/next"
+        >Next</NavLink>
       </li>
     </Ul>
   )

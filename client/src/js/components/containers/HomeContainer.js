@@ -7,7 +7,7 @@ const enhancer = compose(
   connect(
     state => ({
       viewContents: state.viewContents,
-      message: state.message,
+      app: state.app,
     }),
     {
       toggleRoombar,

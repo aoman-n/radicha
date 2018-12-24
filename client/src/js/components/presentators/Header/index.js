@@ -5,16 +5,16 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Color from '../constants/Color';
 
-export default ({ showLoginModal, toggleRoombar, logoutUser, userName }) => {
+export default ({ showLoginModal, toggleRoombar, logoutUser, username }) => {
   return (
     <Container>
       <Icon onClick={toggleRoombar} ><FontAwesomeIcon icon="bars" size="lg" /></Icon>
       <Link css={title} to="/"><h1></h1></Link>
       <nav css={nav}>
         {
-          (userName || userName !== null) ?
+          (username || username !== null) ?
             <ul css={ul}>
-              <Li onClick={showLoginModal}><Name>{userName}</Name>でログイン中</Li>
+              <Li onClick={showLoginModal}><Name>{username}</Name>でログイン中</Li>
               <Link to="/"><Li onClick={logoutUser}>ログアウト</Li></Link>
             </ul> :
             <ul css={ul}>

@@ -1,10 +1,9 @@
-import React from 'react';
+/** @jsx jsx */
 import { jsx, css } from "@emotion/core";
 import styled from '@emotion/styled';
 import Color from '../../constants/Color';
 
-export default ({ message }) => {
-  const { messages } = message;
+export default ({ messages }) => {
   return (
     <Container>
       {messages.map((msg, i) => (

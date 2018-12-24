@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
-import message from './message';
+import app from './app';
+import chatRoom from './chatRoom';
 import viewContents from './viewContents';
 
 export default combineReducers({
-  message,
+  app,
+  chatRoom,
   viewContents,
 });

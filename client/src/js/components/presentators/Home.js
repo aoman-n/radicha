@@ -1,5 +1,4 @@
 /** @jsx jsx */
-import React from 'react';
 import { jsx, css } from "@emotion/core";
 import styled from '@emotion/styled';
 import { Route, Switch } from 'react-router-dom';
@@ -8,14 +7,14 @@ import RoomBar from './RoomBar';
 import ChatContainer from '../containers/ChatContainer';
 import ModalContainer from '../containers/ModalContainer';
 
-export default ({ match, viewContents, toggleRoombar, showLoginModal, logoutUser, message }) => {
+export default ({ match, viewContents, toggleRoombar, showLoginModal, logoutUser, app }) => {
   const { isRoomBar } = viewContents;
-  const { userName } = message;
+  const { username } = app;
   return (
     <Container>
       <ModalContainer />
       <HeaderArea>
-        <Header {...{showLoginModal, toggleRoombar, userName, logoutUser}} />
+        <Header {...{showLoginModal, toggleRoombar, username, logoutUser}} />
       </HeaderArea>
       <MainWrapper>
         <SideBar isRoomBar={isRoomBar}><RoomBar /></SideBar>

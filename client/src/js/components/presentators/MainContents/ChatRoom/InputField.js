@@ -1,4 +1,4 @@
-import React from 'react';
+/** @jsx jsx */
 import { jsx, css } from "@emotion/core";
 import styled from '@emotion/styled';
 import Color from '../../constants/Color';

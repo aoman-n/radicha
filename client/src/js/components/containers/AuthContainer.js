@@ -7,7 +7,7 @@ import { showLoginModal, closeLoginModal } from '../../actions';
 const enhancer = compose(
   connect(
     state => ({
-      userName: state.message.userName,
+      username: state.app.username,
     }),
     {
       showLoginModal,
@@ -17,12 +17,12 @@ const enhancer = compose(
   pure,
 );
 
-export default enhancer(({ userName, showLoginModal, closeLoginModal, children, match }) => {
-  console.log(userName);
+export default enhancer(({ username, showLoginModal, closeLoginModal, children, match }) => {
+  console.log(username);
   console.log(match);
   return (
     <React.Fragment>
-      { userName ? children : <Redirect to={"/login"} /> }
+      { username ? children : <Redirect to={"/login"} /> }
     </React.Fragment>
   )
 });

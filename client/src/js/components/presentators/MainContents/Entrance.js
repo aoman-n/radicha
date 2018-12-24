@@ -7,11 +7,11 @@ const enhancer = compose(
   pure,
 );
 
-export default enhancer(({ createConnection, userName, roomId }) => {
+export default enhancer(({ joinRoom, username, roomId }) => {
   return (
     <div>
       <button onClick={() => {
-        createConnection(roomId);
+        joinRoom(roomId);
       }}>join</button>
     </div>
   )

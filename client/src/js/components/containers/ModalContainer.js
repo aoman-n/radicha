@@ -7,7 +7,7 @@ const enhancer = compose(
   connect(
     state => ({
       modals: state.viewContents.modals,
-      userName: state.message.userName,
+      username: state.app.username,
     }),
     {
       closeLoginModal,
