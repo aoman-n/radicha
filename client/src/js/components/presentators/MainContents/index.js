@@ -20,7 +20,6 @@ const enhancer = compose(
 
 export default enhancer(({ sendMessage, onChangeText, inputText, clearText, app, chatRoom }) => {
   const { pending } = chatRoom;
-  console.log('ok');
   return (
     <React.Fragment>
       {

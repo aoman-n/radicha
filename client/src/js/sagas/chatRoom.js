@@ -7,7 +7,8 @@ import * as actions from '../actions';
 function subscribe(socket) {
   return eventChannel((emit) => {
     socket.on('chat message', (msg) => {
-      console.log(msg);
+      // console.log(msg);
+      console.log('メッセージを受け取りました');
       emit(actions.addMessage(msg));
     });
     socket.on('user join', (userData) => {
@@ -56,18 +57,22 @@ function* handleIO(socket) {
   yield fork(write, socket);
 }
 
+function* cancelTask(task, socket) {
+  const e = yield take([actions.LOGOUT_USER, actions.JOIN_ROOM]);
+  yield cancel(task);
+  // @TODO REFACTOR
+  if (e.type === 'LOGOUT_USER') {
+    socket.emit('logout');
+  }
+}
+
 function* joinRoom() {
   while (true) {
-    const { payload } = yield take(actions.JOIN_ROOM); // payload === roomname
+    const { payload } = yield take(actions.JOIN_ROOM); // payload = roomname
     const { socket, username } = yield select(state => state.app);
     const task = yield fork(handleIO, socket);
     socket.emit('join', { username, roomname: payload });
-    // // @TODO
-    // // ログアウト時の処理を待ち受けるようにする
-    let action = yield take(actions.LOGOUT_USER);
-    console.log('ルーム内でログアウトを確認');
-    yield cancel(task);
-    socket.emit('logout');
+    yield fork(cancelTask, task, socket);
   }
 }
 

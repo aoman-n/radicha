@@ -3,38 +3,41 @@ import { jsx, css } from "@emotion/core";
 import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
 import Color from '../constants/Color';
+import { withRouter } from 'react-router';
 
-export default () => {
+const roomList = [
+  'general',
+  'next',
+]
+
+export default withRouter((props) => {
+  const { joinRoom } = props;
   return (
     <Ul>
-      <li css={item}>
-        <NavLink
-          activeStyle={{ borderBottom: `2px solid ${Color.green20}` }}
-          css={roomLink}
-          to="/room/general"
-        >General</NavLink>
-      </li>
-      <li css={item}>
-        <NavLink 
-          activeStyle={{ borderBottom: `2px solid ${Color.green20}` }}
-          css={roomLink}
-          to="/room/next"
-        >Next</NavLink>
-      </li>
+      {roomList.map((room, i) => (
+        <Li key={i} onClick={() => joinRoom(room)}>
+          <NavLink
+            activeStyle={{ borderBottom: `2px solid ${Color.green20}` }}
+            css={roomLink}
+            to={`/room/${room}`}
+          >{room}</NavLink>
+        </Li>
+      ))}
     </Ul>
   )
-}
+});
 
 const Ul = styled.ul`
   display: flex;
   flex-direction: column;
   font-size: 15px;
 `
-const item = css`
+const Li = styled.li`
   flex-basis: 40px;
   line-height: 40px;
   padding: 0 10px;
   transition: 0.3s;
+  color: gray;
   &:hover {
     border-left: 6px solid ${Color.green30};
     cursor: pointer;

@@ -7,7 +7,7 @@ import RoomBar from './RoomBar';
 import ChatContainer from '../containers/ChatContainer';
 import ModalContainer from '../containers/ModalContainer';
 
-export default ({ match, viewContents, toggleRoombar, showLoginModal, logoutUser, app }) => {
+export default ({ match, viewContents, toggleRoombar, showLoginModal, logoutUser, joinRoom, app }) => {
   const { isRoomBar } = viewContents;
   const { username } = app;
   return (
@@ -17,7 +17,7 @@ export default ({ match, viewContents, toggleRoombar, showLoginModal, logoutUser
         <Header {...{showLoginModal, toggleRoombar, username, logoutUser}} />
       </HeaderArea>
       <MainWrapper>
-        <SideBar isRoomBar={isRoomBar}><RoomBar /></SideBar>
+        <SideBar {...{isRoomBar}}><RoomBar {...{joinRoom}} /></SideBar>
         <ChatRoom>
           <Switch>
             <Route exact path={`${match.url}room/:roomId`} component={ChatContainer} />

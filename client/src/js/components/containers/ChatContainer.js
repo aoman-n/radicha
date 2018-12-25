@@ -19,16 +19,15 @@ const enhancer = compose(
     },
   ),
   lifecycle({
-    componentDidMount() {
-      const { joinRoom, match } = this.props;
-      joinRoom(match.params.roomId);
-    },
   }),
   pure,
 );
 
-export default enhancer(({ app, chatRoom, sendMessage }) => (
-  <Index
-    {...{ app, chatRoom, sendMessage }}
-  />
-));
+export default enhancer(({ app, chatRoom, sendMessage, joinRoom, match }) => {
+  // joinRoom(match.params.roomId);
+  return (
+    <Index
+      {...{ app, chatRoom, sendMessage }}
+    />
+  )
+});

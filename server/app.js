@@ -21,6 +21,10 @@ let rooms = {
   general: {
     users: [],
     messages: [],
+  },
+  next: {
+    users: [],
+    messages: [],
   }
 };
 
@@ -29,17 +33,17 @@ io.on('connection', socket => {
 
   // roomへの入室
   socket.on('join', data => {
-    console.log(data);
     const { username, roomname } = data;
     const userData = { id: socket.id, name: username };
     // 既にroomに入っていれば、socketから情報を削除し、退出メッセージを送信
-    const { room } = socket;
+    const { room, id } = socket;
     if (room) {
-      console.log('ルームにジョイン中です');
       socket.to(room).emit('chat message', { name: '', text: `${username} さんが退出しました。` });
+      socket.to(room).emit('leave user', id);
       socket.leave(room);
       delete socket.room;
       delete socket.username;
+      rooms[room].users = rooms[room].users.filter(u => u.id !== id);
     }
     // roomにjoinする処理
     socket.join(roomname);
@@ -54,14 +58,12 @@ io.on('connection', socket => {
 
   // room内userへmessageをsend
   socket.on('chat message', msg => {
-    console.log(msg);
     const { room } = socket;
     rooms[room].messages.push(msg);
     socket.to(room).emit('chat message', msg);
   });
 
   socket.on('logout', () => {
-    console.log('clientからlogoutを受信');
     logout(socket);
   });
 
