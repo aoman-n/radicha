@@ -7,9 +7,9 @@ import Color from '../constants/Color';
 
 export default ({ showLoginModal, toggleRoombar, logoutUser, username }) => (
   <Container>
-    <Icon onClick={toggleRoombar}>
+    {/* <Icon onClick={toggleRoombar}>
       <FontAwesomeIcon icon="bars" size="lg" />
-    </Icon>
+    </Icon> */}
     <Link css={title} to="/">
       <h1 />
     </Link>
@@ -38,6 +38,7 @@ const Container = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  font-size: 0.9em;
 `;
 const Icon = styled.div`
   margin: 20px;

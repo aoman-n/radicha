@@ -47,7 +47,7 @@ const Container = styled.div`
   width: 100vw;
 `;
 const HeaderArea = styled.div`
-  height: 60px;
+  height: 54px;
   width: 100%;
   background: #f5f5f5;
   border-bottom: 1px solid #e5e5e5;

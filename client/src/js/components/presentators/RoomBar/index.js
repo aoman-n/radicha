@@ -2,6 +2,7 @@
 import { jsx, css } from '@emotion/core';
 import styled from '@emotion/styled';
 import { NavLink, withRouter } from 'react-router-dom';
+import { Button } from '@material-ui/core';
 import Color from '../constants/Color';
 
 const roomList = ['general', 'next'];
@@ -10,6 +11,7 @@ export default withRouter(props => {
   const { joinRoom } = props;
   return (
     <Ul>
+      <CreateRoom color="primary">Create The Room</CreateRoom>
       {roomList.map((room, i) => (
         <Li key={i} onClick={() => joinRoom(room)}>
           <NavLink
@@ -54,3 +56,4 @@ const roomLink = css`
   height: 100%;
   display: inline-block;
 `;
+const CreateRoom = styled(Button)``;
