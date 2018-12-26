@@ -8,9 +8,8 @@ export default ({ messages }) => (
     {messages.map((msg, i) => (
       <List key={i}>
         {msg.name && (
-<Name>
-{msg.name}: </Name>
-)}
+          <Name>{msg.name}: </Name>
+        )}
         <Text>{msg.text}</Text>
       </List>
     ))}
