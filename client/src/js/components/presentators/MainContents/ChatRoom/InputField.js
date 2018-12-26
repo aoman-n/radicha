@@ -1,20 +1,20 @@
 /** @jsx jsx */
-import { jsx, css } from "@emotion/core";
+import { jsx, css } from '@emotion/core';
 import styled from '@emotion/styled';
 import Color from '../../constants/Color';
 
-export default ({sendMessage, onChangeText, inputText, clearText}) => {
-  return (
-    <Container onSubmit={e => {
+export default ({ sendMessage, onChangeText, inputText, clearText }) => (
+  <Container
+    onSubmit={e => {
       e.preventDefault();
       sendMessage(inputText);
       clearText();
-    }}>
-      <InputField type="text" value={inputText} onChange={onChangeText} />
-      <Button type="submit">送信</Button>
-    </Container>
-  )
-}
+    }}
+  >
+    <InputField type="text" value={inputText} onChange={onChangeText} />
+    <Button type="submit">送信</Button>
+  </Container>
+);
 
 const Container = styled.form`
   box-sizing: border-box;
@@ -22,7 +22,7 @@ const Container = styled.form`
   border: 1px solid ${Color.gray10};
   border-top: none;
   padding: 20px 20px;
-`
+`;
 const InputField = styled.input`
   height: 40px;
   width: 70%;
@@ -37,7 +37,7 @@ const InputField = styled.input`
     outline: 2px ${Color.skyblue} solid;
     border-radius: 3px;
   }
-`
+`;
 const Button = styled.button`
   background: white;
   color: palevioletred;

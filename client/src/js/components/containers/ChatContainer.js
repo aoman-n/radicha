@@ -2,10 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { compose, pure, lifecycle } from 'recompose';
 import Index from '../presentators/MainContents';
-import {
-  sendMessage,
-  joinRoom,
-} from '../../actions';
+import { sendMessage, joinRoom } from '../../actions';
 
 const enhancer = compose(
   connect(
@@ -18,16 +15,10 @@ const enhancer = compose(
       joinRoom,
     },
   ),
-  lifecycle({
-  }),
+  lifecycle({}),
   pure,
 );
 
-export default enhancer(({ app, chatRoom, sendMessage, joinRoom, match }) => {
-  // joinRoom(match.params.roomId);
-  return (
-    <Index
-      {...{ app, chatRoom, sendMessage }}
-    />
-  )
-});
+export default enhancer(({ app, chatRoom, sendMessage }) => (
+  <Index {...{ app, chatRoom, sendMessage }} />
+));

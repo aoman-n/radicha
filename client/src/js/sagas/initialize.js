@@ -1,6 +1,4 @@
-import {
-  take, put, fork, takeEvery, select, call,
-} from 'redux-saga/effects';
+import { put, fork, takeEvery } from 'redux-saga/effects';
 import * as actions from '../actions';
 
 function* getUserName() {
@@ -17,6 +15,6 @@ function* flow() {
   yield takeEvery(actions.INITIALIZE, getUserName);
 }
 
-export default function* () {
+export default function*() {
   yield fork(flow);
 }

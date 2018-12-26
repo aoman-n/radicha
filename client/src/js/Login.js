@@ -1,7 +1,3 @@
 import React from 'react';
 
-export default () => {
-  return (
-    <div>login</div>
-  )
-}
+export default () => <div>login</div>;

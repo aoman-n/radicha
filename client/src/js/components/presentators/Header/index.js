@@ -1,37 +1,44 @@
 /** @jsx jsx */
-import { jsx, css } from "@emotion/core";
+import { jsx, css } from '@emotion/core';
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Color from '../constants/Color';
 
-export default ({ showLoginModal, toggleRoombar, logoutUser, username }) => {
-  return (
-    <Container>
-      <Icon onClick={toggleRoombar} ><FontAwesomeIcon icon="bars" size="lg" /></Icon>
-      <Link css={title} to="/"><h1></h1></Link>
-      <nav css={nav}>
-        {
-          (username || username !== null) ?
-            <ul css={ul}>
-              <Li onClick={showLoginModal}><Name>{username}</Name>でログイン中</Li>
-              <Link to="/"><Li onClick={logoutUser}>ログアウト</Li></Link>
-            </ul> :
-            <ul css={ul}>
-              <Li onClick={showLoginModal}>ログイン</Li>
-            </ul>
-        }
-      </nav>
-    </Container>
-  )
-}
+export default ({ showLoginModal, toggleRoombar, logoutUser, username }) => (
+  <Container>
+    <Icon onClick={toggleRoombar}>
+      <FontAwesomeIcon icon="bars" size="lg" />
+    </Icon>
+    <Link css={title} to="/">
+      <h1 />
+    </Link>
+    <nav css={nav}>
+      {username || username !== null ? (
+        <ul css={ul}>
+          <Li onClick={showLoginModal}>
+            <Name>{username}</Name>
+            でログイン中
+          </Li>
+          <Link to="/">
+            <Li onClick={logoutUser}>ログアウト</Li>
+          </Link>
+        </ul>
+      ) : (
+        <ul css={ul}>
+          <Li onClick={showLoginModal}>ログイン</Li>
+        </ul>
+      )}
+    </nav>
+  </Container>
+);
 
 const Container = styled.div`
   height: 100%;
   display: flex;
   justify-content: flex-end;
   align-items: center;
-`
+`;
 const Icon = styled.div`
   margin: 20px;
   color: ${Color.gray20};
@@ -40,7 +47,7 @@ const Icon = styled.div`
     opacity: 0.6;
     transition: 0.3s;
   }
-`
+`;
 const title = css`
   font-size: 20px;
   color: ${Color.gray30};
@@ -53,14 +60,14 @@ const title = css`
     opacity: 0.7;
     transition: 0.3s;
   }
-`
+`;
 const nav = css`
   color: gray;
-`
+`;
 const ul = css`
   display: flex;
   justify-content: space-between;
-`
+`;
 const Li = styled.li`
   position: relative;
   display: inline-block;
@@ -74,7 +81,7 @@ const Li = styled.li`
     position: absolute;
     top: 1.3em;
     left: 0;
-    content: "";
+    content: '';
     display: inline-block;
     width: 0;
     height: 2px;
@@ -84,9 +91,9 @@ const Li = styled.li`
   &:hover:before {
     width: 100%;
   }
-`
+`;
 const Name = styled.span`
   color: #ff69b4;
   font-weight: 700;
   padding-right: 5px;
-`
+`;

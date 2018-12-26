@@ -3,7 +3,10 @@ export const mockMessages = [
   { name: 'noriyuki', text: 'ぼちぼち元気やでな' },
   { name: 'tsukuyuki', text: 'そういえば、例の件どうなった？' },
   { name: 'takanori', text: '今のところ順調にすすんでるよ。' },
-  { name: 'noriyuki', text: 'そうかそうか。まぁやばくなったら言ってよ。手伝うからさ！' },
+  {
+    name: 'noriyuki',
+    text: 'そうかそうか。まぁやばくなったら言ってよ。手伝うからさ！',
+  },
   { name: 'tsukuyuki', text: 'せやな' },
   { name: 'takanori', text: 'ありがとう。まじで助かるわ〜' },
   // { name: 'takanori', text: 'おはよう。元気？' },
@@ -22,4 +25,12 @@ export const mockMessages = [
   // { name: 'takanori', text: 'ありがとう。まじで助かるわ〜' },
 ];
 
-export const mockUsers = ['aoba', 'tanaka', 'takeuchi', 'おにぐー', 'のりゆきのりゆき', 'つくゆき', '下痢便'];
+export const mockUsers = [
+  'aoba',
+  'tanaka',
+  'takeuchi',
+  'おにぐー',
+  'のりゆきのりゆき',
+  'つくゆき',
+  '下痢便',
+];

@@ -1,26 +1,29 @@
-import {
-  take, put, fork, takeEvery, select, call, cancel,
-} from 'redux-saga/effects';
+import { take, put, fork, select, call, cancel } from 'redux-saga/effects';
 import { eventChannel } from 'redux-saga';
 import * as actions from '../actions';
 
 function subscribe(socket) {
-  return eventChannel((emit) => {
-    socket.on('chat message', (msg) => {
+  return eventChannel(emit => {
+    socket.on('chat message', msg => {
       // console.log(msg);
       console.log('メッセージを受け取りました');
       emit(actions.addMessage(msg));
     });
-    socket.on('user join', (userData) => {
+    socket.on('user join', userData => {
       console.log(`joinしたuser: ${userData.name}`);
-      emit(actions.addMessage({ name: '', text: `${userData.name}さん が入室しました` }));
+      emit(
+        actions.addMessage({
+          name: '',
+          text: `${userData.name}さん が入室しました`,
+        }),
+      );
       emit(actions.addRoomUser(userData));
     });
-    socket.on('initialize room data', (data) => {
+    socket.on('initialize room data', data => {
       console.dir(data);
       emit(actions.initializeRoomData(data));
     });
-    socket.on('leave user', (userId) => {
+    socket.on('leave user', userId => {
       console.log(`leaveしたuser: ${userId}`);
       emit(actions.removeRoomUser(userId));
     });
@@ -76,6 +79,6 @@ function* joinRoom() {
   }
 }
 
-export default function* () {
+export default function*() {
   yield fork(joinRoom);
 }

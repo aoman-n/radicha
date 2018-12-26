@@ -1,16 +1,12 @@
 /** @jsx jsx */
-import { jsx, css } from "@emotion/core";
+import { jsx, css } from '@emotion/core';
 import styled from '@emotion/styled';
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 import Color from '../constants/Color';
-import { withRouter } from 'react-router';
 
-const roomList = [
-  'general',
-  'next',
-]
+const roomList = ['general', 'next'];
 
-export default withRouter((props) => {
+export default withRouter(props => {
   const { joinRoom } = props;
   return (
     <Ul>
@@ -20,18 +16,20 @@ export default withRouter((props) => {
             activeStyle={{ borderBottom: `2px solid ${Color.green20}` }}
             css={roomLink}
             to={`/room/${room}`}
-          >{room}</NavLink>
+          >
+            {room}
+          </NavLink>
         </Li>
       ))}
     </Ul>
-  )
+  );
 });
 
 const Ul = styled.ul`
   display: flex;
   flex-direction: column;
   font-size: 15px;
-`
+`;
 const Li = styled.li`
   flex-basis: 40px;
   line-height: 40px;
@@ -44,15 +42,15 @@ const Li = styled.li`
     background: ${Color.green10};
     transition: 0.2s;
   }
-`
+`;
 const Icon = styled.div`
   float: right;
   margin-right: 5px;
-`
+`;
 const roomLink = css`
   text-decoration: none;
   color: gray;
   width: 100%;
   height: 100%;
   display: inline-block;
-`
+`;

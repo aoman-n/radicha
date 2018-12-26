@@ -36,7 +36,10 @@ export default (state = initialState, action) => {
     case 'ADD_ROOM_USER':
       return {
         ...state,
-        users: state.users.concat({ id: action.payload.id, name: action.payload.name }),
+        users: state.users.concat({
+          id: action.payload.id,
+          name: action.payload.name,
+        }),
       };
     case 'REMOVE_ROOM_USER':
       return {

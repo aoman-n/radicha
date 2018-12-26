@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import React from 'react';
-import { jsx, css } from "@emotion/core";
+import { jsx, css } from '@emotion/core';
 import { withState, withHandlers, pure, compose } from 'recompose';
 import ChatRoom from './ChatRoom';
 import Pending from '../shared/Pending';
@@ -18,15 +18,26 @@ const enhancer = compose(
   pure,
 );
 
-export default enhancer(({ sendMessage, onChangeText, inputText, clearText, app, chatRoom }) => {
-  const { pending } = chatRoom;
-  return (
-    <React.Fragment>
-      {
-        pending ?
-          <Pending /> :
-          <ChatRoom {...{sendMessage, onChangeText, inputText, clearText, app, chatRoom}} />
-      }
-    </React.Fragment>
-  )
-})
+export default enhancer(
+  ({ sendMessage, onChangeText, inputText, clearText, app, chatRoom }) => {
+    const { pending } = chatRoom;
+    return (
+      <React.Fragment>
+        {pending ? (
+          <Pending />
+        ) : (
+          <ChatRoom
+            {...{
+              sendMessage,
+              onChangeText,
+              inputText,
+              clearText,
+              app,
+              chatRoom,
+            }}
+          />
+        )}
+      </React.Fragment>
+    );
+  },
+);

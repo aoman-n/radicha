@@ -1,13 +1,11 @@
-import {
-  fork, take, call, put, select,
-} from 'redux-saga/effects';
+import { fork, take, call, put } from 'redux-saga/effects';
 import io from 'socket.io-client';
 import * as actions from '../actions';
 import config from '../config';
 
 function connect() {
   const socket = io(config.url);
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     socket.on('connect', () => {
       console.log('success connect');
       resolve(socket);
@@ -32,7 +30,7 @@ function* logoutUser() {
   }
 }
 
-export default function* () {
+export default function*() {
   yield fork(loginUser);
   yield fork(logoutUser);
 }

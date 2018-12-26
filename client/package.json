@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
     "start": "webpack-dev-server --open --mode=development",
-    "eslint": "npx eslint ./src/js/components/presentators/mock.js --fix"
+    "eslint": "npx eslint ./src/js/* --fix"
   },
   "author": "Hiroaki Aoba",
   "license": "MIT",

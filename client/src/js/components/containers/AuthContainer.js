@@ -17,12 +17,10 @@ const enhancer = compose(
   pure,
 );
 
-export default enhancer(({ username, showLoginModal, closeLoginModal, children, match }) => {
-  console.log(username);
-  console.log(match);
-  return (
+export default enhancer(
+  ({ username, showLoginModal, closeLoginModal, children }) => (
     <React.Fragment>
-      { username ? children : <Redirect to={"/login"} /> }
+      {username ? children : <Redirect to="/login" />}
     </React.Fragment>
-  )
-});
+  ),
+);

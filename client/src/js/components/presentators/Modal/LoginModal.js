@@ -18,46 +18,50 @@ const enhancer = compose(
   pure,
 );
 
-export default enhancer(({ loginUser, inputText, onChangeText, closeLoginModal }) => {
-  return (
+export default enhancer(
+  ({ loginUser, inputText, onChangeText, closeLoginModal }) => (
     <React.Fragment>
       <Modal>
         <InputName type="text" value={inputText} onChange={onChangeText} />
-        <Button onClick={() => {
-          loginUser(inputText);
-          closeLoginModal();
-        }}>Login</Button>
+        <Button
+          onClick={() => {
+            loginUser(inputText);
+            closeLoginModal();
+          }}
+        >
+          Login
+        </Button>
       </Modal>
-      <Overlay onClick={closeLoginModal}></Overlay>
+      <Overlay onClick={closeLoginModal} />
     </React.Fragment>
-  )
-});
+  ),
+);
 
 const Modal = styled.div`
-  width:50%;
+  width: 50%;
   height: 70%;
-	margin:1.5em auto 0;
-	padding:10px 20px;
-	border:2px solid #aaa;
-	background:#fff;
+  margin: 1.5em auto 0;
+  padding: 10px 20px;
+  border: 2px solid #aaa;
+  background: #fff;
   position: fixed;
   z-index: 2;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   transition: 0.5s;
-`
+`;
 
 const Overlay = styled.div`
-  z-index:1;
-	position:fixed;
-	top:0;
-	left:0;
-	width:100%;
-	height:120%;
-  background-color:rgba(0,0,0,0.75);
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 120%;
+  background-color: rgba(0, 0, 0, 0.75);
   transition: 0.3s;
-`
+`;
 const InputName = styled.input`
   height: 40px;
   width: 70%;
@@ -70,7 +74,7 @@ const InputName = styled.input`
   &:focus {
     outline: 2px ${Color.skyblue} solid;
   }
-`
+`;
 const Button = styled.button`
   background: white;
   color: palevioletred;
@@ -89,4 +93,4 @@ const Button = styled.button`
     color: white;
     transition: 0.3s;
   }
-`
+`;

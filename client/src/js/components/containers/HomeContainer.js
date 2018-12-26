@@ -1,7 +1,10 @@
 import { connect } from 'react-redux';
 import { pure, compose } from 'recompose';
 import {
-  toggleRoombar, showLoginModal, logoutUser, joinRoom,
+  toggleRoombar,
+  showLoginModal,
+  logoutUser,
+  joinRoom,
 } from '../../actions';
 import Home from '../presentators/Home';
 
