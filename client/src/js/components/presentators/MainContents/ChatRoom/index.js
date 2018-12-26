@@ -5,14 +5,7 @@ import MessageList from './MessageList';
 import InputField from './InputField';
 import UserList from './UserList';
 
-export default ({
-  sendMessage,
-  onChangeText,
-  inputText,
-  clearText,
-  chatRoom,
-  app,
-}) => (
+export default ({ sendMessage, chatRoom, app }) => (
   <React.Fragment>
     <TopContainer>
       <CommunicateArea>
@@ -21,7 +14,7 @@ export default ({
       </CommunicateArea>
       <UserList users={chatRoom.users} />
     </TopContainer>
-    <InputField {...{ sendMessage, onChangeText, inputText, clearText }} />
+    <InputField {...{ sendMessage }} />
   </React.Fragment>
 );
 

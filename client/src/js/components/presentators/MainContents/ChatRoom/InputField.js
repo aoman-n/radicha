@@ -1,20 +1,28 @@
 /** @jsx jsx */
+import { useState } from 'react';
 import { jsx, css } from '@emotion/core';
 import styled from '@emotion/styled';
 import Color from '../../constants/Color';
 
-export default ({ sendMessage, onChangeText, inputText, clearText }) => (
-  <Container
-    onSubmit={e => {
-      e.preventDefault();
-      sendMessage(inputText);
-      clearText();
-    }}
-  >
-    <InputField type="text" value={inputText} onChange={onChangeText} />
-    <Button type="submit">送信</Button>
-  </Container>
-);
+export default ({ sendMessage }) => {
+  const [text, setText] = useState('');
+  return (
+    <Container
+      onSubmit={e => {
+        e.preventDefault();
+        sendMessage(text);
+        setText('');
+      }}
+    >
+      <InputField
+        type="text"
+        value={text}
+        onChange={e => setText(e.target.value)}
+      />
+      <Button type="submit">送信</Button>
+    </Container>
+  );
+};
 
 const Container = styled.form`
   box-sizing: border-box;
