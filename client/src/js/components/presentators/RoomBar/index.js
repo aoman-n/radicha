@@ -11,7 +11,7 @@ export default withRouter(props => {
   const { joinRoom } = props;
   return (
     <Ul>
-      <CreateRoom color="primary">Create The Room</CreateRoom>
+      <CreateRoom style={createRoomButtonStyle}>Create The Room</CreateRoom>
       {roomList.map((room, i) => (
         <Li key={i} onClick={() => joinRoom(room)}>
           <NavLink
@@ -32,6 +32,10 @@ const Ul = styled.ul`
   flex-direction: column;
   font-size: 15px;
 `;
+const createRoomButtonStyle = {
+  color: '#ff69b4',
+  fontWeight: '700',
+};
 const Li = styled.li`
   flex-basis: 40px;
   line-height: 40px;
