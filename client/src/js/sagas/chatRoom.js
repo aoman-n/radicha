@@ -13,7 +13,7 @@ function subscribe(socket) {
       console.log(`joinしたuser: ${userData.name}`);
       emit(
         actions.addMessage({
-          name: '',
+          user: '',
           text: `${userData.name}さん が入室しました`,
         }),
       );
@@ -49,7 +49,7 @@ function* write(socket) {
   while (true) {
     const { payload } = yield take(actions.SENT_MESSAGE);
     const { username } = yield select(state => state.app);
-    const message = { name: username, text: payload };
+    const message = { user: username, text: payload };
     yield put(actions.addMessage(message));
     socket.emit('chat message', message);
   }

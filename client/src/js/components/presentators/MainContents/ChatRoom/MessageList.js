@@ -7,9 +7,7 @@ export default ({ messages }) => (
   <Container>
     {messages.map((msg, i) => (
       <List key={i}>
-        {msg.name && (
-          <Name>{msg.name}: </Name>
-        )}
+        {msg.user && <Name>{msg.user}: </Name>}
         <Text>{msg.text}</Text>
       </List>
     ))}
