@@ -3,6 +3,7 @@ import { pure, compose } from 'recompose';
 import {
   toggleRoombar,
   showLoginModal,
+  showCreateRoomModal,
   logoutUser,
   joinRoom,
 } from '../../actions';
@@ -19,6 +20,7 @@ const enhancer = compose(
       showLoginModal,
       logoutUser,
       joinRoom,
+      showCreateRoomModal,
     },
   ),
   pure,

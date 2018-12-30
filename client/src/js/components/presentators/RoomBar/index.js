@@ -8,10 +8,12 @@ import Color from '../constants/Color';
 const roomList = ['general', 'next'];
 
 export default withRouter(props => {
-  const { joinRoom } = props;
+  const { joinRoom, showCreateRoomModal } = props;
   return (
     <Ul>
-      <CreateRoom style={createRoomButtonStyle}>Create The Room</CreateRoom>
+      <CreateRoom style={createRoomButtonStyle} onClick={showCreateRoomModal}>
+        Create The Room
+      </CreateRoom>
       {roomList.map((room, i) => (
         <Li key={i} onClick={() => joinRoom(room)}>
           <NavLink

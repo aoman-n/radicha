@@ -12,6 +12,7 @@ export default ({
   viewContents,
   toggleRoombar,
   showLoginModal,
+  showCreateRoomModal,
   logoutUser,
   joinRoom,
   app,
@@ -26,7 +27,7 @@ export default ({
       </HeaderArea>
       <MainWrapper>
         <SideBar {...{ isRoomBar }}>
-          <RoomBar {...{ joinRoom }} />
+          <RoomBar {...{ joinRoom, showCreateRoomModal }} />
         </SideBar>
         <ChatRoom>
           <Switch>

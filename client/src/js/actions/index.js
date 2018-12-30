@@ -20,6 +20,8 @@ export const REMOVE_ROOM_USER = 'REMOVE_ROOM_USER';
 export const TOGLLE_ROOMBAR = 'TOGLLE_ROOMBAR';
 export const SHOW_LOGIN_MODAL = 'SHOW_LOGIN_MODAL';
 export const CLOSE_LOGIN_MODAL = 'CLOSE_LOGIN_MODAL';
+export const SHOW_CREATE_ROOM_MODAL = 'SHOW_CREATE_ROOM_MODAL';
+export const CLOSE_CREATE_ROOM_MODAL = 'CLOSE_CREATE_ROOM_MODAL';
 
 // actions creators
 /* initialize */
@@ -41,3 +43,5 @@ export const removeRoomUser = createAction(REMOVE_ROOM_USER);
 export const toggleRoombar = createAction(TOGLLE_ROOMBAR);
 export const showLoginModal = createAction(SHOW_LOGIN_MODAL);
 export const closeLoginModal = createAction(CLOSE_LOGIN_MODAL);
+export const showCreateRoomModal = createAction(SHOW_CREATE_ROOM_MODAL);
+export const closeCreateRoomModal = createAction(CLOSE_CREATE_ROOM_MODAL);

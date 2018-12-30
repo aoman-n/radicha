@@ -1,7 +1,11 @@
 import { connect } from 'react-redux';
 import { pure, compose } from 'recompose';
 import Modal from '../presentators/Modal';
-import { closeLoginModal, loginUser } from '../../actions';
+import {
+  closeLoginModal,
+  loginUser,
+  closeCreateRoomModal,
+} from '../../actions';
 
 const enhancer = compose(
   connect(
@@ -12,6 +16,7 @@ const enhancer = compose(
     {
       closeLoginModal,
       loginUser,
+      closeCreateRoomModal,
     },
   ),
   pure,

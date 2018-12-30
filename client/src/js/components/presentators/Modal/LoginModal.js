@@ -1,5 +1,4 @@
 /** @jsx jsx */
-import React from 'react';
 import { jsx, css } from '@emotion/core';
 import styled from '@emotion/styled';
 import { withState, withHandlers, pure, compose } from 'recompose';
@@ -20,20 +19,17 @@ const enhancer = compose(
 
 export default enhancer(
   ({ loginUser, inputText, onChangeText, closeLoginModal }) => (
-    <React.Fragment>
-      <Modal>
-        <InputName type="text" value={inputText} onChange={onChangeText} />
-        <Button
-          onClick={() => {
-            loginUser(inputText);
-            closeLoginModal();
-          }}
-        >
-          Login
-        </Button>
-      </Modal>
-      <Overlay onClick={closeLoginModal} />
-    </React.Fragment>
+    <Modal>
+      <InputName type="text" value={inputText} onChange={onChangeText} />
+      <Button
+        onClick={() => {
+          loginUser(inputText);
+          closeLoginModal();
+        }}
+      >
+        Login
+      </Button>
+    </Modal>
   ),
 );
 
@@ -50,17 +46,6 @@ const Modal = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   transition: 0.5s;
-`;
-
-const Overlay = styled.div`
-  z-index: 1;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 120%;
-  background-color: rgba(0, 0, 0, 0.75);
-  transition: 0.3s;
 `;
 const InputName = styled.input`
   height: 40px;
