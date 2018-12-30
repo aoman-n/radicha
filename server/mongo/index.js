@@ -1,54 +1,54 @@
 const model = require('./model');
-const User = model.User;
-const Room = model.Room;
-const Message = model.Message;
 
-/* モックデータの投入 */
-(async() => {
-  // user情報の保存
-  const user1 = new User({
-    socket_id: 'piyopiyo',
-    name: 'takada'
-  });
-  const user2 = new User({
-    socket_id: 'hogehoge',
-    name: 'komeda'
-  })
-  await user1.save();
-  await user2.save();
-  // room情報の保存
-  const generalRoom = new Room({
-    name: 'general',
-    users: [
-      {
-        socket_id: 'piyopiyo',
-        name: 'takada'
-      },
-      {
-        socket_id: 'hogehoge',
-        name: 'komeda' 
-      }
-    ]
-  });
-  const nextRoom = new Room({
-    name: 'next',
-    users: []
-  });
-  const savedGeneralRoom = await generalRoom.save();
-  await nextRoom.save();
+class Mongo {
 
-  // message情報の保存
-  const message1 = new Message({
-    user: 'aoba',
-    text: 'こんにちは',
-    room_id: savedGeneralRoom._id
-  })
-  const message2 = new Message({
-    user: 'tanaka',
-    text: 'おはよう',
-    room_id: savedGeneralRoom._id
-  })
-  await message1.save();
-  await message2.save();
+  constructor() {
+    this.User = model.User;
+    this.Room = model.Room;
+    this.Message = model.Message;
+  }
 
-})();
+  async addUser(userData) {
+    const user = new this.User(userData);
+    return await user.save();
+  }
+
+  async joinRoom(userData, roomname) {
+    const roomData = await this.Room.findOne({ name: roomname });
+    roomData.users.push(userData);
+    return await roomData.save();
+  }
+
+  async fetchMessages(roomId) {
+    return await this.Message.find({ room_id: roomId });
+  }
+
+  async addMessage(roomname, user, text) {
+    const currentRoom = await this.Room.findOne({ name: roomname });
+    const message = new this.Message({
+      text,
+      user,
+      room_id: currentRoom._id
+    })
+    return await message.save();
+  }
+
+  async leaveRoom(username, roomname) {
+    const roomData = await this.Room.findOne({ name: roomname });
+    roomData.users.some((v, i) => {
+      if (v.name === username) roomData.users.splice(i, 1);
+    });
+    return await roomData.save();
+  }
+
+  async removeUser(username) {
+    return await this.User.deleteOne({ name: username });
+  }
+
+  async removeRoom(roomname) {
+    return await this.Room.deleteOne({ name: roomname });
+  }
+
+}
+
+module.exports = Mongo;
