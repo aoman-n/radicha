@@ -51,7 +51,7 @@ function* write(socket) {
     const { username } = yield select(state => state.app);
     const message = { user: username, text: payload };
     yield put(actions.addMessage(message));
-    socket.emit('chat message', message);
+    socket.emit('chat message', payload);
   }
 }
 

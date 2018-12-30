@@ -37,14 +37,14 @@ export default (state = initialState, action) => {
       return {
         ...state,
         users: state.users.concat({
-          id: action.payload.id,
+          id: action.payload.socket_id,
           name: action.payload.name,
         }),
       };
     case 'REMOVE_ROOM_USER':
       return {
         ...state,
-        users: state.users.filter(u => u.id !== action.payload),
+        users: state.users.filter(u => u.socket_id !== action.payload),
       };
     case 'RESET_CHATROOM_STATE':
       return initialState;
