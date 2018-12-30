@@ -20,6 +20,9 @@ const mongo = new Mongo();
   roomData.users = [];
   await roomData.save();
 
+  // get room list
+  const roomList = await mongo.getRoomList();
+  console.log(roomList);
 })();
 
 

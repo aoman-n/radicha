@@ -17,7 +17,7 @@ export default ({
   joinRoom,
   app,
 }) => {
-  const { isRoomBar } = viewContents;
+  const { isRoomBar, roomList } = viewContents;
   const { username } = app;
   return (
     <Container>
@@ -27,7 +27,7 @@ export default ({
       </HeaderArea>
       <MainWrapper>
         <SideBar {...{ isRoomBar }}>
-          <RoomBar {...{ joinRoom, showCreateRoomModal }} />
+          <RoomBar {...{ joinRoom, showCreateRoomModal, roomList }} />
         </SideBar>
         <ChatRoom>
           <Switch>

@@ -4,6 +4,7 @@ const io = require('socket.io')(http);
 const config = require('./config');
 const Mongo = require('./mongo');
 const mongo = new Mongo();
+const routes = require('./routes');
 
 app.disable("x-powered-by");
 app.use((req, res, next) => {
@@ -12,10 +13,7 @@ app.use((req, res, next) => {
   res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
   next();
 });
-
-app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/index.html');
-});
+app.use('/', routes);
 
 io.on('connection', socket => {
   console.log('client connected');
@@ -82,6 +80,15 @@ const logout = async(socket) => {
     socket.emit('clear socket', 'clear');
   }
 }
+
+app.use((req, res, next) => {
+  next(createError(404));
+});
+
+app.use((err, req, res, next) => {
+  res.status(err.status || 500);
+  res.send({ error: 'Something failed', err });
+});
 
 http.listen(config.http.port, () => {
   console.log('listening on: ' + config.http.port);

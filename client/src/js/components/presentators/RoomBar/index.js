@@ -5,10 +5,8 @@ import { NavLink, withRouter } from 'react-router-dom';
 import { Button } from '@material-ui/core';
 import Color from '../constants/Color';
 
-const roomList = ['general', 'next'];
-
 export default withRouter(props => {
-  const { joinRoom, showCreateRoomModal } = props;
+  const { joinRoom, showCreateRoomModal, roomList } = props;
   return (
     <Ul>
       <CreateRoom style={createRoomButtonStyle} onClick={showCreateRoomModal}>

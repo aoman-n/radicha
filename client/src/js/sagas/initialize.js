@@ -1,7 +1,8 @@
-import { put, fork, takeEvery } from 'redux-saga/effects';
+import { put, fork, call, takeEvery } from 'redux-saga/effects';
 import * as actions from '../actions';
+import { getRoomList } from '../api';
 
-function* getUserName() {
+function* runGetUserName() {
   const username = yield localStorage.getItem('username');
   if (username) {
     yield put(actions.loginUser(username));
@@ -11,10 +12,22 @@ function* getUserName() {
   }
 }
 
-function* flow() {
-  yield takeEvery(actions.INITIALIZE, getUserName);
+function* runGetRoomList() {
+  const {
+    data: { roomList },
+  } = yield call(getRoomList);
+  yield put(actions.setRoomList(roomList));
+}
+
+function* handleGetUeserName() {
+  yield takeEvery(actions.INITIALIZE, runGetUserName);
+}
+
+function* handleGetRoomList() {
+  yield takeEvery(actions.INITIALIZE, runGetRoomList);
 }
 
 export default function*() {
-  yield fork(flow);
+  yield fork(handleGetUeserName);
+  yield fork(handleGetRoomList);
 }

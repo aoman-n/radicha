@@ -8,6 +8,11 @@ class Mongo {
     this.Message = model.Message;
   }
 
+  async getRoomList() {
+    const rooms = await this.Room.find({}, { _id: 0, 'name': 1 });
+    return rooms.map(room => room.name);
+  }
+
   async addUser(userData) {
     const user = new this.User(userData);
     return await user.save();
