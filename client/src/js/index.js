@@ -12,7 +12,7 @@ import {
   faVolumeUp,
   faUser,
 } from '@fortawesome/free-solid-svg-icons';
-import Routes from './routes';
+import Routes from './Routes';
 import createStore from './store';
 
 library.add(fab, faCheckSquare, faCoffee, faBars, faVolumeUp, faUser);

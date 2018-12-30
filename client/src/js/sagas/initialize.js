@@ -1,6 +1,6 @@
 import { put, fork, call, takeEvery } from 'redux-saga/effects';
 import * as actions from '../actions';
-import { getRoomList } from '../api';
+import { getRoomList } from '../utils/api';
 
 function* runGetUserName() {
   const username = yield localStorage.getItem('username');
