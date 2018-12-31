@@ -4,6 +4,7 @@ import Modal from '../presentators/Modal';
 import {
   closeLoginModal,
   loginUser,
+  createRoom,
   closeCreateRoomModal,
 } from '../../actions';
 
@@ -16,6 +17,7 @@ const enhancer = compose(
     {
       closeLoginModal,
       loginUser,
+      createRoom,
       closeCreateRoomModal,
     },
   ),

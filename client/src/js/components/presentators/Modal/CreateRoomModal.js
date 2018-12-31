@@ -4,7 +4,7 @@ import { jsx, css } from '@emotion/core';
 import styled from '@emotion/styled';
 import Color from '../constants/Color';
 
-export default () => {
+export default ({ createRoom, closeCreateRoomModal }) => {
   const [text, setText] = useState('');
   return (
     <Modal>
@@ -15,7 +15,8 @@ export default () => {
       />
       <Button
         onClick={() => {
-          console.log(text);
+          createRoom(text);
+          closeCreateRoomModal();
         }}
       >
         Create!!!

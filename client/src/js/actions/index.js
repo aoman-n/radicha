@@ -10,7 +10,6 @@ export const CREATE_CONNECTION = 'CREATE_CONNECTION';
 export const SET_SOCKET = 'SET_SOCKET';
 export const DELETE_SOCKET = 'DELETE_SOCKET';
 export const CREATE_ROOM = 'CREATE_ROOM';
-export const ADD_ROOM = 'ADD_ROOM';
 /* chatRoom */
 export const JOIN_ROOM = 'JOIN_ROOM';
 export const INITIALIZE_ROOM_DATA = 'INITIALIZE_ROOM_DATA';
@@ -26,6 +25,7 @@ export const SHOW_LOGIN_MODAL = 'SHOW_LOGIN_MODAL';
 export const CLOSE_LOGIN_MODAL = 'CLOSE_LOGIN_MODAL';
 export const SHOW_CREATE_ROOM_MODAL = 'SHOW_CREATE_ROOM_MODAL';
 export const CLOSE_CREATE_ROOM_MODAL = 'CLOSE_CREATE_ROOM_MODAL';
+export const ADD_ROOM = 'ADD_ROOM';
 
 // actions creators
 /* initialize */
@@ -37,7 +37,6 @@ export const createConnection = createAction(CREATE_CONNECTION);
 export const setSocket = createAction(SET_SOCKET);
 export const delteSocket = createAction(DELETE_SOCKET);
 export const createRoom = createAction(CREATE_ROOM);
-export const addRoom = createAction(ADD_ROOM);
 /* chatRoom */
 export const joinRoom = createAction(JOIN_ROOM);
 export const initializeRoomData = createAction(INITIALIZE_ROOM_DATA);
@@ -53,3 +52,4 @@ export const showLoginModal = createAction(SHOW_LOGIN_MODAL);
 export const closeLoginModal = createAction(CLOSE_LOGIN_MODAL);
 export const showCreateRoomModal = createAction(SHOW_CREATE_ROOM_MODAL);
 export const closeCreateRoomModal = createAction(CLOSE_CREATE_ROOM_MODAL);
+export const addRoom = createAction(ADD_ROOM);

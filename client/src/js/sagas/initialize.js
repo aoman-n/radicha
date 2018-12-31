@@ -13,10 +13,13 @@ function* runGetUserName() {
 }
 
 function* runGetRoomList() {
-  const {
-    data: { roomList },
-  } = yield call(getRoomList);
-  yield put(actions.setRoomList(roomList));
+  const { roomList, error } = yield call(getRoomList);
+  if (roomList) {
+    yield put(actions.setRoomList(roomList));
+  } else {
+    // @TODO エラーハンドリング
+    console.log(error);
+  }
 }
 
 function* handleGetUeserName() {

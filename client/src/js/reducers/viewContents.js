@@ -2,7 +2,7 @@ const initialState = {
   roomList: [],
   modals: {
     isLoginModal: false,
-    isCreateRoomModal: true,
+    isCreateRoomModal: false,
   },
   isRoomBar: true,
 };
@@ -10,7 +10,15 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case 'SET_ROOM_LIST':
-      return { ...state, roomList: action.payload };
+      return {
+        ...state,
+        roomList: action.payload,
+      };
+    case 'ADD_ROOM':
+      return {
+        ...state,
+        roomList: state.roomList.concat(action.payload),
+      };
     case 'TOGLLE_ROOMBAR':
       return { ...state, isRoomBar: !state.isRoomBar };
     case 'SHOW_LOGIN_MODAL':

@@ -8,8 +8,8 @@ export default ({
   modals,
   closeLoginModal,
   loginUser,
+  createRoom,
   closeCreateRoomModal,
-  username,
 }) => {
   const { isLoginModal, isCreateRoomModal } = modals;
   return (
@@ -23,7 +23,7 @@ export default ({
       {isCreateRoomModal && (
         <Modal>
           <Overlay onClick={closeCreateRoomModal} />
-          <CreateRoomModal />
+          <CreateRoomModal {...{ closeCreateRoomModal, createRoom }} />
         </Modal>
       )}
     </div>

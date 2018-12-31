@@ -13,6 +13,14 @@ class Mongo {
     return rooms.map(room => room.name);
   }
 
+  async createRoom(name) {
+    const room = new this.Room({
+      name,
+      users: [],
+    })
+    return room.save();
+  }
+
   async addUser(userData) {
     const user = new this.User(userData);
     return await user.save();

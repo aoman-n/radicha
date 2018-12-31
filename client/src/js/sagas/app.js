@@ -1,7 +1,29 @@
-import { fork, take, call, put } from 'redux-saga/effects';
+import { fork, take, call, put, select } from 'redux-saga/effects';
+import { eventChannel } from 'redux-saga';
 import io from 'socket.io-client';
 import * as actions from '../actions';
 import config from '../config';
+// import { createRoom } from '../utils/api';
+
+function subscribe(socket) {
+  return eventChannel(emit => {
+    socket.on('add room', name => {
+      emit(actions.addRoom(name));
+    });
+    return () => {};
+  });
+}
+
+function* changeApp(socket) {
+  if (socket) {
+    const channel = yield call(subscribe, socket);
+    while (true) {
+      const action = yield take(channel);
+      console.log('action:', action);
+      yield put(action);
+    }
+  }
+}
 
 function connect() {
   const socket = io(config.url);
@@ -17,6 +39,7 @@ function* loginUser() {
   while (true) {
     const { payload } = yield take(actions.LOGIN_USER);
     const socket = yield call(connect);
+    yield fork(changeApp, socket);
     yield put(actions.setSocket(socket));
     window.localStorage.setItem('username', payload);
   }
@@ -30,7 +53,16 @@ function* logoutUser() {
   }
 }
 
+function* runCreateRoom() {
+  while (true) {
+    const { payload } = yield take(actions.CREATE_ROOM);
+    const { socket } = yield select(state => state.app);
+    socket.emit('create room', payload);
+  }
+}
+
 export default function*() {
   yield fork(loginUser);
   yield fork(logoutUser);
+  yield fork(runCreateRoom);
 }

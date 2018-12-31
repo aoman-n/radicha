@@ -1,18 +1,21 @@
 const app = require('express')();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
+const bodyParser = require('body-parser')
 const config = require('./config');
 const Mongo = require('./mongo');
 const mongo = new Mongo();
 const routes = require('./routes');
 
-app.disable("x-powered-by");
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Authorization');
   res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
   next();
 });
+app.disable("x-powered-by");
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 app.use('/', routes);
 
 io.on('connection', socket => {
@@ -23,6 +26,11 @@ io.on('connection', socket => {
   //   const userData = { socket_id: socket.id, name: username };
   //   await mongo.addUser(userData)
   // });
+
+  socket.on('create room', async(name) => {
+    const room = await mongo.createRoom(name);
+    io.emit('add room', room.name);
+  })
 
   // roomへの入室
   socket.on('join', async(data) => {
