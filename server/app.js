@@ -30,6 +30,7 @@ io.on('connection', socket => {
   socket.on('create room', async(name) => {
     const room = await mongo.createRoom(name);
     io.emit('add room', room.name);
+    socket.emit('created room', room.name);
   })
 
   // roomへの入室

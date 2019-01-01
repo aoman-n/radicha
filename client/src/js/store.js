@@ -9,7 +9,7 @@ import reducers from './reducers';
 import rootSaga from './sagas';
 import { initialize } from './actions';
 
-export default function createStore() {
+export default function createStore(history) {
   const sagaMiddleware = createSagaMiddleware();
   const middlewares = [sagaMiddleware, createLogger()];
 
@@ -19,7 +19,7 @@ export default function createStore() {
     : compose;
   const enhancer = composeEnhancers(applyMiddleware(...middlewares));
   const store = reduxCreateStore(reducers, enhancer);
-  sagaMiddleware.run(rootSaga);
+  sagaMiddleware.run(rootSaga, { history });
   store.dispatch(initialize());
   return store;
 }

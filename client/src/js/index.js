@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Router } from 'react-router-dom';
+import createHistory from 'history/createBrowserHistory';
 import '../css/reset.css';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
@@ -17,13 +18,14 @@ import createStore from './store';
 
 library.add(fab, faCheckSquare, faCoffee, faBars, faVolumeUp, faUser);
 
-const store = createStore();
+const history = createHistory();
+const store = createStore(history);
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
+    <Router history={history}>
       <Routes />
-    </BrowserRouter>
+    </Router>
   </Provider>,
   document.getElementById('root'),
 );

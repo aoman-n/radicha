@@ -3,15 +3,24 @@ import { eventChannel } from 'redux-saga';
 import io from 'socket.io-client';
 import * as actions from '../actions';
 import config from '../config';
-// import { createRoom } from '../utils/api';
 
 function subscribe(socket) {
   return eventChannel(emit => {
     socket.on('add room', name => {
       emit(actions.addRoom(name));
     });
+    socket.on('created room', name => {
+      emit(actions.goCreatedRoom(name));
+    });
     return () => {};
   });
+}
+
+function* goCreatedRoom(context) {
+  while (true) {
+    const { payload } = yield take(actions.GO_CREATED_ROOM);
+    yield call(context.history.push, `/room/${payload}`);
+  }
 }
 
 function* changeApp(socket) {
@@ -61,8 +70,9 @@ function* runCreateRoom() {
   }
 }
 
-export default function*() {
+export default function*(context) {
   yield fork(loginUser);
   yield fork(logoutUser);
   yield fork(runCreateRoom);
+  yield fork(goCreatedRoom, context);
 }

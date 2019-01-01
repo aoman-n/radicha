@@ -53,6 +53,7 @@
     "axios": "^0.18.0",
     "babel-plugin-emotion": "^10.0.5",
     "classnames": "^2.2.6",
+    "history": "^4.7.2",
     "i": "^0.3.6",
     "npm": "^6.5.0",
     "query-string": "^6.2.0",
