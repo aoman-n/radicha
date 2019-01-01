@@ -73,9 +73,11 @@ function* joinRoom() {
   while (true) {
     const { payload } = yield take(actions.JOIN_ROOM); // payload = roomname
     const { socket, username } = yield select(state => state.app);
-    const task = yield fork(handleIO, socket);
-    socket.emit('join', { username, roomname: payload });
-    yield fork(cancelTask, task, socket);
+    if (socket) {
+      const task = yield fork(handleIO, socket);
+      socket.emit('join', { username, roomname: payload });
+      yield fork(cancelTask, task, socket);
+    }
   }
 }
 

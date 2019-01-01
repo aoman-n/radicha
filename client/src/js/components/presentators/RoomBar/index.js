@@ -6,14 +6,14 @@ import { Button } from '@material-ui/core';
 import Color from '../constants/Color';
 
 export default withRouter(props => {
-  const { joinRoom, showCreateRoomModal, roomList } = props;
+  const { showCreateRoomModal, roomList } = props;
   return (
     <Ul>
       <CreateRoom style={createRoomButtonStyle} onClick={showCreateRoomModal}>
         Create The Room
       </CreateRoom>
       {roomList.map((room, i) => (
-        <Li key={i} onClick={() => joinRoom(room)}>
+        <Li key={i}>
           <NavLink
             activeStyle={{ borderBottom: `2px solid ${Color.green20}` }}
             css={roomLink}
