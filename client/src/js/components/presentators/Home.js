@@ -46,6 +46,7 @@ export default ({
 const Container = styled.div`
   height: 100vh;
   width: 100vw;
+  position: relative;
 `;
 const HeaderArea = styled.div`
   height: 54px;

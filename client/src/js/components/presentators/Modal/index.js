@@ -31,7 +31,7 @@ export default ({
       {isEjectFromRoomModal && (
         <Modal>
           <Overlay onClick={closeEjectFromRoomModal} />
-          <EjectFromRoomModal />
+          <EjectFromRoomModal {...{ closeEjectFromRoomModal }} />
         </Modal>
       )}
     </div>
