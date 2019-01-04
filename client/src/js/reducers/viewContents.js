@@ -3,6 +3,7 @@ const initialState = {
   modals: {
     isLoginModal: false,
     isCreateRoomModal: false,
+    isEjectFromRoomModal: false,
   },
   isRoomBar: true,
 };
@@ -19,7 +20,7 @@ export default (state = initialState, action) => {
         ...state,
         roomList: state.roomList.concat(action.payload),
       };
-    case 'REMOVE_ROOM':
+    case 'DELETE_ROOM_FROM_LIST':
       return {
         ...state,
         roomList: state.roomList.filter(room => room !== action.payload),
@@ -45,6 +46,16 @@ export default (state = initialState, action) => {
       return {
         ...state,
         modals: { isCreateRoomModal: false },
+      };
+    case 'SHOW_EJECT_FROM_ROOM_MODAL':
+      return {
+        ...state,
+        modals: { isEjectFromRoomModal: true },
+      };
+    case 'CLOSE_EJECT_FROM_ROOM_MODAL':
+      return {
+        ...state,
+        modals: { isEjectFromRoomModal: false },
       };
     default:
       return state;

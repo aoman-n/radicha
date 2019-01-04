@@ -4,19 +4,28 @@ import Color from '../../constants/Color';
 import MessageList from './MessageList';
 import InputField from './InputField';
 import UserList from './UserList';
+import OnlyRoomMasterInfo from './OnlyRoomMasterInfo';
 
-export default ({ sendMessage, chatRoom, app }) => (
-  <React.Fragment>
-    <TopContainer>
-      <CommunicateArea>
-        <Radio>radio</Radio>
-        <MessageList messages={chatRoom.messages} />
-      </CommunicateArea>
-      <UserList users={chatRoom.users} master={chatRoom.master} />
-    </TopContainer>
-    <InputField {...{ sendMessage }} />
-  </React.Fragment>
-);
+export default ({ sendMessage, chatRoom, app, removeRoom }) => {
+  console.log(chatRoom.master.name);
+  return (
+    <React.Fragment>
+      <InfoArea>
+        {app.username === chatRoom.master.name && (
+          <OnlyRoomMasterInfo {...{ removeRoom }} />
+        )}
+      </InfoArea>
+      <TopContainer>
+        <CommunicateArea>
+          <Radio>radio</Radio>
+          <MessageList messages={chatRoom.messages} />
+        </CommunicateArea>
+        <UserList users={chatRoom.users} master={chatRoom.master} />
+      </TopContainer>
+      <InputField {...{ sendMessage }} />
+    </React.Fragment>
+  );
+};
 
 const Wrapper = styled.div`
   animation-duration: 2s;
@@ -32,8 +41,12 @@ const Wrapper = styled.div`
     }
   }
 `;
+const InfoArea = styled.div`
+  height: 6%;
+  box-sizing: border-box;
+`;
 const TopContainer = styled.div`
-  height: 86%;
+  height: 80%;
   display: flex;
   border: 1px solid ${Color.gray10};
 `;

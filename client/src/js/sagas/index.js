@@ -4,7 +4,7 @@ import chatRoom from './chatRoom';
 import app from './app';
 
 export default function* rootSaga(context) {
-  yield fork(chatRoom);
+  yield fork(chatRoom, context);
   yield fork(initialize);
   yield fork(app, context);
 }

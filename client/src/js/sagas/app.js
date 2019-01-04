@@ -10,7 +10,7 @@ function subscribe(socket) {
       emit(actions.addRoom(name));
     });
     socket.on('removed room', name => {
-      emit(actions.removeRoom(name));
+      emit(actions.deleteRoomFromList(name));
     });
     socket.on('created room', name => {
       emit(actions.goCreatedRoom(name));

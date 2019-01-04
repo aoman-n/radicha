@@ -7,8 +7,8 @@ import Color from '../../constants/Color';
 
 export default ({ users, master }) => (
   <Container>
-    {users.map((user, i) => (
-      <User key={i}>
+    {users.map(user => (
+      <User key={user.socket_id}>
         {master.name === user.name ? (
           <Pets style={{ paddingRight: 10, verticalAlign: '-20%' }} />
         ) : (

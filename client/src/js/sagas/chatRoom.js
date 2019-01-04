@@ -5,7 +5,6 @@ import * as actions from '../actions';
 function subscribe(socket) {
   return eventChannel(emit => {
     socket.on('chat message', msg => {
-      // console.log(msg);
       console.log('メッセージを受け取りました');
       emit(actions.addMessage(msg));
     });
@@ -27,6 +26,9 @@ function subscribe(socket) {
       console.log(`leaveしたuser: ${userId}`);
       emit(actions.removeRoomUser(userId));
       emit(actions.switchRoomMaster());
+    });
+    socket.on('eject from room', () => {
+      emit(actions.ejectFromRoom());
     });
     socket.on('clear socket', () => {
       console.log('clear socket を受け取りました。');
@@ -82,6 +84,29 @@ function* joinRoom() {
   }
 }
 
-export default function*() {
+function* removeRoom() {
+  while (true) {
+    yield take(actions.REMOVE_ROOM);
+    const {
+      app: { socket },
+      chatRoom: { roomname },
+    } = yield select(state => state);
+    socket.emit('remove room', roomname);
+  }
+}
+
+function* runEjectFromRoom(context) {
+  while (true) {
+    yield take(actions.EJECT_FROM_ROOM);
+    const { socket } = yield select(state => state.app);
+    socket.emit('leave the room');
+    yield call(context.history.push, '/');
+    yield put(actions.showEjectFromRoomModal());
+  }
+}
+
+export default function*(context) {
   yield fork(joinRoom);
+  yield fork(removeRoom);
+  yield fork(runEjectFromRoom, context);
 }

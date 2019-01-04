@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { compose, pure, lifecycle } from 'recompose';
 import Index from '../presentators/MainContents';
-import { sendMessage, joinRoom } from '../../actions';
+import { sendMessage, joinRoom, removeRoom } from '../../actions';
 
 const enhancer = compose(
   connect(
@@ -13,6 +13,7 @@ const enhancer = compose(
     {
       sendMessage,
       joinRoom,
+      removeRoom,
     },
   ),
   lifecycle({
@@ -37,6 +38,6 @@ const enhancer = compose(
   pure,
 );
 
-export default enhancer(({ app, chatRoom, sendMessage }) => (
-  <Index {...{ app, chatRoom, sendMessage }} />
+export default enhancer(({ app, chatRoom, sendMessage, removeRoom }) => (
+  <Index {...{ app, chatRoom, sendMessage, removeRoom }} />
 ));

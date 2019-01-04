@@ -3,6 +3,7 @@ import { jsx, css } from '@emotion/core';
 import styled from '@emotion/styled';
 import LoginModal from './LoginModal';
 import CreateRoomModal from './CreateRoomModal';
+import EjectFromRoomModal from './EjectFromRoomModal';
 
 export default ({
   modals,
@@ -10,8 +11,9 @@ export default ({
   loginUser,
   createRoom,
   closeCreateRoomModal,
+  closeEjectFromRoomModal,
 }) => {
-  const { isLoginModal, isCreateRoomModal } = modals;
+  const { isLoginModal, isCreateRoomModal, isEjectFromRoomModal } = modals;
   return (
     <div>
       {isLoginModal && (
@@ -24,6 +26,12 @@ export default ({
         <Modal>
           <Overlay onClick={closeCreateRoomModal} />
           <CreateRoomModal {...{ closeCreateRoomModal, createRoom }} />
+        </Modal>
+      )}
+      {isEjectFromRoomModal && (
+        <Modal>
+          <Overlay onClick={closeEjectFromRoomModal} />
+          <EjectFromRoomModal />
         </Modal>
       )}
     </div>

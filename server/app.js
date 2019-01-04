@@ -67,6 +67,22 @@ io.on('connection', socket => {
     socket.to(room).emit('chat message', msg);
   });
 
+  socket.on('remove room', async(roomname) => {
+    // ルームマスターであるかsocket_idを使ってチェック
+    const roomData = await mongo.fetchRoomData(roomname);
+    if (roomData.users[0].socket_id === socket.id) {
+      await mongo.removeRoom(roomname);
+    }
+    io.in(roomname).emit('eject from room');
+    io.emit('removed room', roomname);
+  });
+
+  socket.on('leave the room', async() => {
+    const { room } = socket;
+    socket.leave(room);
+    delete socket.room;
+  });
+
   socket.on('logout', () => {
     console.log('logout');
     logout(socket);

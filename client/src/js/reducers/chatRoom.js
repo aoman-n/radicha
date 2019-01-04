@@ -1,6 +1,6 @@
 const initialState = {
   roomname: null,
-  master: null,
+  master: {},
   users: [],
   messages: [],
   joined: false,

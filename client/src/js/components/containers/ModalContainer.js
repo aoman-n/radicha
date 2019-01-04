@@ -6,6 +6,7 @@ import {
   loginUser,
   createRoom,
   closeCreateRoomModal,
+  closeEjectFromRoomModal,
 } from '../../actions';
 
 const enhancer = compose(
@@ -19,6 +20,7 @@ const enhancer = compose(
       loginUser,
       createRoom,
       closeCreateRoomModal,
+      closeEjectFromRoomModal,
     },
   ),
   pure,

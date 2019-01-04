@@ -1,4 +1,5 @@
 import { createAction } from 'redux-actions';
+/* eslint-disable */
 
 // actions
 /* initialize */
@@ -19,6 +20,8 @@ export const ADD_MESSAGE = 'ADD_MESSAGE';
 export const ADD_ROOM_USER = 'ADD_ROOM_USER';
 export const REMOVE_ROOM_USER = 'REMOVE_ROOM_USER';
 export const SWITCH_ROOM_MASTER = 'SWITCH_ROOM_MASTER';
+export const REMOVE_ROOM = 'REMOVE_ROOM';
+export const EJECT_FROM_ROOM = 'EJECT_FROM_ROOM';
 /* viewContents */
 export const GET_ROOM_LIST = 'GET_ROOM_LIST';
 export const SET_ROOM_LIST = 'SET_ROOM_LIST';
@@ -28,7 +31,9 @@ export const CLOSE_LOGIN_MODAL = 'CLOSE_LOGIN_MODAL';
 export const SHOW_CREATE_ROOM_MODAL = 'SHOW_CREATE_ROOM_MODAL';
 export const CLOSE_CREATE_ROOM_MODAL = 'CLOSE_CREATE_ROOM_MODAL';
 export const ADD_ROOM = 'ADD_ROOM';
-export const REMOVE_ROOM = 'REMOVE_ROOM';
+export const DELETE_ROOM_FROM_LIST = 'DELETE_ROOM_FROM_LIST';
+export const SHOW_EJECT_FROM_ROOM_MODAL = 'SHOW_EJECT_FROM_ROOM_MODAL';
+export const CLOSE_EJECT_FROM_ROOM_MODAL = 'CLOSE_EJECT_FROM_ROOM_MODAL';
 
 // actions creators
 /* initialize */
@@ -49,6 +54,8 @@ export const addMessage = createAction(ADD_MESSAGE);
 export const addRoomUser = createAction(ADD_ROOM_USER);
 export const removeRoomUser = createAction(REMOVE_ROOM_USER);
 export const switchRoomMaster = createAction(SWITCH_ROOM_MASTER);
+export const removeRoom = createAction(REMOVE_ROOM);
+export const ejectFromRoom = createAction(EJECT_FROM_ROOM);
 /* viewContents */
 export const getRoomList = createAction(GET_ROOM_LIST);
 export const setRoomList = createAction(SET_ROOM_LIST);
@@ -58,4 +65,6 @@ export const closeLoginModal = createAction(CLOSE_LOGIN_MODAL);
 export const showCreateRoomModal = createAction(SHOW_CREATE_ROOM_MODAL);
 export const closeCreateRoomModal = createAction(CLOSE_CREATE_ROOM_MODAL);
 export const addRoom = createAction(ADD_ROOM);
-export const removeRoom = createAction(REMOVE_ROOM);
+export const deleteRoomFromList = createAction(DELETE_ROOM_FROM_LIST);
+export const showEjectFromRoomModal = createAction(SHOW_EJECT_FROM_ROOM_MODAL);
+export const closeEjectFromRoomModal = createAction(CLOSE_EJECT_FROM_ROOM_MODAL);
