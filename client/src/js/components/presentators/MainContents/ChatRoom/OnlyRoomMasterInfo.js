@@ -7,7 +7,9 @@ export default ({ removeRoom }) => (
     <Text>あなたはこの部屋のマスターです！</Text>
     <RemoveRoomButton
       onClick={() => {
-        removeRoom();
+        if (window.confirm('本当に削除してよろしいですかい？')) {
+          removeRoom();
+        }
       }}
     >
       ルームを削除する
