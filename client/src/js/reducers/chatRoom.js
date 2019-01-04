@@ -48,6 +48,11 @@ export default (state = initialState, action) => {
         ...state,
         users: state.users.filter(u => u.socket_id !== action.payload),
       };
+    case 'SWITCH_ROOM_MASTER':
+      return {
+        ...state,
+        master: state.users[0],
+      };
     case 'RESET_CHATROOM_STATE':
       return initialState;
     default:

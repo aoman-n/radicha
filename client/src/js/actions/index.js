@@ -18,6 +18,7 @@ export const SENT_MESSAGE = 'SEND_MESSAGE';
 export const ADD_MESSAGE = 'ADD_MESSAGE';
 export const ADD_ROOM_USER = 'ADD_ROOM_USER';
 export const REMOVE_ROOM_USER = 'REMOVE_ROOM_USER';
+export const SWITCH_ROOM_MASTER = 'SWITCH_ROOM_MASTER';
 /* viewContents */
 export const GET_ROOM_LIST = 'GET_ROOM_LIST';
 export const SET_ROOM_LIST = 'SET_ROOM_LIST';
@@ -47,6 +48,7 @@ export const sendMessage = createAction(SENT_MESSAGE);
 export const addMessage = createAction(ADD_MESSAGE);
 export const addRoomUser = createAction(ADD_ROOM_USER);
 export const removeRoomUser = createAction(REMOVE_ROOM_USER);
+export const switchRoomMaster = createAction(SWITCH_ROOM_MASTER);
 /* viewContents */
 export const getRoomList = createAction(GET_ROOM_LIST);
 export const setRoomList = createAction(SET_ROOM_LIST);

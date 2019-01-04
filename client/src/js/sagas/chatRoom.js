@@ -26,6 +26,7 @@ function subscribe(socket) {
     socket.on('leave user', userId => {
       console.log(`leaveしたuser: ${userId}`);
       emit(actions.removeRoomUser(userId));
+      emit(actions.switchRoomMaster());
     });
     socket.on('clear socket', () => {
       console.log('clear socket を受け取りました。');
