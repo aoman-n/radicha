@@ -22,7 +22,9 @@ const mongo = new Mongo();
 
   // get room list
   const roomList = await mongo.getRoomList();
-  console.log(roomList);
+
+  const room = await mongo.fetchRoomData('aobaroom');
+
 })();
 
 

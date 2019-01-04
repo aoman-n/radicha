@@ -13,9 +13,9 @@ class Mongo {
     return rooms.map(room => room.name);
   }
 
-  async createRoom(name) {
+  async createRoom(roomname, username) {
     const room = new this.Room({
-      name,
+      name: roomname,
       users: [],
     })
     return room.save();
@@ -26,10 +26,17 @@ class Mongo {
     return await user.save();
   }
 
-  async joinRoom(userData, roomname) {
+  async joinRoom(username, roomname) {
     const roomData = await this.Room.findOne({ name: roomname });
-    roomData.users.push(userData);
+    const user = await this.User.findOne({ name: username });
+    roomData.users.push(user._id);
     return await roomData.save();
+  }
+
+  async fetchRoomData(roomname) {
+    return await this.Room.
+      findOne({ name: roomname }).
+      populate('users')
   }
 
   async fetchMessages(roomId) {
@@ -48,8 +55,11 @@ class Mongo {
 
   async leaveRoom(username, roomname) {
     const roomData = await this.Room.findOne({ name: roomname });
+    const user = await this.User.findOne({ name: username });
     roomData.users.some((v, i) => {
-      if (v.name === username) roomData.users.splice(i, 1);
+      if (v.toString() === user._id.toString()) {
+        roomData.users.splice(i, 1);
+      }
     });
     return await roomData.save();
   }

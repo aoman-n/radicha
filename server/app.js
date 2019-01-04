@@ -22,13 +22,14 @@ io.on('connection', socket => {
   console.log('client connected');
 
   // appへログイン
-  // socket.on('login', async(username) => {
-  //   const userData = { socket_id: socket.id, name: username };
-  //   await mongo.addUser(userData)
-  // });
+  socket.on('login', async(username) => {
+    socket.username = username;
+    const userData = { socket_id: socket.id, name: username };
+    await mongo.addUser(userData);
+  });
 
-  socket.on('create room', async(name) => {
-    const room = await mongo.createRoom(name);
+  socket.on('create room', async(roomname) => {
+    const room = await mongo.createRoom(roomname, socket.username);
     io.emit('add room', room.name);
     socket.emit('created room', room.name);
   })
@@ -44,14 +45,15 @@ io.on('connection', socket => {
       socket.to(room).emit('chat message', { user: '', text: `${username} さんが退出しました。` });
       socket.to(room).emit('leave user', id);
       socket.leave(room);
-      const roomData = await mongo.leaveRoom(username, room);
+      await runLeaveRoom(username, room);
       delete socket.room;
       delete socket.username;
     }
     socket.join(roomname);
     socket.username = username;
     socket.room = roomname;
-    const roomData = await mongo.joinRoom(userData, roomname)
+    await mongo.joinRoom(username, roomname);
+    const roomData = await mongo.fetchRoomData(roomname);
     const messages = await mongo.fetchMessages(roomData._id);
     socket.to(roomname).emit('user join', userData);
     socket.emit('initialize room data', { users: roomData.users, messages });
@@ -66,6 +68,7 @@ io.on('connection', socket => {
   });
 
   socket.on('logout', () => {
+    console.log('logout');
     logout(socket);
   });
 
@@ -74,21 +77,30 @@ io.on('connection', socket => {
     logout(socket);
   });
 
-});
-
-const logout = async(socket) => {
-  const { room, username, id } = socket;
-  if (room) {
-    delete socket.username;
-    delete socket.room;
-    socket.leave(room);
-    await mongo.leaveRoom(username, room);
-    const message = { user: '', text: `${username} さんが退出しました。` };
-    socket.to(room).emit('chat message', message);
-    socket.to(room).emit('leave user', id);
-    socket.emit('clear socket', 'clear');
+  const logout = async(socket) => {
+    const { room, username, id } = socket;
+    if (room) {
+      delete socket.username;
+      delete socket.room;
+      socket.leave(room);
+      await runLeaveRoom(username, room);
+      const message = { user: '', text: `${username} さんが退出しました。` };
+      socket.to(room).emit('chat message', message);
+      socket.to(room).emit('leave user', id);
+      socket.emit('clear socket', 'clear');
+    }
+    await mongo.removeUser(username);
   }
-}
+
+  const runLeaveRoom = async(username, room) => {
+    const roomData = await mongo.leaveRoom(username, room);
+    if (roomData.users.length === 0) {
+      await mongo.removeRoom(room);
+      io.emit('removed room', room);
+    }
+  }
+
+});
 
 app.use((req, res, next) => {
   next(createError(404));

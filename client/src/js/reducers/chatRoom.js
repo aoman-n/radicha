@@ -1,5 +1,6 @@
 const initialState = {
   roomname: null,
+  master: null,
   users: [],
   messages: [],
   joined: false,
@@ -29,6 +30,7 @@ export default (state = initialState, action) => {
     case 'INITIALIZE_ROOM_DATA':
       return {
         ...state,
+        master: action.payload.users[0],
         users: action.payload.users,
         messages: action.payload.messages,
         pending: false,

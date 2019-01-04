@@ -9,6 +9,9 @@ function subscribe(socket) {
     socket.on('add room', name => {
       emit(actions.addRoom(name));
     });
+    socket.on('removed room', name => {
+      emit(actions.removeRoom(name));
+    });
     socket.on('created room', name => {
       emit(actions.goCreatedRoom(name));
     });
@@ -50,6 +53,7 @@ function* loginUser() {
     const socket = yield call(connect);
     yield fork(changeApp, socket);
     yield put(actions.setSocket(socket));
+    socket.emit('login', payload);
     window.localStorage.setItem('username', payload);
   }
 }
@@ -57,6 +61,8 @@ function* loginUser() {
 function* logoutUser() {
   while (true) {
     yield take(actions.LOGOUT_USER);
+    const { socket } = yield select(state => state.app);
+    socket.emit('logout');
     yield put(actions.delteSocket());
     localStorage.clear();
   }

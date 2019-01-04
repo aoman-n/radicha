@@ -8,14 +8,16 @@ const User = new Schema({
 
 const Room = new Schema({
   name: { type: String, unique: true },
-  users: [{ name: String, socket_id: String }],
+  users: [{ type: Schema.Types.ObjectId, ref: 'users' }]
+  // users: [{ name: String, socket_id: String }],
+  // master: { type: Schema.Types.ObjectId, ref: 'users' }
 });
 
 const Message = new Schema({
   text: String,
   user: String,
-  room_id: { type: Schema.Types.ObjectId, ref: 'Room' },
-  createdDate : {type: Date, default: Date.now}
+  room_id: { type: Schema.Types.ObjectId, ref: 'rooms' },
+  createdDate : { type: Date, default: Date.now }
 });
 
 mongoose.connect('mongodb://localhost/radicha', { useNewUrlParser: true });

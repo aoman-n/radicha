@@ -12,7 +12,7 @@ export default ({ sendMessage, chatRoom, app }) => (
         <Radio>radio</Radio>
         <MessageList messages={chatRoom.messages} />
       </CommunicateArea>
-      <UserList users={chatRoom.users} />
+      <UserList users={chatRoom.users} master={chatRoom.master} />
     </TopContainer>
     <InputField {...{ sendMessage }} />
   </React.Fragment>
