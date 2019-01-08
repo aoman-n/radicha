@@ -7,9 +7,9 @@ import Color from '../constants/Color';
 
 export default ({ showLoginModal, toggleRoombar, logoutUser, username }) => (
   <Container>
-    {/* <Icon onClick={toggleRoombar}>
+    <Icon onClick={toggleRoombar}>
       <FontAwesomeIcon icon="bars" size="lg" />
-    </Icon> */}
+    </Icon>
     <Link css={title} to="/">
       <h1 />
     </Link>

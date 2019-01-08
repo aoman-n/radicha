@@ -26,9 +26,9 @@ export default ({
         <Header {...{ showLoginModal, toggleRoombar, username, logoutUser }} />
       </HeaderArea>
       <MainWrapper>
-        <SideBar {...{ isRoomBar }}>
+        <Drawer isRoomBar={isRoomBar}>
           <RoomBar {...{ joinRoom, showCreateRoomModal, roomList }} />
-        </SideBar>
+        </Drawer>
         <ChatRoom>
           <Switch>
             <Route
@@ -52,35 +52,22 @@ const HeaderArea = styled.div`
   height: 54px;
   width: 100%;
   background: #f5f5f5;
-  border-bottom: 1px solid #e5e5e5;
 `;
 const MainWrapper = styled.div`
   display: flex;
   height: calc(100% - 60px);
 `;
-const SideBar = styled.div`
-  ${({ isRoomBar }) =>
-    isRoomBar
-      ? css`
-          width: 200px;
-          opacity: 1;
-          transition: 0.5s;
-          transition-timing-function: ease-in-out;
-          transform: none;
-        `
-      : css`
-          width: 0px;
-          opacity: 0;
-          transition: 0.5s;
-          transition-timing-function: ease-in-out;
-          transform: translateX(-200px);
-        `}
+const Drawer = styled.div`
+  width: ${({ isRoomBar }) => (isRoomBar ? 230 : 0)}px;
+  transform: translateX(${({ isRoomBar }) => (isRoomBar ? 0 : -230)}px);
+  opacity: ${({ isRoomBar }) => (isRoomBar ? 1 : 0)};
   border-right: 1px solid #e5e5e5;
   background-color: #dcdcdc;
+  transition: 0.6s;
+  /* box-shadow: 4px 0px 4px -1px rgba(0, 0, 0, 0.31); */
 `;
 const ChatRoom = styled.div`
   flex: 1;
   background: white;
-  box-shadow: inset 5px 5px 5px #ccc;
   padding: 20px 30px;
 `;

@@ -49,10 +49,6 @@ const Li = styled.li`
     transition: 0.2s;
   }
 `;
-const Icon = styled.div`
-  float: right;
-  margin-right: 5px;
-`;
 const roomLink = css`
   text-decoration: none;
   color: gray;
