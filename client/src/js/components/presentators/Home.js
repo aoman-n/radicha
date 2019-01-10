@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, css } from '@emotion/core';
+import { jsx } from '@emotion/core';
 import styled from '@emotion/styled';
 import { Route, Switch } from 'react-router-dom';
 import Header from './Header';
@@ -14,7 +14,6 @@ export default ({
   showLoginModal,
   showCreateRoomModal,
   logoutUser,
-  joinRoom,
   app,
 }) => {
   const { isRoomBar, roomList } = viewContents;
@@ -27,7 +26,7 @@ export default ({
       </HeaderArea>
       <MainWrapper>
         <Drawer isRoomBar={isRoomBar}>
-          <RoomBar {...{ joinRoom, showCreateRoomModal, roomList }} />
+          <RoomBar {...{ roomList, showCreateRoomModal }} />
         </Drawer>
         <ChatRoom>
           <Switch>
@@ -58,13 +57,13 @@ const MainWrapper = styled.div`
   height: calc(100% - 60px);
 `;
 const Drawer = styled.div`
-  width: ${({ isRoomBar }) => (isRoomBar ? 230 : 0)}px;
+  flex-basis: ${({ isRoomBar }) => (isRoomBar ? 230 : 0)}px;
   transform: translateX(${({ isRoomBar }) => (isRoomBar ? 0 : -230)}px);
   opacity: ${({ isRoomBar }) => (isRoomBar ? 1 : 0)};
   border-right: 1px solid #e5e5e5;
   background-color: #dcdcdc;
-  transition: 0.6s;
-  /* box-shadow: 4px 0px 4px -1px rgba(0, 0, 0, 0.31); */
+  transition: 0.7s;
+  box-shadow: 4px 0px 4px -1px rgba(0, 0, 0, 0.31);
 `;
 const ChatRoom = styled.div`
   flex: 1;
