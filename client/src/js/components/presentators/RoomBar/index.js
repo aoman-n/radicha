@@ -1,72 +1,78 @@
 /** @jsx jsx */
-import React from 'react';
-import { jsx, css } from '@emotion/core';
+import { jsx } from '@emotion/core';
 import styled from '@emotion/styled';
 import { NavLink, withRouter } from 'react-router-dom';
-import { Button } from '@material-ui/core';
 import Color from '../constants/Color';
 
 export default withRouter(props => {
   const { showCreateRoomModal, roomList } = props;
   return (
-    <React.Fragment>
-      <Title
-        onClick={() => {
-          showCreateRoomModal();
-        }}
-      >
-        チャットルームリスト　　+
-      </Title>
-      <Ul>
-        {roomList.map((room, i) => (
-          <Li key={i}>
-            <NavLink
-              activeStyle={{ borderBottom: `2px solid ${Color.green20}` }}
-              css={roomLink}
-              to={`/room/${room}`}
-            >
-              {room}
-            </NavLink>
+    <Container>
+      <CreateRoom>
+        <Button onClick={() => showCreateRoomModal()}>部屋を作成</Button>
+      </CreateRoom>
+      <RoomList>
+        {roomList.map(roomName => (
+          <Li
+            key={roomName}
+            activeStyle={{ borderBottom: `2px solid ${Color.green20}` }}
+            to={`/room/${roomName}`}
+          >
+            {roomName}
           </Li>
         ))}
-      </Ul>
-    </React.Fragment>
+      </RoomList>
+    </Container>
   );
 });
 
-const Ul = styled.ul`
+const Container = styled.div`
+  width: 100%;
+  height: 100%;
+`;
+const CreateRoom = styled.div`
+  height: 50px;
+  background: ${Color.accent};
   display: flex;
-  flex-direction: column;
-  font-size: 15px;
-  overflow: hidden;
+  align-items: center;
+  justify-content: center;
 `;
-const Title = styled.h3`
-  padding: 20px 10px;
+const Button = styled.button`
+  width: 80%;
+  background: ${Color.accent};
+  color: white;
+  font-size: 1.1rem;
+  border: 2px solid white;
+  border-radius: 10px;
+  height: 35px;
+  overflow: visible;
+  box-sizing: border-box;
+  outline: none;
   cursor: pointer;
-  white-space: nowrap;
-  :hover {
-    opacity: 0.7;
-  }
-`;
-const Li = styled.li`
-  flex-basis: 40px;
-  line-height: 40px;
-  padding: 0 23px;
   transition: 0.3s;
-  color: gray;
-  overflow: hidden;
   &:hover {
-    border-left: 6px solid ${Color.green30};
-    cursor: pointer;
-    background: ${Color.green10};
+    background: white;
+    color: ${Color.accent};
+    border: 2px solid ${Color.accent};
     transition: 0.3s;
   }
 `;
-const roomLink = css`
-  text-decoration: none;
-  color: gray;
-  width: 100%;
-  height: 100%;
-  display: inline-block;
+const RoomList = styled.div`
+  height: calc(100% - 50px);
+  background: ${Color.gray};
+  overflow: auto;
 `;
-const CreateRoom = styled(Button)``;
+const Li = styled(NavLink)`
+  display: block;
+  padding: 0.8rem 30px;
+  color: white;
+  font-size: 1.1rem;
+  text-decoration: none;
+  &:hover {
+    border-left: 5px solid ${Color.main};
+    background: ${Color.lightGray};
+    color: ${Color.gray};
+    cursor: pointer;
+    transition: 0.3s;
+  }
+`;

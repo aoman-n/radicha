@@ -15,6 +15,7 @@ function* runGetUserName() {
 function* runGetRoomList() {
   const { roomList, error } = yield call(getRoomList);
   if (roomList) {
+    roomList = ['test', 'test2', 'ニコニコ生放送', 'アクアリウム'];
     yield put(actions.setRoomList(roomList));
   } else {
     // @TODO エラーハンドリング

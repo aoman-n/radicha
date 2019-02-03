@@ -1,5 +1,5 @@
 const initialState = {
-  roomList: [],
+  roomList: ['test', 'testtest', 'アクアリウム'],
   modals: {
     isLoginModal: false,
     isCreateRoomModal: false,

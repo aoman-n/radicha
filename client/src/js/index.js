@@ -12,11 +12,20 @@ import {
   faBars,
   faVolumeUp,
   faUser,
+  faPlusSquare,
 } from '@fortawesome/free-solid-svg-icons';
 import Routes from './Routes';
 import createStore from './store';
 
-library.add(fab, faCheckSquare, faCoffee, faBars, faVolumeUp, faUser);
+library.add(
+  fab,
+  faCheckSquare,
+  faCoffee,
+  faBars,
+  faVolumeUp,
+  faUser,
+  faPlusSquare,
+);
 
 const history = createHistory();
 const store = createStore(history);

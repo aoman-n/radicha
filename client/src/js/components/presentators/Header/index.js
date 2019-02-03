@@ -1,35 +1,32 @@
 /** @jsx jsx */
-import { jsx, css } from '@emotion/core';
+import { jsx } from '@emotion/core';
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import logoImage from '../images/logo.png';
 import Color from '../constants/Color';
 
 export default ({ showLoginModal, toggleRoombar, logoutUser, username }) => (
   <Container>
-    <Icon onClick={toggleRoombar}>
-      <FontAwesomeIcon icon="bars" size="lg" />
-    </Icon>
-    <Link css={title} to="/">
-      <h1 />
-    </Link>
-    <nav css={nav}>
+    <Logo to="/">
+      <Image alt="Logo Image" src={logoImage} />
+    </Logo>
+    <Nav>
       {username || username !== null ? (
-        <ul css={ul}>
+        <Ul>
           <Li onClick={showLoginModal}>
+            使用中の名前：
             <Name>{username}</Name>
-            でログイン中
           </Li>
           <Link to="/">
             <Li onClick={logoutUser}>ログアウト</Li>
           </Link>
-        </ul>
+        </Ul>
       ) : (
-        <ul css={ul}>
+        <Ul>
           <Li onClick={showLoginModal}>ログイン</Li>
-        </ul>
+        </Ul>
       )}
-    </nav>
+    </Nav>
   </Container>
 );
 
@@ -38,45 +35,31 @@ const Container = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  font-size: 0.9em;
 `;
-const Icon = styled.div`
-  margin: 20px;
-  color: ${Color.gray20};
-  cursor: pointer;
-  &:hover {
-    opacity: 0.6;
-    transition: 0.3s;
-  }
-`;
-const title = css`
-  font-size: 20px;
+const Logo = styled(Link)`
   color: ${Color.gray30};
-  vertical-align: bottom;
-  font-weight: 700;
-  font-style: italic;
   margin-right: auto;
-  text-align: center;
+  padding: 0 30px;
   &:hover {
-    opacity: 0.7;
+    opacity: 0.9;
     transition: 0.3s;
   }
 `;
-const nav = css`
-  color: gray;
-`;
-const ul = css`
+const Image = styled.img``;
+const Nav = styled.nav``;
+const Ul = styled.ul`
   display: flex;
   justify-content: space-between;
 `;
 const Li = styled.li`
+  font-size: 0.9rem;
+  color: white;
   position: relative;
   display: inline-block;
   margin-right: 30px;
   cursor: pointer;
-  color: ${Color.gray30};
   &:hover {
-    opacity: 0.8;
+    opacity: 0.9;
   }
   &:before {
     position: absolute;
@@ -86,7 +69,7 @@ const Li = styled.li`
     display: inline-block;
     width: 0;
     height: 2px;
-    background: ${Color.skyblue};
+    background: ${Color.accent};
     transition: 0.4s;
   }
   &:hover:before {
@@ -94,7 +77,7 @@ const Li = styled.li`
   }
 `;
 const Name = styled.span`
-  color: #ff69b4;
+  color: white;
   font-weight: 700;
   padding-right: 5px;
 `;
