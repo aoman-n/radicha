@@ -4,6 +4,14 @@ import styled from '@emotion/styled';
 import { NavLink, withRouter } from 'react-router-dom';
 import Color from '../constants/Color';
 
+const roomActiveStyle = {
+  borderLeft: `5px solid ${Color.main}`,
+  background: `${Color.lightGray}`,
+  color: `${Color.gray}`,
+  cursor: 'pointer',
+  transition: '0.3s',
+};
+
 export default withRouter(props => {
   const { showCreateRoomModal, roomList } = props;
   return (
@@ -15,7 +23,7 @@ export default withRouter(props => {
         {roomList.map(roomName => (
           <Li
             key={roomName}
-            activeStyle={{ borderBottom: `2px solid ${Color.green20}` }}
+            activeStyle={roomActiveStyle}
             to={`/room/${roomName}`}
           >
             {roomName}
@@ -41,7 +49,7 @@ const Button = styled.button`
   width: 80%;
   background: ${Color.accent};
   color: white;
-  font-size: 1.1rem;
+  font-size: 1rem;
   border: 2px solid white;
   border-radius: 10px;
   height: 35px;
@@ -69,10 +77,6 @@ const Li = styled(NavLink)`
   font-size: 1.1rem;
   text-decoration: none;
   &:hover {
-    border-left: 5px solid ${Color.main};
-    background: ${Color.lightGray};
-    color: ${Color.gray};
-    cursor: pointer;
-    transition: 0.3s;
+    ${roomActiveStyle}
   }
 `;

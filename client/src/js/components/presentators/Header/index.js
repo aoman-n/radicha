@@ -3,7 +3,6 @@ import { jsx } from '@emotion/core';
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 import logoImage from '../images/logo.png';
-import Color from '../constants/Color';
 
 export default ({ showLoginModal, toggleRoombar, logoutUser, username }) => (
   <Container>
@@ -37,15 +36,18 @@ const Container = styled.div`
   align-items: center;
 `;
 const Logo = styled(Link)`
-  color: ${Color.gray30};
   margin-right: auto;
   padding: 0 30px;
+  height: 38%;
   &:hover {
     opacity: 0.9;
     transition: 0.3s;
   }
 `;
-const Image = styled.img``;
+const Image = styled.img`
+  height: 100%;
+  object-fit: contain;
+`;
 const Nav = styled.nav``;
 const Ul = styled.ul`
   display: flex;
@@ -59,21 +61,7 @@ const Li = styled.li`
   margin-right: 30px;
   cursor: pointer;
   &:hover {
-    opacity: 0.9;
-  }
-  &:before {
-    position: absolute;
-    top: 1.3em;
-    left: 0;
-    content: '';
-    display: inline-block;
-    width: 0;
-    height: 2px;
-    background: ${Color.accent};
-    transition: 0.4s;
-  }
-  &:hover:before {
-    width: 100%;
+    opacity: 0.8;
   }
 `;
 const Name = styled.span`

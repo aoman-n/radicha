@@ -1,19 +1,13 @@
-/** @jsx jsx */
-import { jsx, css } from '@emotion/core';
+import React from 'react';
 import styled from '@emotion/styled';
-import PermIdentity from '@material-ui/icons/PermIdentity';
-import Pets from '@material-ui/icons/Pets';
 import Color from '../../constants/Color';
+import userIcon from '../../images/user_icon.png';
 
-export default ({ users, master }) => (
+const UserList = ({ users, master }) => (
   <Container>
-    {users.map(user => (
-      <User key={user.socket_id}>
-        {master.name === user.name ? (
-          <Pets style={{ paddingRight: 10, verticalAlign: '-20%' }} />
-        ) : (
-          <PermIdentity style={{ paddingRight: 10, verticalAlign: '-20%' }} />
-        )}
+    {users.map((user, i) => (
+      <User key={user.id}>
+        <Icon alt="userIcon" src={userIcon} />
         {user.name}
       </User>
     ))}
@@ -21,15 +15,18 @@ export default ({ users, master }) => (
 );
 
 const Container = styled.ul`
-  color: ${Color.gray30};
-  width: 200px;
-  padding: 10px 15px;
-  font-size: 0.9em;
-  box-sizing: border-box;
-  border: 1px solid ${Color.gray10};
-  overflow: scroll;
+  padding: 1rem 1rem;
+  overflow: auto;
 `;
 const User = styled.li`
-  height: 25px;
+  color: white;
+  font-weight: normal;
+  font-size: 0.9rem;
+  padding: 0.5rem 0;
+`;
+const Icon = styled.img`
+  padding-right: 0.6rem;
   vertical-align: middle;
 `;
+
+export default UserList;

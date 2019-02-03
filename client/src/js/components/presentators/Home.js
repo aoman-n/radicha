@@ -68,6 +68,6 @@ const Drawer = styled.div`
 `;
 const ChatRoom = styled.div`
   flex: 1;
-  background: white;
-  padding: 20px 30px;
+  /* background: white;
+  padding: 20px 30px; */
 `;

@@ -5,22 +5,19 @@ import Pending from '../shared/Pending';
 
 const enhancer = compose(pure);
 
-export default enhancer(({ sendMessage, app, chatRoom, removeRoom }) => {
-  const { pending } = chatRoom;
-  return (
-    <React.Fragment>
-      {pending ? (
-        <Pending />
-      ) : (
-        <ChatRoom
-          {...{
-            sendMessage,
-            app,
-            chatRoom,
-            removeRoom,
-          }}
-        />
-      )}
-    </React.Fragment>
-  );
-});
+export default enhancer(({ sendMessage, app, chatRoom, removeRoom }) => (
+  <React.Fragment>
+    {chatRoom.pending ? (
+      <Pending />
+    ) : (
+      <ChatRoom
+        {...{
+          sendMessage,
+          app,
+          chatRoom,
+          removeRoom,
+        }}
+      />
+    )}
+  </React.Fragment>
+));

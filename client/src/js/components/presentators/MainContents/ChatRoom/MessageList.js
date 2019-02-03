@@ -1,32 +1,37 @@
-/** @jsx jsx */
-import { jsx, css } from '@emotion/core';
+import React from 'react';
 import styled from '@emotion/styled';
 import Color from '../../constants/Color';
 
-export default ({ messages }) => (
+const MessageList = ({ messages }) => (
   <Container>
-    {messages.map((msg, i) => (
-      <List key={i}>
-        {msg.user && <Name>{msg.user}: </Name>}
-        <Text>{msg.text}</Text>
-      </List>
+    {messages.map((message, i) => (
+      <Message key={i}>
+        <Head>{message.user}</Head>
+        <Text>{message.text}</Text>
+      </Message>
     ))}
   </Container>
 );
 
 const Container = styled.ul`
-  flex: 1;
-  padding: 10px 20px;
-  box-sizing: border-box;
-  overflow: scroll;
+  height: 92%;
+  overflow: auto;
 `;
-const List = styled.li`
-  padding-bottom: 10px;
+const Message = styled.li`
+  padding: 1.4rem 2rem;
+  color: ${Color.gray};
+  &:nth-child(even) {
+    background: ${Color.base2};
+  }
 `;
-const Name = styled.span`
-  color: ${Color.darkblue};
+const Head = styled.p`
+  font-size: 0.9rem;
+  padding-bottom: 0.8rem;
+  color: ${Color.main2};
+  font-weight: bold;
 `;
-const Text = styled.span`
-  color: ${Color.gray30};
-  font-size: 0.9em;
+const Text = styled.p`
+  font-size: 0.8rem;
 `;
+
+export default MessageList;

@@ -9,6 +9,7 @@ export default {
   skyblue: '#34BBF3',
   darkblue: '#819FF7',
   main: '#3DB680',
+  main2: '#5ACB9F',
   base: '#ffffff',
   base2: '#E7FFF4',
   gray: '#767676',
