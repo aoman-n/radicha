@@ -7,6 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "client": "cd client; npm start",
     "server": "cd server; npm start",
+    "setup:client": "cd client; npm install",
+    "setup:server": "cd server; npm install",
+    "setup": "npm run setup:client && npm run setup:server",
     "start": "npm run client & npm run server"
   },
   "repository": {
