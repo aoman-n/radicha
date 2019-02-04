@@ -7,7 +7,9 @@ import Color from '../../constants/Color';
 const enhancer = compose(
   lifecycle({
     componentDidUpdate() {
-      console.log('updateされました');
+      let obj = document.getElementsByClassName('message');
+      obj = obj[obj.length - 1];
+      obj.scrollIntoView({ behavior: 'smooth', block: 'end' });
     },
   }),
 );
@@ -15,7 +17,7 @@ const enhancer = compose(
 const MessageList = ({ messages }) => (
   <Container>
     {messages.map((message, i) => (
-      <Message key={i}>
+      <Message key={i} className="message">
         <Head>{message.user}</Head>
         <Text>{message.text}</Text>
       </Message>
