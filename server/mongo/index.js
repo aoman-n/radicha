@@ -26,6 +26,10 @@ class Mongo {
     return await user.save();
   }
 
+  async findRoom(roomname) {
+    return await this.Room.findOne({ name: roomname });
+  }
+
   async joinRoom(username, roomname) {
     const roomData = await this.Room.findOne({ name: roomname });
     const user = await this.User.findOne({ name: username });

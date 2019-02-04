@@ -5,16 +5,24 @@ const initialState = {
   messages: [],
   joined: false,
   pending: false,
+  notFound: false,
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case 'NOT_FOUND_ROOM':
+      return {
+        ...state,
+        pending: false,
+        notFound: true,
+      };
     case 'JOIN_ROOM':
       return {
         ...state,
         roomname: action.payload,
         joined: true,
         pending: true,
+        notFound: false,
       };
     case 'LEAVE_ROOM':
       return {

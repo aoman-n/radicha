@@ -40,6 +40,12 @@ io.on('connection', socket => {
     const { username, roomname } = data;
     const userData = { socket_id: socket.id, name: username };
 
+    const existRoom = await mongo.findRoom(roomname);
+    if (existRoom === null) {
+      socket.emit('not found room');
+      return;
+    }
+
     const { room, id } = socket;
     if (room) {
       socket.to(room).emit('chat message', { user: '', text: `${username} さんが退出しました。` });

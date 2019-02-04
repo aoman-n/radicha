@@ -4,6 +4,10 @@ import * as actions from '../actions';
 
 function subscribe(socket) {
   return eventChannel(emit => {
+    socket.on('not found room', () => {
+      console.log('ルームが見つかりませんでした');
+      emit(actions.notFoundRoom());
+    });
     socket.on('chat message', msg => {
       console.log('メッセージを受け取りました');
       emit(actions.addMessage(msg));
