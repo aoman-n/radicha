@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, css } from '@emotion/core';
+import { jsx } from '@emotion/core';
 import styled from '@emotion/styled';
 import { withState, withHandlers, pure, compose } from 'recompose';
 import Color from '../constants/Color';
@@ -17,21 +17,19 @@ const enhancer = compose(
   pure,
 );
 
-export default enhancer(
-  ({ loginUser, inputText, onChangeText, closeLoginModal }) => (
-    <Modal>
-      <InputName type="text" value={inputText} onChange={onChangeText} />
-      <Button
-        onClick={() => {
-          loginUser(inputText);
-          closeLoginModal();
-        }}
-      >
-        Login
-      </Button>
-    </Modal>
-  ),
-);
+export default enhancer(({ loginUser, inputText, onChangeText, hideModal }) => (
+  <Modal>
+    <InputName type="text" value={inputText} onChange={onChangeText} />
+    <Button
+      onClick={() => {
+        loginUser(inputText);
+        hideModal('login');
+      }}
+    >
+      Login
+    </Button>
+  </Modal>
+));
 
 const Modal = styled.div`
   width: 50%;

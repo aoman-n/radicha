@@ -20,7 +20,7 @@ function* runGetUserName() {
     yield put(actions.loginUser(username));
   } else {
     console.log('not found username in localstorage');
-    yield put(actions.showLoginModal());
+    yield put(actions.showModal('login'));
   }
 }
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { compose, pure } from 'recompose';
 import { Redirect } from 'react-router-dom';
-import { showLoginModal, closeLoginModal } from '../../actions';
+import { showModal, hideModal } from '../../actions';
 
 const enhancer = compose(
   connect(
@@ -10,17 +10,15 @@ const enhancer = compose(
       username: state.app.username,
     }),
     {
-      showLoginModal,
-      closeLoginModal,
+      showModal,
+      hideModal,
     },
   ),
   pure,
 );
 
-export default enhancer(
-  ({ username, showLoginModal, closeLoginModal, children }) => (
-    <React.Fragment>
-      {username ? children : <Redirect to="/login" />}
-    </React.Fragment>
-  ),
-);
+export default enhancer(({ username, showModal, hideModal, children }) => (
+  <React.Fragment>
+    {username ? children : <Redirect to="/login" />}
+  </React.Fragment>
+));

@@ -3,12 +3,7 @@ import { connect } from 'react-redux';
 import { compose, pure, lifecycle } from 'recompose';
 import { withRouter } from 'react-router-dom';
 import Index from '../presentators/MainContents';
-import {
-  sendMessage,
-  joinRoom,
-  removeRoom,
-  showLoginModal,
-} from '../../actions';
+import { sendMessage, joinRoom, removeRoom } from '../../actions';
 
 const enhancer = compose(
   connect(
@@ -20,7 +15,6 @@ const enhancer = compose(
       sendMessage,
       joinRoom,
       removeRoom,
-      showLoginModal,
     },
   ),
   lifecycle({

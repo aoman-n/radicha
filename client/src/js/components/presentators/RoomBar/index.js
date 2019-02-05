@@ -13,11 +13,11 @@ const roomActiveStyle = {
 };
 
 export default withRouter(props => {
-  const { showCreateRoomModal, roomList } = props;
+  const { showModal, roomList } = props;
   return (
     <Container>
       <CreateRoom>
-        <Button onClick={() => showCreateRoomModal()}>部屋を作成</Button>
+        <Button onClick={() => showModal('create')}>部屋を作成</Button>
       </CreateRoom>
       <RoomList>
         {roomList.map(roomName => (

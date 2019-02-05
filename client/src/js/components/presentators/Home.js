@@ -12,22 +12,22 @@ export default ({
   match,
   viewContents,
   toggleRoombar,
-  showLoginModal,
-  showCreateRoomModal,
+  showModal,
   logoutUser,
   app,
 }) => {
   const { isRoomBar, roomList } = viewContents;
   const { username } = app;
+  console.log(showModal);
   return (
     <Container>
       <ModalContainer />
       <HeaderArea>
-        <Header {...{ showLoginModal, toggleRoombar, username, logoutUser }} />
+        <Header {...{ showModal, toggleRoombar, username, logoutUser }} />
       </HeaderArea>
       <MainWrapper>
         <Drawer isRoomBar={isRoomBar}>
-          <RoomBar {...{ roomList, showCreateRoomModal }} />
+          <RoomBar {...{ roomList, showModal }} />
         </Drawer>
         <ChatRoom>
           <Switch>

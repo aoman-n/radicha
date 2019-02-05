@@ -2,10 +2,10 @@
 import { jsx } from '@emotion/core';
 import styled from '@emotion/styled';
 
-export default ({ closeEjectFromRoomModal }) => (
+export default ({ hideModal }) => (
   <Modal>
     <TextContainer>ルームが解散となりました(´・ω・｀)</TextContainer>
-    <CloseButton onClick={closeEjectFromRoomModal}>閉じる</CloseButton>
+    <CloseButton onClick={() => hideModal('eject')}>閉じる</CloseButton>
   </Modal>
 );
 

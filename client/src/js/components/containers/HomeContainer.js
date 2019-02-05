@@ -2,10 +2,10 @@ import { connect } from 'react-redux';
 import { pure, compose } from 'recompose';
 import {
   toggleRoombar,
-  showLoginModal,
-  showCreateRoomModal,
   logoutUser,
   joinRoom,
+  showModal,
+  hideModal,
 } from '../../actions';
 import Home from '../presentators/Home';
 
@@ -17,10 +17,10 @@ const enhancer = compose(
     }),
     {
       toggleRoombar,
-      showLoginModal,
       logoutUser,
       joinRoom,
-      showCreateRoomModal,
+      showModal,
+      hideModal,
     },
   ),
   pure,

@@ -105,7 +105,7 @@ function* runEjectFromRoom(context) {
     const { socket } = yield select(state => state.app);
     socket.emit('leave the room');
     yield call(context.history.push, '/');
-    yield put(actions.showEjectFromRoomModal());
+    yield put(actions.showModal('eject'));
   }
 }
 

@@ -1,37 +1,31 @@
 /** @jsx jsx */
-import { jsx, css } from '@emotion/core';
+import { jsx } from '@emotion/core';
 import styled from '@emotion/styled';
 import LoginModal from './LoginModal';
 import CreateRoomModal from './CreateRoomModal';
 import EjectFromRoomModal from './EjectFromRoomModal';
 
-export default ({
-  modals,
-  closeLoginModal,
-  loginUser,
-  createRoom,
-  closeCreateRoomModal,
-  closeEjectFromRoomModal,
-}) => {
-  const { isLoginModal, isCreateRoomModal, isEjectFromRoomModal } = modals;
+export default ({ modals, loginUser, createRoom, hideModal }) => {
+  // const { isLoginModal, isCreateRoomModal, isEjectFromRoomModal } = modals;
+  const { login, create, eject } = modals;
   return (
     <div>
-      {isLoginModal && (
+      {login && (
         <Modal>
-          <Overlay onClick={closeLoginModal} />
-          <LoginModal {...{ closeLoginModal, loginUser }} />
+          <Overlay onClick={() => hideModal('login')} />
+          <LoginModal {...{ hideModal, loginUser }} />
         </Modal>
       )}
-      {isCreateRoomModal && (
+      {create && (
         <Modal>
-          <Overlay onClick={closeCreateRoomModal} />
-          <CreateRoomModal {...{ closeCreateRoomModal, createRoom }} />
+          <Overlay onClick={() => hideModal('create')} />
+          <CreateRoomModal {...{ hideModal, createRoom }} />
         </Modal>
       )}
-      {isEjectFromRoomModal && (
+      {eject && (
         <Modal>
-          <Overlay onClick={closeEjectFromRoomModal} />
-          <EjectFromRoomModal {...{ closeEjectFromRoomModal }} />
+          <Overlay onClick={() => hideModal('eject')} />
+          <EjectFromRoomModal {...{ hideModal }} />
         </Modal>
       )}
     </div>

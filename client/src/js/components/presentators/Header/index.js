@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 import logoImage from '../images/logo.png';
 
-export default ({ showLoginModal, toggleRoombar, logoutUser, username }) => (
+export default ({ showModal, toggleRoombar, logoutUser, username }) => (
   <Container>
     <Logo to="/">
       <Image alt="Logo Image" src={logoImage} />
@@ -12,7 +12,7 @@ export default ({ showLoginModal, toggleRoombar, logoutUser, username }) => (
     <Nav>
       {username || username !== null ? (
         <Ul>
-          <Li onClick={showLoginModal}>
+          <Li onClick={() => showModal('login')}>
             使用中の名前：
             <Name>{username}</Name>
           </Li>
@@ -22,7 +22,7 @@ export default ({ showLoginModal, toggleRoombar, logoutUser, username }) => (
         </Ul>
       ) : (
         <Ul>
-          <Li onClick={showLoginModal}>ログイン</Li>
+          <Li onClick={() => showModal('login')}>ログイン</Li>
         </Ul>
       )}
     </Nav>

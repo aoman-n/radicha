@@ -1,9 +1,9 @@
 const initialState = {
-  roomList: ['test', 'testtest', 'アクアリウム'],
+  roomList: [],
   modals: {
-    isLoginModal: false,
-    isCreateRoomModal: false,
-    isEjectFromRoomModal: false,
+    login: false,
+    create: false,
+    eject: false,
   },
   isRoomBar: true,
 };
@@ -27,35 +27,15 @@ export default (state = initialState, action) => {
       };
     case 'TOGLLE_ROOMBAR':
       return { ...state, isRoomBar: !state.isRoomBar };
-    case 'SHOW_LOGIN_MODAL':
+    case 'SHOW_MODAL':
       return {
         ...state,
-        modals: { isLoginModal: true },
+        modals: { [action.payload]: true },
       };
-    case 'CLOSE_LOGIN_MODAL':
+    case 'HIDE_MODAL':
       return {
         ...state,
-        modals: { isLoginModal: false },
-      };
-    case 'SHOW_CREATE_ROOM_MODAL':
-      return {
-        ...state,
-        modals: { isCreateRoomModal: true },
-      };
-    case 'CLOSE_CREATE_ROOM_MODAL':
-      return {
-        ...state,
-        modals: { isCreateRoomModal: false },
-      };
-    case 'SHOW_EJECT_FROM_ROOM_MODAL':
-      return {
-        ...state,
-        modals: { isEjectFromRoomModal: true },
-      };
-    case 'CLOSE_EJECT_FROM_ROOM_MODAL':
-      return {
-        ...state,
-        modals: { isEjectFromRoomModal: false },
+        modals: { [action.payload]: false },
       };
     default:
       return state;

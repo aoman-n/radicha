@@ -33,7 +33,6 @@ function* runCreateRoom() {
   while (true) {
     const { payload } = yield take(actions.CREATE_ROOM);
     const { socket } = yield select(state => state.app);
-    debugger;
     socket.emit('create room', payload);
   }
 }
