@@ -1,23 +1,5 @@
 import { fork, take, call, put, select } from 'redux-saga/effects';
-import { eventChannel } from 'redux-saga';
-import io from 'socket.io-client';
 import * as actions from '../actions';
-import config from '../config';
-
-function subscribe(socket) {
-  return eventChannel(emit => {
-    socket.on('add room', name => {
-      emit(actions.addRoom(name));
-    });
-    socket.on('removed room', name => {
-      emit(actions.deleteRoomFromList(name));
-    });
-    socket.on('created room', name => {
-      emit(actions.goCreatedRoom(name));
-    });
-    return () => {};
-  });
-}
 
 function* goCreatedRoom(context) {
   while (true) {
@@ -26,35 +8,14 @@ function* goCreatedRoom(context) {
   }
 }
 
-function* changeApp(socket) {
-  if (socket) {
-    const channel = yield call(subscribe, socket);
-    while (true) {
-      const action = yield take(channel);
-      console.log('action:', action);
-      yield put(action);
-    }
-  }
-}
-
-function connect() {
-  const socket = io(config.url);
-  return new Promise(resolve => {
-    socket.on('connect', () => {
-      console.log('success connect');
-      resolve(socket);
-    });
-  });
-}
-
 function* loginUser() {
   while (true) {
     const { payload } = yield take(actions.LOGIN_USER);
-    const socket = yield call(connect);
-    yield fork(changeApp, socket);
-    yield put(actions.setSocket(socket));
-    socket.emit('login', payload);
-    window.localStorage.setItem('username', payload);
+    const { socket } = yield select(state => state.app);
+    if (socket) {
+      socket.emit('login', payload);
+      window.localStorage.setItem('username', payload);
+    }
   }
 }
 
@@ -72,6 +33,7 @@ function* runCreateRoom() {
   while (true) {
     const { payload } = yield take(actions.CREATE_ROOM);
     const { socket } = yield select(state => state.app);
+    debugger;
     socket.emit('create room', payload);
   }
 }
