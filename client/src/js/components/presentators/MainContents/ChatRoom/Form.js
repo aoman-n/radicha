@@ -25,12 +25,14 @@ const Form = ({ sendMessage }) => {
 
 const Container = styled.form`
   height: 100%;
-  padding: 0.8rem 2rem;
+  padding: 0 2rem;
   box-sizing: border-box;
   border-top: 1px solid ${Color.lightGray};
+  display: flex;
+  align-items: center;
 `;
 const Input = styled.input`
-  height: 100%;
+  height: 67%;
   width: 70%;
   margin-right: 20px;
   box-sizing: border-box;
@@ -52,7 +54,7 @@ const Button = styled.button`
   padding: 0.25rem 1rem;
   border: 2px solid ${Color.main};
   border-radius: 3px;
-  height: 100%;
+  height: 67%;
   overflow: visible;
   box-sizing: border-box;
   outline: none;
