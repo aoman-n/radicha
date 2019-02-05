@@ -24,7 +24,6 @@ function* logoutUser() {
     yield take(actions.LOGOUT_USER);
     const { socket } = yield select(state => state.app);
     socket.emit('logout');
-    yield put(actions.delteSocket());
     localStorage.clear();
   }
 }
