@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx } from '@emotion/core';
+import { jsx, keyframes } from '@emotion/core';
 import styled from '@emotion/styled';
 import { withState, withHandlers, pure, compose } from 'recompose';
 import Color from '../constants/Color';
@@ -31,6 +31,26 @@ export default enhancer(({ loginUser, inputText, onChangeText, hideModal }) => (
   </Modal>
 ));
 
+const fadeIn = keyframes`
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -30%);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+`;
+const fadeOut = keyframes`
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -30%);
+  }
+`;
 const Modal = styled.div`
   width: 50%;
   height: 70%;
@@ -43,7 +63,7 @@ const Modal = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  transition: 0.5s;
+  animation: ${fadeIn} 0.5s ease 0s 1 normal;
 `;
 const InputName = styled.input`
   height: 40px;

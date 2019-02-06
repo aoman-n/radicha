@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx } from '@emotion/core';
+import { jsx, keyframes } from '@emotion/core';
 import styled from '@emotion/styled';
 import LoginModal from './LoginModal';
 import CreateRoomModal from './CreateRoomModal';

@@ -37,6 +37,7 @@ export default withRouter(props => {
 const Container = styled.div`
   width: 100%;
   height: 100%;
+  border-right: 1px solid ${Color.dark30};
 `;
 const CreateRoom = styled.div`
   height: 50px;
@@ -49,7 +50,7 @@ const Button = styled.button`
   width: 80%;
   background: ${Color.accent};
   color: white;
-  font-size: 1rem;
+  font-size: 0.8rem;
   border: 2px solid white;
   border-radius: 10px;
   height: 35px;
@@ -67,14 +68,14 @@ const Button = styled.button`
 `;
 const RoomList = styled.div`
   height: calc(100% - 50px);
-  background: ${Color.gray};
+  background: ${Color.dark50};
   overflow: auto;
 `;
 const Li = styled(NavLink)`
   display: block;
   padding: 0.8rem 30px;
   color: white;
-  font-size: 1.1rem;
+  font-size: 0.8rem;
   text-decoration: none;
   &:hover {
     ${roomActiveStyle}

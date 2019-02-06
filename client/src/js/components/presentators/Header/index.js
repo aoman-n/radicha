@@ -54,7 +54,7 @@ const Ul = styled.ul`
   justify-content: space-between;
 `;
 const Li = styled.li`
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   color: white;
   position: relative;
   display: inline-block;

@@ -15,4 +15,12 @@ export default {
   gray: '#767676',
   lightGray: '#E0E0E0',
   accent: '#EDAD0B',
+  dark60: 'rgba(0, 0, 0, 0.87)',
+  dark50: 'rgba(0, 0, 0, 0.54)',
+  dark40: 'rgba(0, 0, 0, 0.26)',
+  dark30: 'rgba(0, 0, 0, 0.12)',
+  light60: 'rgba(255,255,255,1.00)',
+  light50: 'rgba(255,255,255,0.70)',
+  light40: 'rgba(255,255,255,0.30)',
+  light30: 'rgba(255,255,255,0.12)',
 };
