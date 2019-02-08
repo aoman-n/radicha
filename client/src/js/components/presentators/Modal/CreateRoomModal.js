@@ -7,7 +7,7 @@ import Color from '../constants/Color';
 export default ({ createRoom, hideModal }) => {
   const [text, setText] = useState('');
   return (
-    <Modal>
+    <Wrapper>
       <InputName
         type="text"
         value={text}
@@ -21,23 +21,13 @@ export default ({ createRoom, hideModal }) => {
       >
         Create!!!
       </Button>
-    </Modal>
+    </Wrapper>
   );
 };
 
-const Modal = styled.div`
-  width: 50%;
-  height: 70%;
-  margin: 1.5em auto 0;
-  padding: 10px 20px;
-  border: 2px solid #aaa;
-  background: #fff;
-  position: fixed;
-  z-index: 2;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  transition: 0.5s;
+const Wrapper = styled.div`
+  width: 100%;
+  height: 100%;
 `;
 const InputName = styled.input`
   height: 40px;

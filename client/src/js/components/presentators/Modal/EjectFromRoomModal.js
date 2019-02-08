@@ -3,25 +3,15 @@ import { jsx } from '@emotion/core';
 import styled from '@emotion/styled';
 
 export default ({ hideModal }) => (
-  <Modal>
+  <Wrapper>
     <TextContainer>ルームが解散となりました(´・ω・｀)</TextContainer>
     <CloseButton onClick={() => hideModal('eject')}>閉じる</CloseButton>
-  </Modal>
+  </Wrapper>
 );
 
-const Modal = styled.div`
-  width: 50%;
-  height: 30%;
-  margin: 1.5em auto 0;
-  padding: 10px 20px;
-  border: 2px solid #aaa;
-  background: #fff;
-  position: fixed;
-  z-index: 2;
-  top: 17%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  transition: 0.5s;
+const Wrapper = styled.div`
+  width: 100%;
+  height: 100%;
   text-align: center;
 `;
 const TextContainer = styled.p`

@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, keyframes } from '@emotion/core';
+import { jsx } from '@emotion/core';
 import styled from '@emotion/styled';
 import { withState, withHandlers, pure, compose } from 'recompose';
 import Color from '../constants/Color';
@@ -18,7 +18,7 @@ const enhancer = compose(
 );
 
 export default enhancer(({ loginUser, inputText, onChangeText, hideModal }) => (
-  <Modal>
+  <Wrapper>
     <InputName type="text" value={inputText} onChange={onChangeText} />
     <Button
       onClick={() => {
@@ -28,42 +28,12 @@ export default enhancer(({ loginUser, inputText, onChangeText, hideModal }) => (
     >
       Login
     </Button>
-  </Modal>
+  </Wrapper>
 ));
 
-const fadeIn = keyframes`
-  0% {
-    opacity: 0;
-    transform: translate(-50%, -30%);
-  }
-  100% {
-    opacity: 1;
-    transform: translate(-50%, -50%);
-  }
-`;
-const fadeOut = keyframes`
-  0% {
-    opacity: 0;
-    transform: translate(-50%, -50%);
-  }
-  100% {
-    opacity: 1;
-    transform: translate(-50%, -30%);
-  }
-`;
-const Modal = styled.div`
-  width: 50%;
-  height: 70%;
-  margin: 1.5em auto 0;
-  padding: 10px 20px;
-  border: 2px solid #aaa;
-  background: #fff;
-  position: fixed;
-  z-index: 2;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  animation: ${fadeIn} 0.5s ease 0s 1 normal;
+const Wrapper = styled.div`
+  width: 100%;
+  height: 100%;
 `;
 const InputName = styled.input`
   height: 40px;
