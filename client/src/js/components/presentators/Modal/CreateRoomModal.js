@@ -2,25 +2,37 @@
 import { useState } from 'react';
 import { jsx } from '@emotion/core';
 import styled from '@emotion/styled';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Color from '../constants/Color';
+
+library.add(faTimes);
 
 export default ({ createRoom, hideModal }) => {
   const [text, setText] = useState('');
   return (
     <Wrapper>
-      <InputName
-        type="text"
-        value={text}
-        onChange={e => setText(e.target.value)}
-      />
-      <Button
-        onClick={() => {
-          createRoom(text);
-          hideModal('create');
-        }}
-      >
-        Create!!!
-      </Button>
+      <InfoContainer>作成する部屋の名前を入力して下さい。</InfoContainer>
+      <FormContainer>
+        <InputArea>
+          <Input
+            type="text"
+            value={text}
+            onChange={e => setText(e.target.value)}
+          />
+          <Description>※8文字以内で入力してください</Description>
+        </InputArea>
+        <Button
+          onClick={() => {
+            createRoom(text);
+            hideModal('login');
+          }}
+        >
+          ログイン
+        </Button>
+      </FormContainer>
+      <CloseIcon onClick={() => hideModal('login')} icon="times" size="lg" />
     </Wrapper>
   );
 };
@@ -28,11 +40,34 @@ export default ({ createRoom, hideModal }) => {
 const Wrapper = styled.div`
   width: 100%;
   height: 100%;
+  background: white;
+  border-radius: 6px;
+  position: relative;
+  color: ${Color.dark50};
 `;
-const InputName = styled.input`
-  height: 40px;
+const InfoContainer = styled.div`
+  font-size: 1.1rem;
+  background: ${Color.base2};
+  height: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top-right-radius: 6px;
+  border-top-left-radius: 6px;
+`;
+const FormContainer = styled.div`
+  height: 75%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+const InputArea = styled.div`
   width: 70%;
-  margin-right: 20px;
+`;
+const Input = styled.input`
+  height: 50px;
+  width: 100%;
   box-sizing: border-box;
   outline: none;
   font-size: 0.9em;
@@ -42,12 +77,18 @@ const InputName = styled.input`
     outline: 2px ${Color.skyblue} solid;
   }
 `;
+const Description = styled.p`
+  padding-top: 8px;
+  text-align: center;
+`;
 const Button = styled.button`
+  width: 40%;
   background: white;
-  color: palevioletred;
+  color: ${Color.main2};
+  margin: 20px 0;
   font-size: 1em;
   padding: 0.25em 1em;
-  border: 2px solid palevioletred;
+  border: 2px solid ${Color.main2};
   border-radius: 3px;
   height: 40px;
   overflow: visible;
@@ -56,8 +97,17 @@ const Button = styled.button`
   cursor: pointer;
   transition: 0.3s;
   &:hover {
-    background: palevioletred;
+    background: ${Color.main2};
     color: white;
     transition: 0.3s;
+  }
+`;
+const CloseIcon = styled(FontAwesomeIcon)`
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: ${Color.dark50};
+  :hover {
+    cursor: pointer;
   }
 `;

@@ -60,10 +60,10 @@ const StyledModal = styled(Modal)`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 700px;
-  height: 60%;
-  background: white;
-  border-radius: 10px;
+  width: 60%;
+  max-width: 500px;
+  height: 50%;
+  max-height: 350px;
   z-index: 2;
 `;
 

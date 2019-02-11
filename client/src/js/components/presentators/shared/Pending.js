@@ -2,10 +2,15 @@
 import { jsx, css } from '@emotion/core';
 import styled from '@emotion/styled';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Color from '../constants/Color';
 
 export default () => (
   <Container>
-    <CircularProgress size={60} color="primary" style={{ color: '#A5DF00' }} />
+    <CircularProgress
+      size={60}
+      color="primary"
+      style={{ color: `${Color.gray}` }}
+    />
   </Container>
 );
 
