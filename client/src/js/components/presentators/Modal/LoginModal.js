@@ -27,12 +27,7 @@ export default enhancer(({ loginUser, inputText, onChangeText, hideModal }) => (
     <InfoContainer>名前を入力してログインして下さい。</InfoContainer>
     <FormContainer>
       <InputArea>
-        <Input
-          type="text"
-          value={inputText}
-          onChange={onChangeText}
-          for="input-login"
-        />
+        <Input type="text" value={inputText} onChange={onChangeText} />
         <Description>※8文字以内で入力してください</Description>
       </InputArea>
       <Button
@@ -40,7 +35,6 @@ export default enhancer(({ loginUser, inputText, onChangeText, hideModal }) => (
           loginUser(inputText);
           hideModal('login');
         }}
-        for="input-login"
       >
         ログイン
       </Button>

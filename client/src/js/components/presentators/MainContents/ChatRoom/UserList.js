@@ -6,7 +6,7 @@ import userIcon from '../../images/user_icon.png';
 const UserList = ({ users, master }) => (
   <Container>
     {users.map((user, i) => (
-      <User key={user.id}>
+      <User key={i}>
         <Icon alt="userIcon" src={userIcon} />
         {user.name}
       </User>
