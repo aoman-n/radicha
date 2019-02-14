@@ -2,13 +2,14 @@
 import { jsx } from '@emotion/core';
 import styled from '@emotion/styled';
 import { Route, Switch } from 'react-router-dom';
+import { hot } from 'react-hot-loader/root';
 import Color from './constants/Color';
 import Header from './Header';
 import RoomBar from './RoomBar';
 import ChatContainer from '../containers/ChatContainer';
 import ModalContainer from '../containers/ModalContainer';
 
-export default ({
+const Home = ({
   match,
   viewContents,
   toggleRoombar,
@@ -66,3 +67,5 @@ const Drawer = styled.div`
 const ChatRoom = styled.div`
   flex: 1;
 `;
+
+export default hot(Home);

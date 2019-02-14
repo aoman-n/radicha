@@ -5,7 +5,14 @@ import MessageList from './MessageList';
 import Form from './Form';
 import UserList from './UserList';
 
-const ChatRoom = ({ sendMessage, chatRoom, app, removeRoom }) => (
+const ChatRoom = ({
+  sendMessage,
+  chatRoom,
+  app,
+  removeRoom,
+  showModal,
+  startDirectMessage,
+}) => (
   <Container>
     <MessageWrapper>
       <MessageList messages={chatRoom.messages} />
@@ -14,7 +21,12 @@ const ChatRoom = ({ sendMessage, chatRoom, app, removeRoom }) => (
       </FormBox>
     </MessageWrapper>
     <UserListWrapper>
-      <UserList users={chatRoom.users} master={chatRoom.master} />
+      <UserList
+        users={chatRoom.users}
+        master={chatRoom.master}
+        showModal={showModal}
+        startDirectMessage={startDirectMessage}
+      />
     </UserListWrapper>
   </Container>
 );

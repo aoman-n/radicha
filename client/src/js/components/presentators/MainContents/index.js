@@ -6,7 +6,14 @@ import NotFound from '../shared/NotFound';
 
 const enhancer = compose(pure);
 
-const renderComponent = ({ sendMessage, app, chatRoom, removeRoom }) => {
+const renderComponent = ({
+  sendMessage,
+  app,
+  chatRoom,
+  removeRoom,
+  showModal,
+  startDirectMessage,
+}) => {
   const { pending, notFound } = chatRoom;
   if (pending) {
     return <Pending />;
@@ -14,7 +21,18 @@ const renderComponent = ({ sendMessage, app, chatRoom, removeRoom }) => {
   if (notFound) {
     return <NotFound />;
   }
-  return <ChatRoom {...{ sendMessage, app, chatRoom, removeRoom }} />;
+  return (
+    <ChatRoom
+      {...{
+        sendMessage,
+        app,
+        chatRoom,
+        removeRoom,
+        showModal,
+        startDirectMessage,
+      }}
+    />
+  );
 };
 
 export default enhancer(props => (

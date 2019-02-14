@@ -31,6 +31,11 @@ export const SET_ROOM_LIST = 'SET_ROOM_LIST';
 export const TOGLLE_ROOMBAR = 'TOGLLE_ROOMBAR';
 export const ADD_ROOM = 'ADD_ROOM';
 export const DELETE_ROOM_FROM_LIST = 'DELETE_ROOM_FROM_LIST';
+/* directMessage */
+export const START_DIRECT_MESSAGE = 'START_DIRECT_MESSAGE';
+export const SEND_DIRECT_MESSAGE = 'SEND_DIRECT_MESSAGE';
+export const RECEIVE_DIRECT_MESSAGE = 'RECEIVE_DIRECT_MESSAGE';
+export const ADD_DIRECT_MESSAGE = 'ADD_DIRECT_MESSAGE';
 
 // actions creators
 /* initialize */
@@ -62,3 +67,8 @@ export const setRoomList = createAction(SET_ROOM_LIST);
 export const toggleRoombar = createAction(TOGLLE_ROOMBAR);
 export const addRoom = createAction(ADD_ROOM);
 export const deleteRoomFromList = createAction(DELETE_ROOM_FROM_LIST);
+/* directMessage */
+export const startDirectMessage = createAction(START_DIRECT_MESSAGE);
+export const sendDirectMessage = createAction(SEND_DIRECT_MESSAGE);
+export const receiveDirectMessage = createAction(RECEIVE_DIRECT_MESSAGE);
+export const addDirectMessage = createAction(ADD_DIRECT_MESSAGE);

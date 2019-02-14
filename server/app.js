@@ -94,6 +94,16 @@ io.on('connection', socket => {
     logout(socket);
   });
 
+  socket.on('send direct message', async(messageData) => {
+    const { partnerSocketId, text, username } = messageData;
+    // const directMessageData = { messageObj: { type: 'incoming', text }, partnerSocketId: socket.id };
+    io.to(partnerSocketId).emit('receive direct message', {
+      text,
+      username,
+      partnerSocketId: socket.id
+    });
+  })
+
   socket.on('disconnect', () => {
     console.log('client disconnected');
     logout(socket);

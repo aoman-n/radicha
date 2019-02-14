@@ -3,7 +3,13 @@ import { connect } from 'react-redux';
 import { compose, pure, lifecycle } from 'recompose';
 import { withRouter } from 'react-router-dom';
 import Index from '../presentators/MainContents';
-import { sendMessage, joinRoom, removeRoom } from '../../actions';
+import {
+  sendMessage,
+  joinRoom,
+  removeRoom,
+  showModal,
+  startDirectMessage,
+} from '../../actions';
 
 const enhancer = compose(
   connect(
@@ -15,6 +21,8 @@ const enhancer = compose(
       sendMessage,
       joinRoom,
       removeRoom,
+      showModal,
+      startDirectMessage,
     },
   ),
   lifecycle({
@@ -44,8 +52,26 @@ const enhancer = compose(
   pure,
 );
 
-const ChatContainer = enhancer(({ app, chatRoom, sendMessage, removeRoom }) => (
-  <Index {...{ app, chatRoom, sendMessage, removeRoom }} />
-));
+const ChatContainer = enhancer(
+  ({
+    app,
+    chatRoom,
+    sendMessage,
+    removeRoom,
+    showModal,
+    startDirectMessage,
+  }) => (
+    <Index
+      {...{
+        app,
+        chatRoom,
+        sendMessage,
+        removeRoom,
+        showModal,
+        startDirectMessage,
+      }}
+    />
+  ),
+);
 
 export default withRouter(ChatContainer);

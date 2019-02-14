@@ -4,6 +4,7 @@ const initialState = {
     login: false,
     create: false,
     eject: false,
+    direct: false,
   },
   isRoomBar: true,
 };
