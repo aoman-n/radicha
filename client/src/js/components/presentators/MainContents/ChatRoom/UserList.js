@@ -16,6 +16,7 @@ const UserList = ({ users, master, showModal, startDirectMessage }) => (
             key={i}
             onClick={() => {
               startDirectMessage({ name: user.name, socketId: user.socket_id });
+              showModal('direct');
             }}
           >
             <Icon alt="userIcon" src={userIcon} />

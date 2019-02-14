@@ -19,6 +19,7 @@ function subscribe(socket) {
             partnerSocketId,
           }),
         );
+        emit(actions.showModal('direct'));
       },
     );
     return () => {};
@@ -76,7 +77,6 @@ function* handleSocketSet() {
 function* handleStartDirectMessage() {
   while (true) {
     yield take(actions.START_DIRECT_MESSAGE);
-    yield put(actions.showModal('direct'));
   }
 }
 
