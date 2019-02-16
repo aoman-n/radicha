@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Mongo = require('./mongo');
+const Mongo = require('../mongo');
 
 router.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');
