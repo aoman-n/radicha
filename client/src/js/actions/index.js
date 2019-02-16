@@ -7,6 +7,7 @@ export const INITIALIZE = 'INITIALIZE';
 /* app */
 export const LOGIN_USER = 'LOGIN_USER';
 export const LOGOUT_USER = 'LOGOUT_USER';
+export const SET_USER_NAME = 'SET_USER_NAME';
 export const CREATE_CONNECTION = 'CREATE_CONNECTION';
 export const SET_SOCKET = 'SET_SOCKET';
 export const DELETE_SOCKET = 'DELETE_SOCKET';
@@ -31,6 +32,7 @@ export const SET_ROOM_LIST = 'SET_ROOM_LIST';
 export const TOGLLE_ROOMBAR = 'TOGLLE_ROOMBAR';
 export const ADD_ROOM = 'ADD_ROOM';
 export const DELETE_ROOM_FROM_LIST = 'DELETE_ROOM_FROM_LIST';
+export const LOGIN_ERROR = 'LOGIN_ERROR';
 /* directMessage */
 export const START_DIRECT_MESSAGE = 'START_DIRECT_MESSAGE';
 export const SEND_DIRECT_MESSAGE = 'SEND_DIRECT_MESSAGE';
@@ -43,6 +45,7 @@ export const initialize = createAction(INITIALIZE);
 /* app */
 export const loginUser = createAction(LOGIN_USER);
 export const logoutUser = createAction(LOGOUT_USER);
+export const setUserName = createAction(SET_USER_NAME);
 export const createConnection = createAction(CREATE_CONNECTION);
 export const setSocket = createAction(SET_SOCKET);
 export const delteSocket = createAction(DELETE_SOCKET);
@@ -67,6 +70,7 @@ export const setRoomList = createAction(SET_ROOM_LIST);
 export const toggleRoombar = createAction(TOGLLE_ROOMBAR);
 export const addRoom = createAction(ADD_ROOM);
 export const deleteRoomFromList = createAction(DELETE_ROOM_FROM_LIST);
+export const loginError = createAction(LOGIN_ERROR);
 /* directMessage */
 export const startDirectMessage = createAction(START_DIRECT_MESSAGE);
 export const sendDirectMessage = createAction(SEND_DIRECT_MESSAGE);

@@ -9,11 +9,11 @@ exports.login = async(username) => {
   try {
     await mongo.addUser(userData);
     console.log('login success');
-    socket.emit('login succeed');
+    socket.emit('login succeed', username);
   } catch(e) {
     console.log(e);
     console.log('login error');
-    socket.emit('login failed');
+    socket.emit('login failed', username);
   }
 }
 

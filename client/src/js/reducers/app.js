@@ -5,7 +5,12 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case 'LOGIN_USER':
+    // case 'LOGIN_USER':
+    //   return {
+    //     ...state,
+    //     username: action.payload,
+    //   };
+    case 'SET_USER_NAME':
       return {
         ...state,
         username: action.payload,

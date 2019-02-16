@@ -22,26 +22,28 @@ const enhancer = compose(
   pure,
 );
 
-export default enhancer(({ loginUser, inputText, onChangeText, hideModal }) => (
-  <Wrapper>
-    <InfoContainer>名前を入力してログインして下さい。</InfoContainer>
-    <FormContainer>
-      <InputArea>
-        <Input type="text" value={inputText} onChange={onChangeText} />
-        <Description>※8文字以内で入力してください</Description>
-      </InputArea>
-      <Button
-        onClick={() => {
-          loginUser(inputText);
-          hideModal('login');
-        }}
-      >
-        ログイン
-      </Button>
-    </FormContainer>
-    <CloseIcon onClick={() => hideModal('login')} icon="times" size="lg" />
-  </Wrapper>
-));
+export default enhancer(
+  ({ loginUser, inputText, onChangeText, hideModal, loginErrorMessage }) => (
+    <Wrapper>
+      <InfoContainer>名前を入力してログインして下さい。</InfoContainer>
+      <FormContainer>
+        <InputArea>
+          <Input type="text" value={inputText} onChange={onChangeText} />
+          <ErrorMessage>{loginErrorMessage}</ErrorMessage>
+          <Description>※8文字以内で入力してください</Description>
+        </InputArea>
+        <Button
+          onClick={() => {
+            loginUser(inputText);
+          }}
+        >
+          ログイン
+        </Button>
+      </FormContainer>
+      <CloseIcon onClick={() => hideModal('login')} icon="times" size="lg" />
+    </Wrapper>
+  ),
+);
 
 const Wrapper = styled.div`
   width: 100%;
@@ -82,6 +84,11 @@ const Input = styled.input`
   &:focus {
     outline: 2px ${Color.skyblue} solid;
   }
+`;
+const ErrorMessage = styled.p`
+  padding-top: 8px;
+  text-align: center;
+  color: red;
 `;
 const Description = styled.p`
   padding-top: 8px;

@@ -1,4 +1,5 @@
 const initialState = {
+  loginErrorMessage: '',
   roomList: [],
   modals: {
     login: false,
@@ -11,6 +12,11 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case 'LOGIN_ERROR':
+      return {
+        ...state,
+        loginErrorMessage: action.payload,
+      };
     case 'SET_ROOM_LIST':
       return {
         ...state,
@@ -37,6 +43,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         modals: { [action.payload]: false },
+        loginErrorMessage: '',
       };
     default:
       return state;

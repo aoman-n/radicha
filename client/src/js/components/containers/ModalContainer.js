@@ -8,6 +8,7 @@ const enhancer = compose(
     state => ({
       modals: state.viewContents.modals,
       username: state.app.username,
+      loginErrorMessage: state.viewContents.loginErrorMessage,
     }),
     {
       loginUser,

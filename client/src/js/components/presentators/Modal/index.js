@@ -7,14 +7,20 @@ import CreateRoomModal from './CreateRoomModal';
 import EjectFromRoomModal from './EjectFromRoomModal';
 import DirectMessaeModalContainer from '../../containers/DirectMessaeModalContainer';
 
-export default ({ modals, loginUser, createRoom, hideModal }) => {
+export default ({
+  modals,
+  loginUser,
+  createRoom,
+  hideModal,
+  loginErrorMessage,
+}) => {
   const { login, create, eject, direct } = modals;
   return (
     <PoseGroup>
       {login && [
         <StyledShade key="shade" onClick={() => hideModal('login')} />,
         <StyledModal key="modal">
-          <LoginModal {...{ hideModal, loginUser }} />
+          <LoginModal {...{ hideModal, loginUser, loginErrorMessage }} />
         </StyledModal>,
       ]}
       {create && [

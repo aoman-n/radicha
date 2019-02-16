@@ -4,6 +4,15 @@ import * as actions from '../actions';
 
 function subscribe(socket) {
   return eventChannel(emit => {
+    socket.on('login succeed', username => {
+      console.log(`${username}としてログインしました。`);
+      emit(actions.hideModal('login'));
+      emit(actions.setUserName(username));
+    });
+    socket.on('login failed', username => {
+      console.log(`${username}は使用できません。`);
+      emit(actions.loginError(`${username}は使用できません。`));
+    });
     socket.on('add room', name => {
       emit(actions.addRoom(name));
     });
