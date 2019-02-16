@@ -32,10 +32,16 @@ const UserListBar = ({
     <DirectMessageArea>
       <Title>ダイレクトメッセージ</Title>
       <Ul>
-        {directMessageUsers.map((direct, i) => (
-          <Li key={direct}>
+        {directMessageUsers.map((user, i) => (
+          <Li
+            key={user.socketId}
+            onClick={() => {
+              startDirectMessage({ name: user.name, socketId: user.socketId });
+              showModal('direct');
+            }}
+          >
             <Icon alt="me" src={messageIcon} />
-            {direct}
+            {user.name}
           </Li>
         ))}
       </Ul>

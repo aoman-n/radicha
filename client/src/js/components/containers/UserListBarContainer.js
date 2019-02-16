@@ -4,14 +4,23 @@ import { withRouter } from 'react-router-dom';
 import UserListBar from '../presentators/MainContents/ChatRoom/UserListBar';
 import { startDirectMessage, showModal } from '../../actions';
 
+/* eslint-disable */
 const enhancer = compose(
   connect(
-    state => ({
-      roomUsers: state.chatRoom.users,
-      directMessageUsers: Object.values(state.directMessage.directMessage).map(
-        item => item.name,
-      ),
-    }),
+    state => {
+      const directMessageList = state.directMessage.directMessage;
+      let users = [];
+      for (const socketId in directMessageList) {
+        const userObj = {};
+        userObj.socketId = socketId;
+        userObj.name = directMessageList[socketId].name;
+        users.push(userObj);
+      }
+      return {
+        roomUsers: state.chatRoom.users,
+        directMessageUsers: users,
+      }
+    },
     {
       startDirectMessage,
       showModal,
