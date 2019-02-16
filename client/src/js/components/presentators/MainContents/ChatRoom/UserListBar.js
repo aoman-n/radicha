@@ -4,14 +4,18 @@ import Color from '../../constants/Color';
 import userIcon from '../../images/user_icon.png';
 import messageIcon from '../../images/message_icon.png';
 
-const directMessageList = ['aoba', 'anohana', 'あおひろ'];
-
-const UserList = ({ users, master, showModal, startDirectMessage }) => (
+const UserListBar = ({
+  roomUsers,
+  directMessageUsers,
+  master,
+  showModal,
+  startDirectMessage,
+}) => (
   <React.Fragment>
     <UserListArea>
       <Title>Room内のユーザー</Title>
       <Ul>
-        {users.map((user, i) => (
+        {roomUsers.map((user, i) => (
           <Li
             key={i}
             onClick={() => {
@@ -28,7 +32,7 @@ const UserList = ({ users, master, showModal, startDirectMessage }) => (
     <DirectMessageArea>
       <Title>ダイレクトメッセージ</Title>
       <Ul>
-        {directMessageList.map((direct, i) => (
+        {directMessageUsers.map((direct, i) => (
           <Li key={direct}>
             <Icon alt="me" src={messageIcon} />
             {direct}
@@ -73,4 +77,4 @@ const DirectMessageArea = styled.div`
   color: white;
 `;
 
-export default UserList;
+export default UserListBar;

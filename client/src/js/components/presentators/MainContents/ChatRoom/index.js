@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import Color from '../../constants/Color';
 import MessageList from './MessageList';
 import Form from './Form';
-import UserList from './UserList';
+import UserListBarContainer from '../../../containers/UserListBarContainer';
 
 const ChatRoom = ({
   sendMessage,
@@ -21,12 +21,13 @@ const ChatRoom = ({
       </FormBox>
     </MessageWrapper>
     <UserListWrapper>
-      <UserList
+      <UserListBarContainer />
+      {/* <UserList
         users={chatRoom.users}
         master={chatRoom.master}
         showModal={showModal}
         startDirectMessage={startDirectMessage}
-      />
+      /> */}
     </UserListWrapper>
   </Container>
 );
