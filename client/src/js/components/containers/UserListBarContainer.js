@@ -17,6 +17,7 @@ const enhancer = compose(
         users.push(userObj);
       }
       return {
+        ownName: state.app.username,
         roomUsers: state.chatRoom.users,
         directMessageUsers: users,
       }

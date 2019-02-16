@@ -10,6 +10,7 @@ const UserListBar = ({
   master,
   showModal,
   startDirectMessage,
+  ownName,
 }) => (
   <React.Fragment>
     <UserListArea>
@@ -17,8 +18,10 @@ const UserListBar = ({
       <Ul>
         {roomUsers.map((user, i) => (
           <Li
+            own={user.name === ownName}
             key={i}
             onClick={() => {
+              if (user.name === ownName) return;
               startDirectMessage({ name: user.name, socketId: user.socket_id });
               showModal('direct');
             }}
@@ -65,9 +68,9 @@ const Li = styled.li`
   font-weight: normal;
   font-size: 0.9rem;
   padding: 0.5rem 0;
-  cursor: pointer;
-  :hover {
-    opacity: 0.8;
+  cursor: ${props => (props.own ? 'default' : 'pointer')};
+  &:hover {
+    opacity: ${props => (props.own ? 1 : 0.8)};
   }
 `;
 const Icon = styled.img`
