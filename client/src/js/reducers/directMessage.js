@@ -20,12 +20,14 @@ export default (state = initialState, action) => {
       };
     case actions.ADD_DIRECT_MESSAGE:
       const { messageObj, partnerSocketId } = action.payload;
+      const { name, messages } = state.directMessage[partnerSocketId];
       return {
         ...state,
         directMessage: {
-          [partnerSocketId]: state.directMessage[partnerSocketId].concat(
-            messageObj,
-          ),
+          [partnerSocketId]: {
+            name,
+            messages: messages.concat(messageObj),
+          },
         },
       };
     default:

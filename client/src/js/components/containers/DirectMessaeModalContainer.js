@@ -8,7 +8,7 @@ const enhancer = compose(
     state => {
       const { name, socketId } = state.directMessage.currentPartnerUser;
       return {
-        messageList: state.directMessage.directMessage[socketId],
+        messageList: state.directMessage.directMessage[socketId].messages,
         partnerName: name,
       };
     },

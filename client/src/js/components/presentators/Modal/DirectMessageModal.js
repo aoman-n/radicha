@@ -11,7 +11,7 @@ library.add(faTimes);
 
 export default ({ sendDirectMessage, messageList, partnerName, hideModal }) => {
   const [text, setText] = useState('');
-  console.log(messageList);
+  const isDisabled = text.length === 0;
   return (
     <Wrapper>
       <Title>{partnerName}</Title>
@@ -32,14 +32,14 @@ export default ({ sendDirectMessage, messageList, partnerName, hideModal }) => {
           onChange={e => setText(e.target.value)}
         />
         <Button
+          disabled={isDisabled}
           onClick={e => {
-            console.log('click');
             e.preventDefault();
             sendDirectMessage(text);
             setText('');
           }}
         >
-          Send
+          送信
         </Button>
       </Form>
       <CloseIcon onClick={() => hideModal('direct')} icon="times" size="lg" />
@@ -91,15 +91,15 @@ const outgoingStyles = css`
   position: relative;
   text-align: left;
   margin: 0 10px 0 0;
-  padding: 8px;
+  padding: 9px;
   max-width: 250px;
   border-radius: 12px;
   background: #30e852;
   &::after {
     content: '';
     position: absolute;
-    top: 3px;
-    right: -17px;
+    top: 0px;
+    right: -18px;
     border: 8px solid transparent;
     border-left: 18px solid #30e852;
     -ms-transform: rotate(-35deg);
@@ -111,7 +111,7 @@ const incomingStyles = css`
   display: inline-block;
   position: relative;
   margin: 0 0 0 10px;
-  padding: 8px;
+  padding: 9px;
   max-width: 250px;
   border-radius: 12px;
   background: white;
@@ -119,8 +119,8 @@ const incomingStyles = css`
     content: '';
     display: inline-block;
     position: absolute;
-    top: 3px;
-    left: -19px;
+    top: 0px;
+    left: -18px;
     border: 8px solid transparent;
     border-right: 18px solid white;
     -ms-transform: rotate(35deg);
@@ -157,8 +157,9 @@ const Button = styled.button`
   height: 100%;
   width: 26%;
   font-size: 0.9rem;
-  color: white;
-  background: ${Color.main2};
+  color: ${props => (props.disabled ? `${Color.gray30}` : 'white')};
+  background: ${props =>
+    props.disabled ? `${Color.gray10}` : `${Color.main2}`};
   box-sizing: border-box;
   cursor: pointer;
   margin: 0;

@@ -7,7 +7,7 @@ const createNewState = (partnerData, currentState) => {
   const { name, socketId } = partnerData;
   const { directMessage } = currentState;
   const newDirectMessageObj = {};
-  newDirectMessageObj[socketId] = [];
+  newDirectMessageObj[socketId] = { name, messages: [] };
   const hasPartnerMessage = existsPartnerMessage(socketId, directMessage);
   if (hasPartnerMessage) {
     return {
