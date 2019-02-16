@@ -1,11 +1,8 @@
 const app = require('express')();
-const http = require('http').Server(app);
 const bodyParser = require('body-parser')
 const config = require('./config');
 const routes = require('./routes');
-const socketio = require('./socket');
-
-global.io = require('socket.io')(http);
+const ioServer = require('./socket')(app);
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
@@ -27,8 +24,6 @@ app.use((err, req, res, next) => {
   res.send({ error: 'Something failed', err });
 });
 
-socketio();
-
-http.listen(config.http.port, () => {
+ioServer.listen(config.http.port, () => {
   console.log('listening on: ' + config.http.port);
 });

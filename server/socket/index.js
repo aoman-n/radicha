@@ -1,27 +1,21 @@
-const app = require('./app');
-const directMessage = require('./directMessage');
-const room = require('./room');
+const appEvents = require('./app');
+const directMessageEvents = require('./directMessage');
+const roomEvents = require('./room');
 
-module.exports = () => {
-
+const ioEvents = io => {
   io.on('connection', socket => {
     console.log('client connected');
-    global.socket = socket;
-
-    // app
-    socket.on('login', app.login);
-    socket.on('logout', app.logout);
-    socket.on('disconnect', app.disconnect);
-
-    // room
-    socket.on('create room', room.create);
-    socket.on('join', room.join);
-    socket.on('chat message', room.message);
-    socket.on('remove room', room.remove);
-    socket.on('leave the room', room.leave);
-
-    // directMessage
-    socket.on('send direct message', directMessage.send)
-
-  });
+    appEvents(io, socket);
+    roomEvents(io, socket);
+    directMessageEvents(io, socket);
+  })
 }
+
+const init = app => {
+  const server = require('http').Server(app);
+  const io = require('socket.io')(server);
+  ioEvents(io);
+  return server;
+}
+
+module.exports = init;
