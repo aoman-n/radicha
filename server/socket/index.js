@@ -1,5 +1,3 @@
-const Mongo = require('../mongo');
-const mongo = new Mongo();
 const app = require('./app');
 const directMessage = require('./directMessage');
 const room = require('./room');
