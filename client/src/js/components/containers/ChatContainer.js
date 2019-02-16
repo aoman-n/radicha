@@ -29,7 +29,7 @@ const enhancer = compose(
     componentWillMount() {
       const { joinRoom, match, app } = this.props;
       if (app.username === null || app.username === '') {
-        this.props.showLoginModal();
+        this.props.showModal('login');
         this.props.history.push('/');
       } else {
         // 直接URLを叩かれたときの暫定的な対応、socketがsetされるまで待つ
