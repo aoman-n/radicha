@@ -12,8 +12,12 @@
   "dependencies": {
     "bluebird": "^3.5.3",
     "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.4",
+    "debug": "^4.1.1",
     "express": "^4.16.4",
+    "http-errors": "^1.7.1",
     "mongoose": "^5.4.0",
+    "morgan": "^1.9.1",
     "socket.io": "^2.2.0"
   },
   "devDependencies": {

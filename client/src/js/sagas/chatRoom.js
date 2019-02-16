@@ -34,9 +34,6 @@ function subscribe(socket) {
     socket.on('eject from room', () => {
       emit(actions.ejectFromRoom());
     });
-    socket.on('clear socket', () => {
-      console.log('clear socket を受け取りました。');
-    });
     return () => {};
   });
 }
