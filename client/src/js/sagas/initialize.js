@@ -1,8 +1,8 @@
 import { put, fork, call, takeEvery } from 'redux-saga/effects';
 import io from 'socket.io-client';
 import * as actions from '../actions';
-import { getRoomList } from '../utils/api';
 import config from '../config';
+import { getRoomList } from '../utils/api';
 
 function connect() {
   const socket = io(config.url);
@@ -12,16 +12,6 @@ function connect() {
       resolve(socket);
     });
   });
-}
-
-function* runGetUserName() {
-  const username = yield localStorage.getItem('username');
-  if (username) {
-    yield put(actions.loginUser(username));
-  } else {
-    console.log('not found username in localstorage');
-    yield put(actions.showModal('login'));
-  }
 }
 
 function* runGetRoomList() {
@@ -39,10 +29,6 @@ function* runGetSocket() {
   yield put(actions.setSocket(socket));
 }
 
-function* handleGetUeserName() {
-  yield takeEvery(actions.INITIALIZE, runGetUserName);
-}
-
 function* handleGetRoomList() {
   yield takeEvery(actions.INITIALIZE, runGetRoomList);
 }
@@ -52,7 +38,6 @@ function* handleGetSocket() {
 }
 
 export default function*() {
-  yield fork(handleGetUeserName);
   yield fork(handleGetRoomList);
   yield fork(handleGetSocket);
 }

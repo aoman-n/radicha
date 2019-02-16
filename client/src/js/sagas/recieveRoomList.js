@@ -11,7 +11,7 @@ function subscribe(socket) {
       emit(actions.deleteRoomFromList(name));
     });
     socket.on('created room', name => {
-      emit(actions.goCreatedRoom(name));
+      emit(actions.joinToCreatedRoom(name));
     });
     return () => {};
   });

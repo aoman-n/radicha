@@ -11,7 +11,7 @@ export const CREATE_CONNECTION = 'CREATE_CONNECTION';
 export const SET_SOCKET = 'SET_SOCKET';
 export const DELETE_SOCKET = 'DELETE_SOCKET';
 export const CREATE_ROOM = 'CREATE_ROOM';
-export const GO_CREATED_ROOM = 'GO_CREATED_ROOM';
+export const JOIN_TO_CREATED_ROOM = 'JOIN_TO_CREATED_ROOM';
 /* chatRoom */
 export const NOT_FOUND_ROOM = 'NOT_FOUND_ROOM';
 export const JOIN_ROOM = 'JOIN_ROOM';
@@ -47,7 +47,7 @@ export const createConnection = createAction(CREATE_CONNECTION);
 export const setSocket = createAction(SET_SOCKET);
 export const delteSocket = createAction(DELETE_SOCKET);
 export const createRoom = createAction(CREATE_ROOM);
-export const goCreatedRoom = createAction(GO_CREATED_ROOM);
+export const joinToCreatedRoom = createAction(JOIN_TO_CREATED_ROOM);
 /* chatRoom */
 export const notFoundRoom = createAction(NOT_FOUND_ROOM);
 export const joinRoom = createAction(JOIN_ROOM);

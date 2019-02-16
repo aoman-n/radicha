@@ -1,11 +1,25 @@
-import { fork, take, call, put, select } from 'redux-saga/effects';
+import { fork, take, call, put, select, takeEvery } from 'redux-saga/effects';
 import * as actions from '../actions';
 
-function* goCreatedRoom(context) {
+function* runGetUserName() {
+  const username = yield localStorage.getItem('username');
+  if (username) {
+    yield put(actions.loginUser(username));
+  } else {
+    console.log('not found username in localstorage');
+    yield put(actions.showModal('login'));
+  }
+}
+
+function* joinToCreatedRoom(context) {
   while (true) {
-    const { payload } = yield take(actions.GO_CREATED_ROOM);
+    const { payload } = yield take(actions.JOIN_TO_CREATED_ROOM);
     yield call(context.history.push, `/room/${payload}`);
   }
+}
+
+function* handleGetUeserName() {
+  yield takeEvery(actions.SET_SOCKET, runGetUserName);
 }
 
 function* loginUser() {
@@ -37,8 +51,9 @@ function* runCreateRoom() {
 }
 
 export default function*(context) {
+  yield fork(handleGetUeserName);
   yield fork(loginUser);
   yield fork(logoutUser);
   yield fork(runCreateRoom);
-  yield fork(goCreatedRoom, context);
+  yield fork(joinToCreatedRoom, context);
 }
