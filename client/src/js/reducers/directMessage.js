@@ -3,7 +3,12 @@ import createNewState from '../utils/directMessageHelper';
 
 const initialState = {
   currentPartnerUser: { name: '', socketId: '' },
-  directMessage: {},
+  directMessage: {
+    test: {
+      name: 'testくん',
+      messages: ['どうも！こちらでダイレクトメッセージを送信できます！'],
+    },
+  },
 };
 
 export default (state = initialState, action) => {
@@ -24,6 +29,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         directMessage: {
+          ...state.directMessage,
           [partnerSocketId]: {
             name,
             messages: messages.concat(messageObj),

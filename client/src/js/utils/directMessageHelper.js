@@ -21,8 +21,8 @@ const createNewState = (partnerData, currentState) => {
   return {
     ...currentState,
     currentPartnerUser: {
-      name: partnerData.name,
-      socketId: partnerData.socketId,
+      name,
+      socketId,
     },
     directMessage: Object.assign({}, directMessage, newDirectMessageObj),
   };
