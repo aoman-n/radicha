@@ -1,3 +1,6 @@
+const Mongo = require('../../mongo');
+const mongo = new Mongo();
+
 const logout = async(socket) => {
   const { room, username, id } = socket;
   if (room) {
